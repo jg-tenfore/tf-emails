@@ -9,6 +9,9 @@ interface EmailHeroProps {
   headline?: ReactNode;
   /** Extra caption lines under the headline (e.g. address, IDs). */
   details?: ReactNode[];
+  /** Venue logo overlaid on the image as a badge, identifying the sender. */
+  logoUrl?: string;
+  logoAlt?: string;
   imageHeight?: number;
   className?: string;
 }
@@ -26,6 +29,8 @@ export const EmailHero = ({
   eyebrow,
   headline,
   details,
+  logoUrl,
+  logoAlt,
   imageHeight = 224,
   className,
 }: EmailHeroProps) => {
@@ -33,12 +38,23 @@ export const EmailHero = ({
   return (
     <div className={cx("px-8 py-3", className)}>
       <div className="overflow-hidden rounded-xl ring-1 ring-black/5">
-        <img
-          src={imageUrl}
-          alt={imageAlt}
-          className="block w-full object-cover"
-          style={{ height: imageHeight }}
-        />
+        <div className="relative">
+          <img
+            src={imageUrl}
+            alt={imageAlt}
+            className="block w-full object-cover"
+            style={{ height: imageHeight }}
+          />
+          {logoUrl ? (
+            <img
+              src={logoUrl}
+              alt={logoAlt ?? ""}
+              width={52}
+              height={52}
+              className="absolute top-4 left-4 rounded-lg shadow-md ring-1 ring-black/10"
+            />
+          ) : null}
+        </div>
         {hasText ? (
           <div className="px-6 py-5" style={{ backgroundColor: BAND }}>
             {eyebrow ? (

@@ -26,7 +26,15 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Introduction", "Foundations", "Email Components", "Emails"],
+        order: [
+          "Introduction",
+          "TenFore Partners",
+          "Email Components",
+          "TenFore Golf",
+          "Sagamore Golf Club",
+          "FloGolf Lounge",
+          "Admin",
+        ],
       },
     },
   },

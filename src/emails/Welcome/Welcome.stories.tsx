@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { WelcomeEmail } from "./Welcome";
 
 const meta = {
-  title: "Emails/Welcome",
+  title: "Sagamore Golf Club/Account & Security/Welcome",
   component: WelcomeEmail,
   parameters: { layout: "fullscreen" },
   argTypes: {

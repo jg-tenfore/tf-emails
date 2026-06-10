@@ -21,6 +21,7 @@ import {
   EmailShell,
   SectionHeading,
 } from "@/components/email";
+import { assets } from "@/lib/assets";
 import { brand } from "@/lib/brand";
 import {
   course,
@@ -56,7 +57,7 @@ export const ReceiptEmail = ({
 }: ReceiptEmailProps) => {
   return (
     <EmailShell
-      preheader={`Your tee time is confirmed — receipt for order ${orderNumber}, ${total}.`}
+      preheader={`Your tee time is confirmed — receipt for order #${orderNumber}, ${total}.`}
     >
       <EmailHeader />
 
@@ -80,10 +81,12 @@ export const ReceiptEmail = ({
       <EmailHero
         imageUrl={courseImage}
         imageAlt={course.name}
+        logoUrl={assets.logo.src}
+        logoAlt={course.name}
         headline={course.name}
         details={[
           course.address,
-          `Booking ID ${orderNumber} · User ID ${golfer.userId}`,
+          `Booking ID #${orderNumber} · User ID #${golfer.userId}`,
         ]}
       />
 

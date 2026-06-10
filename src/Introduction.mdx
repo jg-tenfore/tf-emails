@@ -1,0 +1,131 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# TenFore Golf — Email Design System
+
+A living Storybook for the **TenFore Golf** email system. Every email here is a
+real React component, built from a shared library of primitives and previewed
+across its real-world edge cases — so design, copy, and engineering all work
+from one source of truth.
+
+---
+
+## What this is
+
+TenFore Golf is a cloud booking platform for golf venues. This Storybook is the
+home for every **transactional and lifecycle email** the platform sends — tee
+time confirmations, receipts, membership renewals, gift cards, simulator
+bookings, operator notifications, and more.
+
+Instead of static mockups, each email is a composable component. Its variations
+(a refund vs. no refund, a manual vs. auto renewal, a single vs. multi-item
+order) are captured as **Storybook stories**, so you can see every state the
+real system produces.
+
+## The model — platform + partners
+
+The system has three kinds of sender, and that distinction drives the branding:
+
+- **TenFore Golf** — the platform itself (the Crane booking app, accounts, the
+  Golf Buddies feature). Platform-branded.
+- **Partner venues** — the places you actually book. Two are live today:
+  **Sagamore Spring Golf Club** (a golf course) and **FloGolf Lounge** (an
+  indoor Golfzon simulator lounge). The venue is the *content*; TenFore is the
+  *platform*.
+- **Admin** — operator- and finance-facing notifications (a sale was booked, a
+  payment failed, an ACH run completed). Internal, not customer-facing.
+
+## How the sidebar is organized
+
+| Group | What's inside |
+| --- | --- |
+| **Introduction** | This page. |
+| **TenFore Partners** | The venue directory — brand assets, venue details, and general info for each partner. |
+| **Email Components** | The primitive library every email is built from (headers, heroes, callouts, cards, payment blocks…). |
+| **TenFore Golf** | Platform / app emails — Welcome, Meet Crane, Golf Buddies. |
+| **Sagamore Golf Club** | The golf-course customer emails (tee times, clinics, events, membership, gift cards, account…). |
+| **FloGolf Lounge** | The simulator-lounge customer emails (booking confirmation, reminder, modification, cancellation). |
+| **Admin** | Operator / internal notifications and reports. |
+
+## Anatomy of an email
+
+Almost every email composes the same skeleton:
+
+```
+EmailShell            → neutral canvas + centered 600px white card + inbox preheader
+  Header              → EmailHeader (variant="platform", or "admin" for internal)
+  Hero / StatusHero   → image hero (with venue logo overlay) or text status block
+  VenueBadge          → which partner this is from (logo + name + address)
+  EmailSection(s)     → the body: details, payment, callouts, CTAs
+  Footer              → EmailFooter (TenFore platform)
+```
+
+## Branding rules — "who is this from?"
+
+A deliberate, consistent answer to sender identity:
+
+- **The header logo never changes per venue.** One `EmailHeader` component:
+  customer emails use the TenFore platform mark; internal emails pass
+  `variant="admin"` for the TenFore Admin mark.
+- **The venue is identified in the body**, via a **`VenueBadge`** (venue logo +
+  name + address) and/or **hero imagery** with the venue logo overlaid on the
+  photo. So a recipient always sees *TenFore the platform* up top and *which
+  partner* they booked with in the content.
+- **The footer is always the TenFore platform footer.**
+
+## Edge cases — how variants work
+
+The single most important convention: **one template per archetype; edge cases
+are story args, not new files.** A `Modification` email is one component; its
+"with refund" and "without refund" states are two stories.
+
+Variation runs along a few clear axes:
+
+- **Lifecycle** — confirm → modify → cancel → refund
+- **Payment state** — paid online · pay at venue · amount due · refund · failed
+- **Status tone** — success (green) · info (blue) · warning (amber), expressed
+  through the `Callout` color
+- **Audience** — customer · operator · platform-internal
+- **Single vs. multi** — one line item vs. grouped line items
+
+A few representative examples you can open right now:
+
+- **Sagamore Golf Club / Membership / Expiring** — *Manual renew* vs. *Auto-renew*
+- **FloGolf Lounge / Booking Modification** — *Default* vs. *Shorter session with refund*
+- **Sagamore Golf Club / Gift Cards / Purchase** — *Self* vs. *Gift*
+- **Sagamore Golf Club / Waitlist / Booked** — *Pay at course* vs. *Paid and booked*
+
+## One canonical scenario
+
+All defaults flow from `src/lib/scenario.ts` (golfer, course, tee time, payment,
+membership, gift card…) plus `src/lib/flogolf.ts` for the simulator venue. Every
+template defaults its props from that scenario and lets stories override simple
+fields — so the whole system tells one coherent, realistic story, and new edge
+cases are expressed as overrides rather than copied data.
+
+## The component library
+
+`Email Components` holds the shared building blocks, including:
+
+- **Structure** — EmailShell, EmailHeader (platform + admin variants), EmailFooter, EmailSection, Divider
+- **Heroes & identity** — EmailHero, StatusHero, VenueBadge, Logo, IdStamp
+- **Content** — DetailCard, DetailRow, ItemizedList, PaymentSummary, StatusBadge,
+  Callout, WhatChanged, BookingCard, ForecastCard, GiftCardVisual, FeatureList,
+  Checklist, NumberedSteps, LocationBlock, SectionHeading
+- **Operator** — ContactBlock, DataTable
+- **App & engagement** — CTAButton, AppBanner, AppStoreBadge, EmailRating
+
+## Extending the system
+
+- **Add a partner** → drop their assets in `src/assets/brand/`, add a
+  `src/lib/<partner>.ts`, and copy a profile under **TenFore Partners** plus an
+  email folder. The header/footer chrome stays the same; only the `VenueBadge`
+  and hero imagery change.
+- **Add an email** → create `src/emails/<Name>/<Name>.tsx` + `<Name>.stories.tsx`,
+  default its props from the scenario, and express edge cases as extra stories.
+
+---
+
+_Browse **TenFore Partners** next for the venue directory, or jump straight into
+any group to see the live emails and their edge cases._

@@ -4,11 +4,21 @@ import { EmailHeader } from "./email-header";
 const meta = {
   title: "Email Components/Header",
   component: EmailHeader,
-  parameters: { layout: "padded" },
+  parameters: { layout: "fullscreen" },
+  decorators: [
+    (Story) => (
+      <div className="mx-auto w-[600px] max-w-full bg-primary">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof EmailHeader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** 160px-wide color logo, always centered on a white bar. */
-export const Default: Story = {};
+/** Platform logo — used on all customer-facing emails. */
+export const Platform: Story = { args: { variant: "platform" } };
+
+/** Admin logo — used on operator / internal emails. */
+export const Admin: Story = { args: { variant: "admin" } };

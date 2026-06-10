@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, MarkerPin02 } from "@untitledui/icons";
+import { ArrowRight, Clock, MarkerPin02, SunSetting03 } from "@untitledui/icons";
 import {
   BookingCard,
   type BookingDetails,
@@ -8,8 +8,11 @@ import {
   EmailHeader,
   EmailSection,
   EmailShell,
+  ForecastCard,
+  VenueBadge,
 } from "@/components/email";
-import { golfer, teeTime } from "@/lib/scenario";
+import { assets } from "@/lib/assets";
+import { course, golfer, teeTime } from "@/lib/scenario";
 
 export interface TeeTimeReminderProps {
   firstName?: string;
@@ -39,6 +42,15 @@ export const TeeTimeReminder = ({
     <EmailShell preheader={`Reminder: your tee time is ${booking.time} ${booking.date}.`}>
       <EmailHeader />
 
+      <EmailSection padding="md">
+        <VenueBadge
+          label="Your reservation at"
+          logoUrl={assets.logo.src}
+          name={course.name}
+          location={course.address}
+        />
+      </EmailSection>
+
       <EmailSection padding="lg" align="center">
         <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-brand-primary text-brand-secondary">
           <Clock className="size-6" />
@@ -58,19 +70,12 @@ export const TeeTimeReminder = ({
           status={{ label: "Tomorrow", color: "brand" }}
         />
 
-        <div className="mt-4 flex items-center justify-between rounded-xl border border-secondary bg-secondary px-5 py-4">
-          <div>
-            <p className="text-xs font-medium text-tertiary uppercase">
-              Forecast
-            </p>
-            <p className="mt-0.5 text-sm font-semibold text-primary">
-              {forecast.summary}
-            </p>
-          </div>
-          <p className="text-display-xs font-semibold text-brand-secondary">
-            {forecast.tempF}°
-          </p>
-        </div>
+        <ForecastCard
+          className="mt-4"
+          summary={forecast.summary}
+          tempF={forecast.tempF}
+          icon={SunSetting03}
+        />
 
         <div className="mt-6 flex flex-col gap-3">
           <CTAButton href={directionsUrl} size="lg" fullWidth iconLeading={MarkerPin02}>

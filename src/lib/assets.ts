@@ -5,9 +5,9 @@ import craneIcon from "@/assets/brand/tenfore-crane-icon.webp";
 /**
  * Registered Sagamore Spring brand assets.
  *
- * Stored and showcased in Storybook (Foundations → Brand Assets). Not yet wired
- * into any email — usage guidance is coming. Reference these by importing
- * `assets` so future emails point at one canonical source.
+ * Stored and showcased in Storybook (TenFore Partners → Sagamore Spring Golf
+ * Club). Reference these by importing `assets` so emails point at one canonical
+ * source.
  */
 export interface BrandAsset {
   src: string;

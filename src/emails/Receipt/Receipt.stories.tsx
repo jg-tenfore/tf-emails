@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ReceiptEmail } from "./Receipt";
 
 const meta = {
-  title: "Emails/Receipt",
+  title: "Sagamore Golf Club/Orders/Receipt",
   component: ReceiptEmail,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" }, receiptUrl: { control: "text" } },

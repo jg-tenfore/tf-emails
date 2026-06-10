@@ -59,7 +59,7 @@ export const BookingCard = ({
           label="Confirmation"
           value={
             <span className="font-mono tracking-wide">
-              {booking.confirmationCode}
+              #{booking.confirmationCode}
             </span>
           }
         />

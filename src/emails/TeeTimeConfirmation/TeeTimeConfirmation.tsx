@@ -19,6 +19,7 @@ import {
   EmailShell,
   SectionHeading,
 } from "@/components/email";
+import { assets } from "@/lib/assets";
 import {
   courseImage,
   golfer,
@@ -67,6 +68,8 @@ export const TeeTimeConfirmation = ({
       <EmailHero
         imageUrl={courseImage}
         imageAlt={teeTime.course}
+        logoUrl={assets.logo.src}
+        logoAlt={teeTime.course}
         eyebrow={`Confirmation #${teeTime.confirmation}`}
         headline={teeTime.course}
       />
@@ -104,13 +107,13 @@ export const TeeTimeConfirmation = ({
             }
           />
           <DetailRow
-            label="Confirmation #"
-            value={<span className="font-mono">{teeTime.confirmation}</span>}
+            label="Confirmation"
+            value={<span className="font-mono">#{teeTime.confirmation}</span>}
           />
           <DetailRow
-            label="Course confirmation #"
+            label="Course confirmation"
             value={
-              <span className="font-mono">{teeTime.courseConfirmation}</span>
+              <span className="font-mono">#{teeTime.courseConfirmation}</span>
             }
           />
           <DetailRow label="Group" value={teeTime.groupName} />

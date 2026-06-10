@@ -25,3 +25,8 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+# Reference / source stashes (the assets used are already imported into src/assets)
+/references/
+/flogolf/
+/tenfore-golf/

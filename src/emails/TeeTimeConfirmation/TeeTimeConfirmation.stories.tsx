@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { TeeTimeConfirmation } from "./TeeTimeConfirmation";
 
 const meta = {
-  title: "Emails/Tee Time Confirmation",
+  title: "Sagamore Golf Club/Tee Times/Confirmation",
   component: TeeTimeConfirmation,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" }, manageUrl: { control: "text" } },

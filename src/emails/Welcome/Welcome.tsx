@@ -8,6 +8,7 @@ import {
   EmailSection,
   EmailShell,
 } from "@/components/email";
+import { assets } from "@/lib/assets";
 import { course, courseImage, golfer } from "@/lib/scenario";
 
 export interface WelcomeEmailProps {
@@ -43,6 +44,8 @@ export const WelcomeEmail = ({
       <EmailHero
         imageUrl={courseImage}
         imageAlt="Sunrise over the fairway"
+        logoUrl={assets.logo.src}
+        logoAlt={course.name}
         eyebrow="Welcome to the club"
         headline={`Great to have you, ${firstName}`}
       />
