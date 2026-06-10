@@ -1,4 +1,14 @@
 import { Meta } from "@storybook/addon-docs/blocks";
+import tfLogo from "@/assets/tf-logo.svg";
+import tfAdmin from "@/assets/tf-admin.svg";
+import sagamoreLogo from "@/assets/brand/sagamore-logo.jpeg";
+import sagamoreHero from "@/assets/brand/sagamore-9th-hole.jpg";
+import flogolfLogo from "@/assets/brand/flogolf-logo.png";
+import flogolfLounge from "@/assets/brand/flogolf-lounge.jpg";
+import proV1 from "@/assets/store/pro-v1.png";
+import glove from "@/assets/store/glove.png";
+import tees from "@/assets/store/tees.png";
+import chips from "@/assets/store/chips.png";
 
 <Meta title="Introduction" />
 
@@ -37,6 +47,27 @@ The system has three kinds of sender, and that distinction drives the branding:
   *platform*.
 - **Admin** — operator- and finance-facing notifications (a sale was booked, a
   payment failed, an ACH run completed). Internal, not customer-facing.
+
+<div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 28, margin: "24px 0 8px" }}>
+  <figure style={{ margin: 0, textAlign: "center" }}>
+    <img src={tfLogo} alt="TenFore Golf" style={{ height: 34 }} />
+    <figcaption style={{ fontSize: 12, color: "#667085", marginTop: 8 }}>Platform</figcaption>
+  </figure>
+  <span style={{ color: "#98a2b3", fontSize: 20 }}>+</span>
+  <figure style={{ margin: 0, textAlign: "center" }}>
+    <img src={sagamoreLogo} alt="Sagamore Spring Golf Club" style={{ height: 56, borderRadius: 10 }} />
+    <figcaption style={{ fontSize: 12, color: "#667085", marginTop: 8 }}>Sagamore Spring Golf Club</figcaption>
+  </figure>
+  <figure style={{ margin: 0, textAlign: "center" }}>
+    <img src={flogolfLogo} alt="FloGolf Lounge" style={{ height: 56, borderRadius: 10 }} />
+    <figcaption style={{ fontSize: 12, color: "#667085", marginTop: 8 }}>FloGolf Lounge</figcaption>
+  </figure>
+</div>
+
+<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, margin: "12px 0" }}>
+  <img src={sagamoreHero} alt="Sagamore Spring Golf Club" style={{ width: "100%", height: 150, objectFit: "cover", borderRadius: 12 }} />
+  <img src={flogolfLounge} alt="FloGolf simulator lounge" style={{ width: "100%", height: 150, objectFit: "cover", borderRadius: 12 }} />
+</div>
 
 ## How the sidebar is organized
 
@@ -78,6 +109,21 @@ A deliberate, consistent answer to sender identity:
   partner* they booked with in the content.
 - **The footer is always the TenFore platform footer.**
 
+<div style={{ display: "flex", flexWrap: "wrap", gap: 24, margin: "20px 0 8px" }}>
+  <figure style={{ margin: 0 }}>
+    <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", padding: "16px 28px", border: "1px solid #eaecf0", borderRadius: 12, background: "#fff" }}>
+      <img src={tfLogo} alt="TenFore platform header" style={{ height: 26 }} />
+    </div>
+    <figcaption style={{ fontSize: 12, color: "#667085", marginTop: 8 }}>Customer emails — platform mark</figcaption>
+  </figure>
+  <figure style={{ margin: 0 }}>
+    <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", padding: "16px 28px", border: "1px solid #eaecf0", borderRadius: 12, background: "#fff" }}>
+      <img src={tfAdmin} alt="TenFore admin header" style={{ height: 26 }} />
+    </div>
+    <figcaption style={{ fontSize: 12, color: "#667085", marginTop: 8 }}>Admin emails — <code>variant="admin"</code></figcaption>
+  </figure>
+</div>
+
 ## Edge cases — how variants work
 
 The single most important convention: **one template per archetype; edge cases
@@ -100,6 +146,25 @@ A few representative examples you can open right now:
 - **Sagamore Golf Club / Tee Times / Confirmation** — range-bucket code as a *PIN*, *Barcode*, or *QR*
 - **FloGolf Lounge / Simulator Booking / Confirmation** — *Default* vs. *Multiple Bays*
 - **Sagamore Golf Club / Gift Cards / Purchase** — *Self* vs. *Gift*
+
+Receipts can carry real product thumbnails — the pro-shop and snack-bar orders
+pair each line item with its image:
+
+<div style={{ display: "flex", flexWrap: "wrap", gap: 12, margin: "12px 0" }}>
+  {[
+    { src: proV1, label: "Pro V1 balls" },
+    { src: glove, label: "Glove" },
+    { src: tees, label: "Tees" },
+    { src: chips, label: "Snacks" },
+  ].map((p) => (
+    <img
+      key={p.label}
+      src={p.src}
+      alt={p.label}
+      style={{ width: 60, height: 60, objectFit: "contain", padding: 6, border: "1px solid #eaecf0", borderRadius: 10, background: "#f9fafb" }}
+    />
+  ))}
+</div>
 
 ## One canonical scenario
 
