@@ -9,6 +9,8 @@ real React component, built from a shared library of primitives and previewed
 across its real-world edge cases — so design, copy, and engineering all work
 from one source of truth.
 
+**44 email templates · 34 shared components · 2 partner venues.**
+
 ---
 
 ## What this is
@@ -44,8 +46,8 @@ The system has three kinds of sender, and that distinction drives the branding:
 | **TenFore Partners** | The venue directory — brand assets, venue details, and general info for each partner. |
 | **Email Components** | The primitive library every email is built from (headers, heroes, callouts, cards, payment blocks…). |
 | **TenFore Golf** | Platform / app emails — Welcome, Meet Crane, Golf Buddies. |
-| **Sagamore Golf Club** | The golf-course customer emails (tee times, clinics, events, membership, gift cards, account…). |
-| **FloGolf Lounge** | The simulator-lounge customer emails (booking confirmation, reminder, modification, cancellation). |
+| **Sagamore Golf Club** | The golf-course customer emails (tee times, clinics, events, membership, gift cards, pro-shop & snack-bar receipts, account…). |
+| **FloGolf Lounge** | The simulator-lounge customer emails — one Simulator Booking lifecycle (confirmation, reminder, modification, cancellation). |
 | **Admin** | Operator / internal notifications and reports. |
 
 ## Anatomy of an email
@@ -55,11 +57,13 @@ Almost every email composes the same skeleton:
 ```
 EmailShell            → neutral canvas + centered 600px white card + inbox preheader
   Header              → EmailHeader (variant="platform", or "admin" for internal)
-  Hero / StatusHero   → image hero (with venue logo overlay) or text status block
-  VenueBadge          → which partner this is from (logo + name + address)
+  Hero / StatusHero   → image hero (with venue logo overlay) or text headline block
+  VenueBadge          → which partner this is from (logo + name + address) — below the headline
   EmailSection(s)     → the body: details, payment, callouts, CTAs
   Footer              → EmailFooter (TenFore platform)
 ```
+
+The headline leads; the venue `VenueBadge` sits beneath it as secondary context.
 
 ## Branding rules — "who is this from?"
 
@@ -92,9 +96,10 @@ Variation runs along a few clear axes:
 A few representative examples you can open right now:
 
 - **Sagamore Golf Club / Membership / Expiring** — *Manual renew* vs. *Auto-renew*
-- **FloGolf Lounge / Booking Modification** — *Default* vs. *Shorter session with refund*
+- **Sagamore Golf Club / Orders / Purchase Receipt** — *Pro Shop* vs. *Snack Bar* (with product thumbnails)
+- **Sagamore Golf Club / Tee Times / Confirmation** — range-bucket code as a *PIN*, *Barcode*, or *QR*
+- **FloGolf Lounge / Simulator Booking / Confirmation** — *Default* vs. *Multiple Bays*
 - **Sagamore Golf Club / Gift Cards / Purchase** — *Self* vs. *Gift*
-- **Sagamore Golf Club / Waitlist / Booked** — *Pay at course* vs. *Paid and booked*
 
 ## One canonical scenario
 
@@ -108,13 +113,18 @@ cases are expressed as overrides rather than copied data.
 
 `Email Components` holds the shared building blocks, including:
 
-- **Structure** — EmailShell, EmailHeader (platform + admin variants), EmailFooter, EmailSection, Divider
+- **Structure & layout** — EmailShell, EmailHeader (platform + admin variants),
+  EmailFooter, EmailSection, Divider, CTAStack, SupportLine
 - **Heroes & identity** — EmailHero, StatusHero, VenueBadge, Logo, IdStamp
-- **Content** — DetailCard, DetailRow, ItemizedList, PaymentSummary, StatusBadge,
-  Callout, WhatChanged, BookingCard, ForecastCard, GiftCardVisual, FeatureList,
+- **Content** — DetailCard, DetailRow, ItemizedList (with optional product
+  thumbnails), PaymentSummary, StatusBadge, Callout, WhatChanged, BookingCard,
+  ForecastCard, GiftCardVisual, RedemptionCode (PIN / barcode / QR), FeatureList,
   Checklist, NumberedSteps, LocationBlock, SectionHeading
 - **Operator** — ContactBlock, DataTable
 - **App & engagement** — CTAButton, AppBanner, AppStoreBadge, EmailRating
+
+These primitives are genuinely shared, not decorative: `DetailCard` backs 32
+emails, `SupportLine` 16, `CTAStack` 12 — change one and every email follows.
 
 ## Extending the system
 
