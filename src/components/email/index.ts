@@ -1,5 +1,7 @@
 export { EmailShell } from "./email-shell";
 export { EmailHeader } from "./email-header";
+export { Logo } from "./logo";
+export { SectionHeading } from "./section-heading";
 export { EmailFooter } from "./email-footer";
 export { EmailHero } from "./email-hero";
 export { EmailSection } from "./email-section";

@@ -1,43 +1,30 @@
-import { Flag02 } from "@untitledui/icons";
 import { cx } from "@/utils/cx";
-import { brand } from "@/lib/brand";
+import { Logo } from "./logo";
 
 interface EmailHeaderProps {
-  /** "brand" = dark green bar, "light" = white bar with green wordmark. */
-  variant?: "brand" | "light";
+  /** "light" = white bar with the Tenfore logo (Expedia-style, default).
+   *  "brand" = dark green bar with the inverted logo. */
+  variant?: "light" | "brand";
   align?: "left" | "center";
 }
 
-/** Tenfore Golf wordmark bar that opens every email. */
+/** Tenfore Golf logo bar that opens every email. */
 export const EmailHeader = ({
-  variant = "brand",
+  variant = "light",
   align = "center",
 }: EmailHeaderProps) => {
   const isBrand = variant === "brand";
   return (
     <div
       className={cx(
-        "flex items-center gap-2.5 px-8 py-5",
-        isBrand ? "bg-brand-section" : "bg-primary border-b border-secondary",
+        "flex items-center px-8 py-5",
+        isBrand
+          ? "bg-brand-section"
+          : "border-b border-secondary bg-primary",
         align === "center" ? "justify-center" : "justify-start",
       )}
     >
-      <span
-        className={cx(
-          "flex size-8 items-center justify-center rounded-full",
-          isBrand ? "bg-white/10 text-white" : "bg-brand-primary text-brand-secondary",
-        )}
-      >
-        <Flag02 className="size-4.5" />
-      </span>
-      <span
-        className={cx(
-          "text-lg font-bold tracking-tight",
-          isBrand ? "text-white" : "text-primary",
-        )}
-      >
-        {brand.name}
-      </span>
+      <Logo height={28} invert={isBrand} />
     </div>
   );
 };

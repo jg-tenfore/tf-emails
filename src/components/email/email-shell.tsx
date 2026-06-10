@@ -21,7 +21,10 @@ export const EmailShell = ({
   className,
 }: EmailShellProps) => {
   return (
-    <div className="w-full bg-secondary py-8 sm:py-12">
+    <div
+      className="w-full py-8 sm:py-12"
+      style={{ backgroundColor: "#eceff3" }}
+    >
       {preheader ? (
         <div className="hidden" aria-hidden="true">
           {preheader}
@@ -29,7 +32,7 @@ export const EmailShell = ({
       ) : null}
       <div
         className={cx(
-          "mx-auto w-full overflow-hidden rounded-2xl bg-primary shadow-lg ring-1 ring-secondary",
+          "mx-auto w-full overflow-hidden rounded-xl bg-primary shadow-sm ring-1 ring-black/5",
           className,
         )}
         style={{ maxWidth: width }}

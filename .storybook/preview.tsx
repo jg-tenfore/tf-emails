@@ -13,7 +13,7 @@ const preview: Preview = {
     backgrounds: {
       default: "Email canvas",
       values: [
-        { name: "Email canvas", value: "#f5f5f4" },
+        { name: "Email canvas", value: "#eceff3" },
         { name: "White", value: "#ffffff" },
         { name: "Dark", value: "#0c0e12" },
       ],
