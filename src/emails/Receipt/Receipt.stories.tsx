@@ -5,23 +5,29 @@ const meta = {
   title: "Emails/Receipt",
   component: ReceiptEmail,
   parameters: { layout: "fullscreen" },
+  argTypes: { firstName: { control: "text" }, receiptUrl: { control: "text" } },
 } satisfies Meta<typeof ReceiptEmail>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/** The canonical Sagamore Spring tee-time receipt. */
 export const Default: Story = {};
 
-export const ProShopPurchase: Story = {
+/** A higher-value weekend round receipt. */
+export const WeekendRound: Story = {
   args: {
     firstName: "Sam",
-    orderNumber: "TF-PS-5521",
+    orderNumber: "538117902",
+    orderDate: "May 6, 2026",
     items: [
-      { label: "Titleist Pro V1 (dozen)", amount: "$54.99" },
-      { label: "Tenfore logo glove", amount: "$24.00" },
+      { label: "Weekend green fee — 18 holes × 4", amount: "$232.00" },
+      { label: "Convenience fee", amount: "$9.98" },
+      { label: "Sagamore Pass member discount", amount: "−$24.00" },
     ],
-    subtotal: "$78.99",
-    tax: "$6.71",
-    total: "$85.70",
+    subtotal: "$217.98",
+    tax: "$0.00",
+    total: "$217.98",
+    cardLast4: "1881",
   },
 };

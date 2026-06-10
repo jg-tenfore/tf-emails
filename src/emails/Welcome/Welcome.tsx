@@ -8,9 +8,7 @@ import {
   EmailSection,
   EmailShell,
 } from "@/components/email";
-
-const COURSE_IMG =
-  "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1200&q=80";
+import { course, courseImage, golfer } from "@/lib/scenario";
 
 export interface WelcomeEmailProps {
   firstName?: string;
@@ -18,20 +16,32 @@ export interface WelcomeEmailProps {
 }
 
 const perks = [
-  { icon: Calendar, title: "Book tee times 24/7", body: "Reserve online in seconds, any day of the week." },
-  { icon: Star01, title: "Member pricing", body: "Save up to 20% on green fees and the pro shop." },
-  { icon: Flag01, title: "Track your rounds", body: "Log scores and watch your handicap improve." },
+  {
+    icon: Calendar,
+    title: "Book tee times 24/7",
+    body: "Reserve online in seconds, any day of the week.",
+  },
+  {
+    icon: Star01,
+    title: "Sagamore Pass pricing",
+    body: "Save on green fees with waived booking fees and member rates.",
+  },
+  {
+    icon: Flag01,
+    title: "Track your rounds",
+    body: "Log scores and watch your handicap improve.",
+  },
 ];
 
 export const WelcomeEmail = ({
-  firstName = "Jordan",
-  ctaUrl = "https://tenforegolf.com/book",
+  firstName = golfer.firstName,
+  ctaUrl = course.bookingUrl,
 }: WelcomeEmailProps) => {
   return (
-    <EmailShell preheader="Welcome to Tenfore Golf — let's get you on the course.">
-      <EmailHeader variant="brand" />
+    <EmailShell preheader={`Welcome to ${course.name} — let's get you on the course.`}>
+      <EmailHeader />
       <EmailHero
-        imageUrl={COURSE_IMG}
+        imageUrl={courseImage}
         imageAlt="Sunrise over the fairway"
         eyebrow="Welcome to the club"
         headline={`Great to have you, ${firstName}`}
@@ -39,9 +49,9 @@ export const WelcomeEmail = ({
 
       <EmailSection padding="lg">
         <p className="text-md text-secondary">
-          Your Tenfore Golf account is ready. Whether you're chasing a new
-          personal best or just here for a relaxed round with friends, everything
-          you need is a tap away.
+          Your {course.name} account is ready. Whether you're chasing a new
+          personal best or here for a relaxed twilight nine with friends,
+          everything you need is a tap away.
         </p>
 
         <div className="mt-6 flex flex-col gap-5">
@@ -69,8 +79,8 @@ export const WelcomeEmail = ({
 
       <EmailSection align="center" tone="muted">
         <p className="text-sm text-tertiary">
-          Questions? Just reply to this email or call us at{" "}
-          <span className="font-medium text-secondary">(555) 018-4653</span>.
+          Questions? Just reply to this email or call the pro shop at{" "}
+          <span className="font-medium text-secondary">{course.phone}</span>.
         </p>
       </EmailSection>
 

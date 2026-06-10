@@ -6,7 +6,7 @@ interface EmailSectionProps {
   /** Vertical padding density. */
   padding?: "sm" | "md" | "lg";
   /** Background treatment. */
-  tone?: "default" | "muted" | "brand";
+  tone?: "default" | "muted";
   align?: "left" | "center";
   className?: string;
 }
@@ -20,7 +20,6 @@ const paddings = {
 const tones = {
   default: "bg-primary",
   muted: "bg-secondary",
-  brand: "bg-brand-section text-white",
 };
 
 /** A padded content block inside an email. */

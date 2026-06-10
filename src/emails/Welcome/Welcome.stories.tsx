@@ -14,5 +14,5 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = { args: { firstName: "Jordan" } };
+export const Default: Story = { args: { firstName: "Justin" } };
 export const NewMember: Story = { args: { firstName: "Sam" } };

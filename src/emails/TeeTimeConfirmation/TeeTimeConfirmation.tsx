@@ -19,37 +19,14 @@ import {
   EmailShell,
   SectionHeading,
 } from "@/components/email";
-
-const COURSE_IMG =
-  "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1200&q=80";
-
-export interface TeeTime {
-  course: string;
-  courseNote?: string;
-  address: string;
-  mapUrl: string;
-  date: string;
-  time: string;
-  players: number;
-  holes: number;
-  rateType: string;
-  groupName: string;
-  confirmation: string;
-  courseConfirmation: string;
-}
-
-export interface PaymentBreakdown {
-  greenFees: string;
-  greenFeesPerPlayer: string;
-  convenienceFee: string;
-  taxes: string;
-  discounts: string;
-  discountNote: string;
-  donation: string;
-  grandTotal: string;
-  paidOnline: string;
-  dueAtCourse: string;
-}
+import {
+  courseImage,
+  golfer,
+  payment as defaultPayment,
+  type PaymentBreakdown,
+  teeTime as defaultTeeTime,
+  type TeeTime,
+} from "@/lib/scenario";
 
 export interface TeeTimeConfirmationProps {
   firstName?: string;
@@ -58,45 +35,17 @@ export interface TeeTimeConfirmationProps {
   manageUrl?: string;
 }
 
-const defaultTeeTime: TeeTime = {
-  course: "Kelley Greens Golf Course",
-  courseNote: "Formerly Nahant Golf Club",
-  address: "1 Willow Rd, Nahant, MA 01908",
-  mapUrl: "https://maps.google.com/?q=1+Willow+Rd,+Nahant,+MA+01908",
-  date: "Tuesday, April 21, 2026",
-  time: "6:00 PM",
-  players: 2,
-  holes: 9,
-  rateType: "Hot Deal",
-  groupName: "Justin Girard · 617-470-7879",
-  confirmation: "421292164",
-  courseConfirmation: "Girard|34938",
-};
-
-const defaultPayment: PaymentBreakdown = {
-  greenFees: "$41.40",
-  greenFeesPerPlayer: "$20.70 / player",
-  convenienceFee: "$6.98",
-  taxes: "$0.00",
-  discounts: "−$36.06",
-  discountNote: "Tenfore Pass waived-fee credit · Worry Free",
-  donation: "$0.68",
-  grandTotal: "$13.00",
-  paidOnline: "$13.00",
-  dueAtCourse: "$0.00",
-};
-
 export const TeeTimeConfirmation = ({
-  firstName = "Justin",
+  firstName = golfer.firstName,
   teeTime = defaultTeeTime,
   payment = defaultPayment,
-  manageUrl = "https://tenforegolf.com/reservations/421292164",
+  manageUrl = `https://www.sagamoregolf.com/reservations/${defaultTeeTime.confirmation}`,
 }: TeeTimeConfirmationProps) => {
   return (
     <EmailShell
       preheader={`Your tee time at ${teeTime.course} is confirmed for ${teeTime.date} at ${teeTime.time}.`}
     >
-      <EmailHeader variant="light" />
+      <EmailHeader />
 
       {/* Intro band */}
       <EmailSection padding="lg">
@@ -116,7 +65,7 @@ export const TeeTimeConfirmation = ({
 
       {/* Captioned hero */}
       <EmailHero
-        imageUrl={COURSE_IMG}
+        imageUrl={courseImage}
         imageAlt={teeTime.course}
         eyebrow={`Confirmation #${teeTime.confirmation}`}
         headline={teeTime.course}
@@ -257,15 +206,15 @@ export const TeeTimeConfirmation = ({
         <SectionHeading title="Good to know" />
         <ul className="mt-3 flex flex-col gap-2 text-sm text-tertiary">
           <li>
-            · This tee time is offered through Tenfore and played precisely at
-            the time chosen. The Hot Deal rate is valid for this tee time only.
+            · This tee time is played precisely at the time chosen. The Twilight
+            Deal rate is valid for this tee time only.
           </li>
           <li>
             · Groups of fewer than four players may be paired with other
             pre-paid golfers.
           </li>
           <li>
-            · Payment is due online in full at the time of reservation; course
+            · Payment is due online in full at the time of reservation; pro-shop
             staff can't change the tee time or honor the prepaid rate for
             another slot.
           </li>
@@ -278,8 +227,8 @@ export const TeeTimeConfirmation = ({
           Please follow the course dress code: collared shirt required; no denim
           or tank tops. Reservations are refundable only if cancelled 24+ hours
           in advance, if the course is closed on the day of play, or with an
-          eligible Tenfore Pass cancellation. Refunds are issued as Tenfore
-          account credit valid for six months.
+          eligible Sagamore Pass cancellation. Refunds are issued as account
+          credit valid for six months.
         </p>
 
         <div className="mt-5 flex flex-col gap-3">
@@ -304,7 +253,7 @@ export const TeeTimeConfirmation = ({
         </div>
       </EmailSection>
 
-      <EmailFooter reason="You're receiving this because you booked a tee time through Tenfore Golf." />
+      <EmailFooter reason="You're receiving this because you booked a tee time with Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

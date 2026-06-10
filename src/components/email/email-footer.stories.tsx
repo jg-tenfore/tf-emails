@@ -5,16 +5,14 @@ const meta = {
   title: "Email Components/Footer",
   component: EmailFooter,
   parameters: { layout: "padded" },
+  argTypes: { align: { control: "inline-radio", options: ["left", "center"] } },
 } satisfies Meta<typeof EmailFooter>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+/** Left-justified footer with the small footer logo (default). */
+export const LeftAligned: Story = { args: { align: "left" } };
 
-export const Marketing: Story = {
-  args: {
-    reason:
-      "You're receiving this because you opted in to Tenfore Golf news and offers.",
-  },
-};
+/** Centered variant. */
+export const Centered: Story = { args: { align: "center" } };

@@ -1,24 +1,41 @@
-import { Download01 } from "@untitledui/icons";
 import {
+  ArrowRight,
+  Calendar,
+  Clock,
+  Download01,
+  LifeBuoy01,
+  Phone,
+  ShieldTick,
+  Users01,
+} from "@untitledui/icons";
+import {
+  AppDownloadLink,
   CTAButton,
   DetailRow,
   Divider,
   EmailFooter,
   EmailHeader,
+  EmailHero,
+  EmailRating,
   EmailSection,
   EmailShell,
+  SectionHeading,
 } from "@/components/email";
-
-interface LineItem {
-  label: string;
-  amount: string;
-}
+import { brand } from "@/lib/brand";
+import {
+  course,
+  courseImage,
+  golfer,
+  receipt,
+  type ReceiptLine,
+  teeTime,
+} from "@/lib/scenario";
 
 export interface ReceiptEmailProps {
   firstName?: string;
   orderNumber?: string;
   orderDate?: string;
-  items?: LineItem[];
+  items?: ReceiptLine[];
   subtotal?: string;
   tax?: string;
   total?: string;
@@ -26,47 +43,71 @@ export interface ReceiptEmailProps {
   receiptUrl?: string;
 }
 
-const defaultItems: LineItem[] = [
-  { label: "Green fee — 18 holes × 4", amount: "$220.00" },
-  { label: "Cart rental × 2", amount: "$40.00" },
-  { label: "Member discount", amount: "−$32.00" },
-];
-
 export const ReceiptEmail = ({
-  firstName = "Jordan",
-  orderNumber = "TF-8X4K2",
-  orderDate = "June 12, 2026",
-  items = defaultItems,
-  subtotal = "$228.00",
-  tax = "$20.00",
-  total = "$248.00",
-  cardLast4 = "4242",
-  receiptUrl = "https://tenforegolf.com/receipts/TF-8X4K2",
+  firstName = golfer.firstName,
+  orderNumber = receipt.orderNumber,
+  orderDate = receipt.orderDate,
+  items = receipt.items,
+  subtotal = receipt.subtotal,
+  tax = receipt.tax,
+  total = receipt.total,
+  cardLast4 = receipt.cardLast4,
+  receiptUrl = `https://www.tenfore.golf/receipts/${receipt.orderNumber}`,
 }: ReceiptEmailProps) => {
   return (
-    <EmailShell preheader={`Receipt for order ${orderNumber} — ${total}.`}>
-      <EmailHeader variant="light" align="left" />
+    <EmailShell
+      preheader={`Your tee time is confirmed — receipt for order ${orderNumber}, ${total}.`}
+    >
+      <EmailHeader />
 
+      {/* Intro + view receipt on the TenFore platform */}
       <EmailSection padding="lg">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h1 className="text-display-xs font-semibold text-primary">
-              Receipt
-            </h1>
-            <p className="mt-1 text-sm text-tertiary">
-              Thanks for your payment, {firstName}.
-            </p>
-          </div>
-          <div className="text-right">
-            <p className="text-xs text-tertiary">Order</p>
-            <p className="font-mono text-sm font-medium text-secondary">
-              {orderNumber}
-            </p>
-            <p className="mt-1 text-xs text-tertiary">{orderDate}</p>
-          </div>
+        <h1 className="text-display-xs font-semibold text-primary">
+          Your tee time is confirmed, {firstName}.
+        </h1>
+        <p className="mt-2 text-md text-secondary">
+          Thanks for booking with TenFore. Your receipt is below — and you can
+          view it any time on the TenFore platform.
+        </p>
+        <div className="mt-5">
+          <CTAButton href={receiptUrl} size="lg" iconTrailing={ArrowRight}>
+            View receipt
+          </CTAButton>
         </div>
+      </EmailSection>
 
-        <div className="mt-6 rounded-xl border border-secondary px-5 py-2">
+      {/* Hero: course photo with dark-green caption (course, address, IDs) */}
+      <EmailHero
+        imageUrl={courseImage}
+        imageAlt={course.name}
+        headline={course.name}
+        details={[
+          course.address,
+          `Booking ID ${orderNumber} · User ID ${golfer.userId}`,
+        ]}
+      />
+
+      {/* Golfer details (traveler-details pattern) */}
+      <EmailSection padding="lg">
+        <SectionHeading title="Golfer details" />
+        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+          <DetailRow label="Reserved for" value={golfer.fullName} />
+          <DetailRow icon={Calendar} label="Date" value={teeTime.date} />
+          <DetailRow icon={Clock} label="Tee time" value={teeTime.time} />
+          <DetailRow
+            icon={Users01}
+            label="Players"
+            value={`${teeTime.players} ${teeTime.players === 1 ? "golfer" : "golfers"}`}
+          />
+        </div>
+      </EmailSection>
+
+      <Divider />
+
+      {/* Price details */}
+      <EmailSection padding="lg">
+        <SectionHeading title="Price details" />
+        <div className="mt-4 rounded-xl border border-secondary px-5 py-2">
           {items.map((item) => (
             <DetailRow
               key={item.label}
@@ -76,7 +117,6 @@ export const ReceiptEmail = ({
             />
           ))}
         </div>
-
         <div className="mt-4 px-5">
           <DetailRow label="Subtotal" value={subtotal} />
           <DetailRow label="Tax" value={tax} />
@@ -84,15 +124,13 @@ export const ReceiptEmail = ({
             <DetailRow label="Total paid" value={total} emphasis />
           </div>
         </div>
-
-        <p className="mt-6 text-sm text-tertiary">
-          Paid with Visa ending in{" "}
+        <p className="mt-5 text-sm text-tertiary">
+          Paid online with Visa ending in{" "}
           <span className="font-medium text-secondary">{cardLast4}</span>.
         </p>
-
-        <div className="mt-6">
+        <div className="mt-5">
           <CTAButton
-            href={receiptUrl}
+            href={`${receiptUrl}.pdf`}
             color="secondary"
             size="lg"
             fullWidth
@@ -105,13 +143,115 @@ export const ReceiptEmail = ({
 
       <Divider />
 
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          This receipt is for your records. No action is needed.
-        </p>
+      {/* TenFore guarantee */}
+      <EmailSection padding="lg">
+        <div className="flex items-start gap-4 rounded-xl border border-secondary bg-secondary px-5 py-5">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-primary text-brand-secondary">
+            <ShieldTick className="size-5" />
+          </span>
+          <div>
+            <p className="text-sm font-semibold text-primary">
+              The TenFore Worry-Free Guarantee
+            </p>
+            <p className="mt-1 text-sm text-tertiary">
+              Every booking is backed by free cancellation up to 24 hours before
+              your tee time, plus automatic account credit if the course closes
+              for weather. Book with total peace of mind.
+            </p>
+            <a
+              href={`${brand.url}/guarantee`}
+              className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand-secondary"
+            >
+              Learn more
+              <ArrowRight className="size-4" />
+            </a>
+          </div>
+        </div>
       </EmailSection>
 
-      <EmailFooter reason="You're receiving this receipt for a purchase at Tenfore Golf." />
+      {/* Important information */}
+      <EmailSection padding="lg" tone="muted">
+        <SectionHeading title="Important information" />
+        <div className="mt-4 flex flex-col gap-4 text-sm text-tertiary">
+          <div>
+            <p className="font-semibold text-primary">
+              Cancellations and changes
+            </p>
+            <p className="mt-1">
+              Free cancellation up to 24 hours before your tee time. Inside 24
+              hours the Twilight Deal rate is non-refundable. Eligible refunds
+              are issued as TenFore account credit valid for six months.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold text-primary">Course policies</p>
+            <p className="mt-1">
+              Collared shirt required; no denim or tank tops. Arrive 15 minutes
+              early to check in at the pro shop. Groups of fewer than four
+              players may be paired with other pre-paid golfers.
+            </p>
+          </div>
+        </div>
+      </EmailSection>
+
+      <Divider />
+
+      {/* Where to find help */}
+      <EmailSection padding="lg">
+        <SectionHeading title="Where to find help" />
+        <div className="mt-4 flex flex-col gap-4">
+          <div className="flex items-start gap-3">
+            <Phone className="mt-0.5 size-4 shrink-0 text-brand-secondary" />
+            <div>
+              <p className="text-sm font-medium text-primary">
+                Questions about your round
+              </p>
+              <p className="mt-0.5 text-sm text-tertiary">
+                Contact {course.name} at{" "}
+                <a
+                  href={`tel:${course.phone.replace(/[^\d]/g, "")}`}
+                  className="font-medium text-brand-secondary"
+                >
+                  {course.phone}
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <LifeBuoy01 className="mt-0.5 size-4 shrink-0 text-brand-secondary" />
+            <div>
+              <p className="text-sm font-medium text-primary">
+                Help with this receipt or your account
+              </p>
+              <p className="mt-0.5 text-sm text-tertiary">
+                Reach TenFore support 24/7 —{" "}
+                <a
+                  href={brand.supportUrl}
+                  className="font-medium text-brand-secondary"
+                >
+                  get support
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+      </EmailSection>
+
+      <Divider />
+
+      {/* Email rating + app download */}
+      <EmailSection padding="lg" align="center">
+        <EmailRating />
+        <div className="mt-6">
+          <AppDownloadLink />
+        </div>
+      </EmailSection>
+
+      <EmailFooter
+        reason={`You're receiving this receipt for a booking at ${course.name} made through TenFore Golf.`}
+      />
     </EmailShell>
   );
 };

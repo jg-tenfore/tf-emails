@@ -3,19 +3,22 @@ import { cx } from "@/utils/cx";
 import { brand } from "@/lib/brand";
 
 interface LogoProps {
-  /** Rendered height in px; width scales automatically. */
+  /** Rendered width in px (aspect ratio preserved). Takes precedence over height. */
+  width?: number;
+  /** Rendered height in px (aspect ratio preserved). */
   height?: number;
-  /** Invert to a white logo for use on dark/brand backgrounds. */
-  invert?: boolean;
   className?: string;
 }
 
-/** Tenfore Golf logo, rendered from the brand SVG asset. */
-export const Logo = ({ height = 30, invert = false, className }: LogoProps) => (
+/**
+ * Sagamore Spring Golf Club logo — always the full-color mark on a light
+ * background. (No inverted/white-on-dark treatment by design.)
+ */
+export const Logo = ({ width, height = 30, className }: LogoProps) => (
   <img
     src={logoUrl}
     alt={brand.name}
-    style={{ height }}
-    className={cx("w-auto", invert && "brightness-0 invert", className)}
+    style={width ? { width } : { height }}
+    className={cx(width ? "h-auto" : "w-auto", className)}
   />
 );

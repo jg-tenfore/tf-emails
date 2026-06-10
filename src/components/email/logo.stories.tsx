@@ -6,13 +6,6 @@ const meta = {
   component: Logo,
   parameters: { layout: "centered" },
   argTypes: { height: { control: { type: "range", min: 16, max: 64 } } },
-} satisfies Meta<typeof Logo>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const OnLight: Story = {
-  args: { height: 32 },
   decorators: [
     (Story) => (
       <div className="rounded-xl bg-primary px-10 py-8">
@@ -20,15 +13,9 @@ export const OnLight: Story = {
       </div>
     ),
   ],
-};
+} satisfies Meta<typeof Logo>;
 
-export const OnBrand: Story = {
-  args: { height: 32, invert: true },
-  decorators: [
-    (Story) => (
-      <div className="rounded-xl bg-brand-section px-10 py-8">
-        <Story />
-      </div>
-    ),
-  ],
-};
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { args: { height: 32 } };

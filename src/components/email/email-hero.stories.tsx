@@ -16,8 +16,8 @@ type Story = StoryObj<typeof meta>;
 
 export const WithHeadline: Story = {
   args: {
-    eyebrow: "Tee time confirmed",
-    headline: "You're booked for Saturday",
+    eyebrow: "Confirmation #421292164",
+    headline: "Sagamore Spring Golf Club",
   },
 };
 

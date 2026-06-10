@@ -18,12 +18,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const booking = {
-  course: "Augusta Pines — Championship Course",
-  location: "Augusta, GA",
-  date: "Saturday, June 14, 2026",
-  time: "9:20 AM",
-  players: 4,
-  confirmationCode: "TF-8X4K2",
+  course: "Sagamore Spring Golf Club",
+  location: "Lynnfield, MA",
+  date: "Tuesday, April 21, 2026",
+  time: "6:00 PM",
+  players: 2,
+  confirmationCode: "421292164",
 };
 
 export const Confirmed: Story = {
