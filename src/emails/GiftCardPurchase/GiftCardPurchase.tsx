@@ -2,6 +2,7 @@ import { ArrowRight, CheckCircle } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
@@ -10,6 +11,7 @@ import {
   GiftCardVisual,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -50,15 +52,6 @@ export const GiftCardPurchase = ({
     >
       <EmailHeader />
 
-      <EmailSection padding="md">
-        <VenueBadge
-          label="Redeemable at"
-          logoUrl={assets.logo.src}
-          name={course.name}
-          location={course.address}
-        />
-      </EmailSection>
-
       <StatusHero
         eyebrow="Gift card"
         title={
@@ -71,6 +64,15 @@ export const GiftCardPurchase = ({
           { label: "Order", value: `#${giftCard.orderId}` },
         ]}
       />
+
+      <EmailSection padding="md">
+        <VenueBadge
+          label="Redeemable at"
+          logoUrl={assets.logo.src}
+          name={course.name}
+          location={course.address}
+        />
+      </EmailSection>
 
       {isGift ? (
         <EmailSection padding="md">
@@ -87,7 +89,7 @@ export const GiftCardPurchase = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Amount" value={giftCard.amount} />
           {isGift ? (
             <>
@@ -99,23 +101,18 @@ export const GiftCardPurchase = ({
           <DetailRow label="Expiration" value={giftCard.expiration} />
           <DetailRow label="Use for" value={giftCard.useFor} />
           <DetailRow label="Purchased" value={giftCard.purchaseDate} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">
         <CTAButton href={manageUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
           Manage gift cards
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Contact the pro shop
-          </a>
-          .
-        </p>
+        <SupportLine
+          className="mt-4"
+          href={helpHref}
+          linkText="Contact the pro shop"
+        />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because you purchased a Sagamore Spring Golf Club gift card." />

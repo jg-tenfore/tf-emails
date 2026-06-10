@@ -8,6 +8,7 @@ import {
 import {
   Callout,
   CTAButton,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
@@ -15,6 +16,7 @@ import {
   EmailShell,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -47,15 +49,6 @@ export const EventInvitation = ({
     >
       <EmailHeader />
 
-      <EmailSection padding="md">
-        <VenueBadge
-          label="You're invited to play at"
-          logoUrl={assets.logo.src}
-          name={course.name}
-          location={course.address}
-        />
-      </EmailSection>
-
       <StatusHero
         eyebrow="You're invited"
         title="You're on the roster"
@@ -67,6 +60,15 @@ export const EventInvitation = ({
       />
 
       <EmailSection padding="md">
+        <VenueBadge
+          label="You're invited to play at"
+          logoUrl={assets.logo.src}
+          name={course.name}
+          location={course.address}
+        />
+      </EmailSection>
+
+      <EmailSection padding="md">
         <Callout tone="info" eyebrow="You're on the roster" icon={InfoCircle}>
           {organizer} invited you to play in {event.name}.
         </Callout>
@@ -74,7 +76,7 @@ export const EventInvitation = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Event" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow icon={Calendar} label="When" value={event.when} />
           <DetailRow icon={Trophy01} label="Format" value={event.format} />
           <DetailRow
@@ -83,29 +85,22 @@ export const EventInvitation = ({
             value={`${event.players} players`}
           />
           <DetailRow label="Transportation" value="Cart provided" />
-        </div>
+        </DetailCard>
 
         <SectionHeading title="Players" className="mt-6" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Invited by" value={organizer} />
           <DetailRow label="Playing as" value={firstName} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">
         <CTAButton href={viewUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
           View event
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Can't make it?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Contact the course
-          </a>
-          .
-        </p>
+        <SupportLine className="mt-4" href={helpHref} linkText="Contact the course">
+          Can't make it?
+        </SupportLine>
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because you were invited to an event at Sagamore Spring Golf Club." />

@@ -1,4 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import chipsImg from "@/assets/store/chips.png";
+import gloveImg from "@/assets/store/glove.png";
+import proV1Img from "@/assets/store/pro-v1.png";
+import teesImg from "@/assets/store/tees.png";
 import { ItemizedList } from "./line-items";
 
 const meta = {
@@ -17,7 +21,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Flat: Story = {
+/** Text-only line items — no product thumbnails. */
+export const WithoutImages: Story = {
   args: {
     items: [
       { label: "Green fee — 18 holes", qty: 2, amount: "$200.00" },
@@ -28,6 +33,39 @@ export const Flat: Story = {
   },
 };
 
+/** Retail/F&B line items with product thumbnails (pro shop / snack bar). */
+export const WithImages: Story = {
+  args: {
+    items: [
+      {
+        label: "Titleist Pro V1 golf balls — 1 dozen",
+        amount: "$54.99",
+        image: proV1Img,
+        imageAlt: "Titleist Pro V1 golf balls",
+      },
+      {
+        label: "Titleist Players glove",
+        amount: "$24.99",
+        image: gloveImg,
+        imageAlt: "Titleist golf glove",
+      },
+      {
+        label: "Golf tees — pack of 50",
+        amount: "$4.99",
+        image: teesImg,
+        imageAlt: "Pack of golf tees",
+      },
+      {
+        label: "Lay's Classic chips",
+        amount: "$2.50",
+        image: chipsImg,
+        imageAlt: "Bag of chips",
+      },
+    ],
+  },
+};
+
+/** Grouped line items (multi-tee-time orders, per-participant breakdowns). */
 export const GroupedByTeeTime: Story = {
   args: {
     groups: [

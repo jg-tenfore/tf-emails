@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SimulatorBookingReminder } from "./SimulatorBookingReminder";
 
 const meta = {
-  title: "FloGolf Lounge/Booking Reminder",
+  title: "FloGolf Lounge/Simulator Booking/Reminder",
   component: SimulatorBookingReminder,
   parameters: { layout: "fullscreen" },
   argTypes: {

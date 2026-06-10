@@ -6,6 +6,7 @@ import {
 } from "@untitledui/icons";
 import {
   CTAButton,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -15,6 +16,7 @@ import {
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { golfer } from "@/lib/scenario";
@@ -44,6 +46,13 @@ export const SimulatorBookingCancellation = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Booking cancelled"
+        title={`Your bay booking was cancelled, ${firstName}.`}
+        subtitle="We hope to see you back at the lounge soon."
+        stamps={[{ label: "Confirmation", value: `#${booking.confirmation}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your booking at"
@@ -53,16 +62,9 @@ export const SimulatorBookingCancellation = ({
         />
       </EmailSection>
 
-      <StatusHero
-        eyebrow="Booking cancelled"
-        title={`Your bay booking was cancelled, ${firstName}.`}
-        subtitle="We hope to see you back at the lounge soon."
-        stamps={[{ label: "Confirmation", value: `#${booking.confirmation}` }]}
-      />
-
       <EmailSection padding="md">
         <SectionHeading title="Cancelled session" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Bay" value={booking.bay} />
           <DetailRow icon={Calendar} label="Date" value={booking.date} />
           <DetailRow
@@ -75,7 +77,7 @@ export const SimulatorBookingCancellation = ({
             label="Players"
             value={`${booking.players} ${booking.players === 1 ? "player" : "players"}`}
           />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       {refund ? (
@@ -104,16 +106,7 @@ export const SimulatorBookingCancellation = ({
         >
           Book another bay
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Email the lounge
-          </a>
-          .
-        </p>
+        <SupportLine className="mt-4" href={helpHref} linkText="Email the lounge" />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because a FloGolf Lounge simulator booking was cancelled." />

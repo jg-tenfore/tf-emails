@@ -2,7 +2,9 @@ import { ArrowRight, Clock, MarkerPin02, SunSetting03 } from "@untitledui/icons"
 import {
   BookingCard,
   type BookingDetails,
+  Checklist,
   CTAButton,
+  CTAStack,
   Divider,
   EmailFooter,
   EmailHeader,
@@ -77,7 +79,7 @@ export const TeeTimeReminder = ({
           icon={SunSetting03}
         />
 
-        <div className="mt-6 flex flex-col gap-3">
+        <CTAStack className="mt-6">
           <CTAButton href={directionsUrl} size="lg" fullWidth iconLeading={MarkerPin02}>
             Get directions
           </CTAButton>
@@ -90,18 +92,21 @@ export const TeeTimeReminder = ({
           >
             Need to make a change?
           </CTAButton>
-        </div>
+        </CTAStack>
       </EmailSection>
 
       <Divider />
 
       <EmailSection tone="muted">
         <p className="text-sm font-semibold text-primary">Pre-round checklist</p>
-        <ul className="mt-2 flex flex-col gap-1.5 text-sm text-tertiary">
-          <li>· Check in at the pro shop 15 minutes early.</li>
-          <li>· Collared shirt required; no denim or tank tops.</li>
-          <li>· Pack a layer — evenings get cool in Lynnfield.</li>
-        </ul>
+        <Checklist
+          className="mt-2"
+          items={[
+            "Check in at the pro shop 15 minutes early.",
+            "Collared shirt required; no denim or tank tops.",
+            "Pack a layer — evenings get cool in Lynnfield.",
+          ]}
+        />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this reminder for an upcoming Sagamore Spring Golf Club tee time." />

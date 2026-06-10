@@ -1,6 +1,7 @@
 import { Calendar, Trophy01, Users01 } from "@untitledui/icons";
 import {
   CTAButton,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -10,6 +11,7 @@ import {
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -40,6 +42,13 @@ export const EventCancellation = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Event cancelled"
+        title={`Your event was cancelled, ${firstName}.`}
+        subtitle="We've cancelled the event below. We hope to see your group back on the course soon."
+        stamps={[{ label: "Event", value: `#${event.eventId}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your event at"
@@ -49,16 +58,9 @@ export const EventCancellation = ({
         />
       </EmailSection>
 
-      <StatusHero
-        eyebrow="Event cancelled"
-        title={`Your event was cancelled, ${firstName}.`}
-        subtitle="We've cancelled the event below. We hope to see your group back on the course soon."
-        stamps={[{ label: "Event", value: `#${event.eventId}` }]}
-      />
-
       <EmailSection padding="md">
         <SectionHeading title="Cancelled event" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Event" value={event.name} />
           <DetailRow icon={Calendar} label="When" value={event.when} />
           <DetailRow icon={Trophy01} label="Format" value={event.format} />
@@ -67,7 +69,7 @@ export const EventCancellation = ({
             label="Players"
             value={`${event.players} players`}
           />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       {refund ? (
@@ -95,16 +97,7 @@ export const EventCancellation = ({
         >
           Contact the course
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Email the pro shop
-          </a>
-          .
-        </p>
+        <SupportLine className="mt-4" href={helpHref} linkText="Email the pro shop" />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because a Sagamore Spring Golf Club event was cancelled." />

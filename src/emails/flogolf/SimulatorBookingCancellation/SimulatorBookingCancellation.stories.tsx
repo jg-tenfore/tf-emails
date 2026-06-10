@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SimulatorBookingCancellation } from "./SimulatorBookingCancellation";
 
 const meta = {
-  title: "FloGolf Lounge/Booking Cancellation",
+  title: "FloGolf Lounge/Simulator Booking/Cancellation",
   component: SimulatorBookingCancellation,
   parameters: { layout: "fullscreen" },
   argTypes: {

@@ -29,6 +29,13 @@ export const PasswordReset = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        icon={Lock01}
+        eyebrow="Account security"
+        title="Reset your password"
+        subtitle={`This link expires in ${expiresIn}.`}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your account at"
@@ -37,13 +44,6 @@ export const PasswordReset = ({
           location={course.address}
         />
       </EmailSection>
-
-      <StatusHero
-        icon={Lock01}
-        eyebrow="Account security"
-        title="Reset your password"
-        subtitle={`This link expires in ${expiresIn}.`}
-      />
 
       <EmailSection padding="md">
         <Callout tone="info" eyebrow="Reset link" icon={InfoCircle}>

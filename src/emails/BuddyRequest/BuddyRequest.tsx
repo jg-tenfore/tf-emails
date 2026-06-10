@@ -2,6 +2,8 @@ import { InfoCircle, UserPlus01, Users01 } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
+  CTAStack,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
@@ -45,6 +47,13 @@ export const BuddyRequest = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        icon={UserPlus01}
+        eyebrow="Buddies"
+        title="You've got a buddy request"
+        subtitle={`From ${senderName}`}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your account at"
@@ -53,13 +62,6 @@ export const BuddyRequest = ({
           location={course.address}
         />
       </EmailSection>
-
-      <StatusHero
-        icon={UserPlus01}
-        eyebrow="Buddies"
-        title="You've got a buddy request"
-        subtitle={`From ${senderName}`}
-      />
 
       <EmailSection padding="md">
         <Callout tone="info" eyebrow="Golf buddy request" icon={InfoCircle}>
@@ -71,15 +73,15 @@ export const BuddyRequest = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Request details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="From" value={senderName} />
           <DetailRow label="Email" value={senderEmail} />
           <DetailRow label="Sent" value={sentAt} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">
-        <div className="flex flex-col gap-3">
+        <CTAStack>
           <CTAButton
             href={acceptUrl}
             size="lg"
@@ -97,7 +99,7 @@ export const BuddyRequest = ({
           >
             View buddies list
           </CTAButton>
-        </div>
+        </CTAStack>
         <p className="mt-4 text-center text-sm text-tertiary">
           <a
             href={ignoreHref}

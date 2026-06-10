@@ -2,6 +2,7 @@ import { Bell01, Calendar, RefreshCw02 } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
@@ -9,6 +10,7 @@ import {
   EmailShell,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -38,15 +40,6 @@ export const ClinicWaitlist = ({
     >
       <EmailHeader />
 
-      <EmailSection padding="md">
-        <VenueBadge
-          label="You're waitlisted at"
-          logoUrl={assets.logo.src}
-          name={course.name}
-          location={course.address}
-        />
-      </EmailSection>
-
       <StatusHero
         eyebrow="Waitlist confirmed"
         title={`You're on the waitlist, ${firstName}.`}
@@ -58,6 +51,15 @@ export const ClinicWaitlist = ({
       />
 
       <EmailSection padding="md">
+        <VenueBadge
+          label="You're waitlisted at"
+          logoUrl={assets.logo.src}
+          name={course.name}
+          location={course.address}
+        />
+      </EmailSection>
+
+      <EmailSection padding="md">
         <Callout tone="info" eyebrow="What happens next" icon={Bell01}>
           The clinic is full, so we've added you to the waitlist. We'll email and
           text you the moment a spot opens — spots go fast, so keep an eye out.
@@ -66,10 +68,10 @@ export const ClinicWaitlist = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Clinic details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Clinic" value={clinic.name} />
           <DetailRow icon={Calendar} label="Starts" value={clinic.dateRange} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">
@@ -82,16 +84,7 @@ export const ClinicWaitlist = ({
         >
           Browse clinics
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Contact the pro shop
-          </a>
-          .
-        </p>
+        <SupportLine className="mt-4" href={helpHref} linkText="Contact the pro shop" />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because you joined the waitlist for a clinic at Sagamore Spring Golf Club." />

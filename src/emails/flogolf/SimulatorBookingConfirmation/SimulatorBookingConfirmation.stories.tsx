@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { simBookingMultiBay } from "@/lib/flogolf";
 import { SimulatorBookingConfirmation } from "./SimulatorBookingConfirmation";
 
 const meta = {
-  title: "FloGolf Lounge/Booking Confirmation",
+  title: "FloGolf Lounge/Simulator Booking/Confirmation",
   component: SimulatorBookingConfirmation,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" }, manageUrl: { control: "text" } },
@@ -32,3 +33,6 @@ export const SoloPracticeHour: Story = {
     },
   },
 };
+
+/** Edge case: one reservation spanning multiple bays / time slots. */
+export const MultipleBays: Story = { args: { booking: simBookingMultiBay } };

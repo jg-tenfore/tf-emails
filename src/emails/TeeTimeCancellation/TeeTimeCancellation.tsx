@@ -2,21 +2,23 @@ import {
   Calendar,
   Clock,
   Flag01,
-  MarkerPin02,
   RefreshCw02,
   Users01,
 } from "@untitledui/icons";
 import {
   CTAButton,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
   EmailHeader,
   EmailSection,
   EmailShell,
+  LocationBlock,
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -49,6 +51,13 @@ export const TeeTimeCancellation = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Reservation cancelled"
+        title={`Your tee time was cancelled, ${firstName}.`}
+        subtitle="We've cancelled the reservation below. We hope to see you back on the course soon."
+        stamps={[{ label: "Confirmation", value: `#${teeTime.confirmation}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your reservation at"
@@ -58,16 +67,9 @@ export const TeeTimeCancellation = ({
         />
       </EmailSection>
 
-      <StatusHero
-        eyebrow="Reservation cancelled"
-        title={`Your tee time was cancelled, ${firstName}.`}
-        subtitle="We've cancelled the reservation below. We hope to see you back on the course soon."
-        stamps={[{ label: "Confirmation", value: `#${teeTime.confirmation}` }]}
-      />
-
       <EmailSection padding="md">
         <SectionHeading title="Cancelled reservation" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow icon={Calendar} label="Date" value={teeTime.date} />
           <DetailRow icon={Clock} label="Tee time" value={teeTime.time} />
           <DetailRow
@@ -80,16 +82,13 @@ export const TeeTimeCancellation = ({
             label="Holes"
             value={`${teeTime.holes} holes`}
           />
-        </div>
+        </DetailCard>
 
-        <div className="mt-4 flex items-start gap-3">
-          <MarkerPin02 className="mt-0.5 size-4 shrink-0 text-brand-secondary" />
-          <p className="text-sm text-secondary">
-            <span className="font-semibold text-primary">{teeTime.course}</span>
-            <br />
-            {teeTime.address}
-          </p>
-        </div>
+        <LocationBlock
+          className="mt-4"
+          name={teeTime.course}
+          address={teeTime.address}
+        />
       </EmailSection>
 
       {refund ? (
@@ -118,16 +117,11 @@ export const TeeTimeCancellation = ({
         >
           Book again
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Contact the pro shop
-          </a>
-          .
-        </p>
+        <SupportLine
+          className="mt-4"
+          href={helpHref}
+          linkText="Contact the pro shop"
+        />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because a Sagamore Spring Golf Club tee time was cancelled." />

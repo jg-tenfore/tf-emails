@@ -7,6 +7,8 @@ import {
 } from "@untitledui/icons";
 import {
   CTAButton,
+  CTAStack,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -51,6 +53,13 @@ export const SimulatorBookingModification = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Booking updated"
+        title={`Your bay booking changed, ${firstName}.`}
+        subtitle="Here's what's different — and your updated session."
+        stamps={[{ label: "Confirmation", value: `#${booking.confirmation}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your booking at"
@@ -60,20 +69,13 @@ export const SimulatorBookingModification = ({
         />
       </EmailSection>
 
-      <StatusHero
-        eyebrow="Booking updated"
-        title={`Your bay booking changed, ${firstName}.`}
-        subtitle="Here's what's different — and your updated session."
-        stamps={[{ label: "Confirmation", value: `#${booking.confirmation}` }]}
-      />
-
       <EmailSection padding="md">
         <WhatChanged changes={changes} />
       </EmailSection>
 
       <EmailSection padding="md">
         <SectionHeading title="Updated session" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Bay" value={booking.bay} />
           <DetailRow icon={Calendar} label="Date" value={booking.date} />
           <DetailRow
@@ -94,7 +96,7 @@ export const SimulatorBookingModification = ({
               </span>
             }
           />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       {refund ? (
@@ -114,7 +116,7 @@ export const SimulatorBookingModification = ({
       ) : null}
 
       <EmailSection padding="md">
-        <div className="flex flex-col gap-3">
+        <CTAStack>
           <CTAButton
             href={manageUrl}
             size="lg"
@@ -132,7 +134,7 @@ export const SimulatorBookingModification = ({
           >
             Get directions
           </CTAButton>
-        </div>
+        </CTAStack>
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because your FloGolf Lounge simulator booking was changed." />

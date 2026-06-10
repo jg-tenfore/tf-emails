@@ -11,8 +11,18 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** The canonical Sagamore Spring twilight scenario. */
+/** The canonical Sagamore Spring twilight scenario (range bucket as a PIN). */
 export const Default: Story = {};
+
+/** Range-bucket add-on shown as a scannable UPC barcode. */
+export const RangeBucketBarcode: Story = {
+  args: { rangeBucket: { code: "482917", variant: "barcode" } },
+};
+
+/** Range-bucket add-on shown as a QR code. */
+export const RangeBucketQR: Story = {
+  args: { rangeBucket: { code: "482917", variant: "qr" } },
+};
 
 /** Edge case: a weekend 18-hole foursome at the member rate. */
 export const WeekendFoursome: Story = {

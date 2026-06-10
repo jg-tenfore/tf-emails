@@ -2,6 +2,7 @@ import { ArrowRight, Bell01, Calendar, MarkerPin02 } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
@@ -44,6 +45,13 @@ export const WaitlistSpotOpened = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Waitlist"
+        title={`A spot opened up, ${firstName}.`}
+        subtitle="Grab it before someone else does."
+        stamps={[{ label: "Tee time", value: `#${waitlistId}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your waitlist at"
@@ -52,13 +60,6 @@ export const WaitlistSpotOpened = ({
           location={course.address}
         />
       </EmailSection>
-
-      <StatusHero
-        eyebrow="Waitlist"
-        title={`A spot opened up, ${firstName}.`}
-        subtitle="Grab it before someone else does."
-        stamps={[{ label: "Tee time", value: `#${waitlistId}` }]}
-      />
 
       <EmailSection padding="md">
         <Callout tone="info" eyebrow="Heads up — spots go fast" icon={Bell01}>
@@ -69,14 +70,14 @@ export const WaitlistSpotOpened = ({
       </EmailSection>
 
       <EmailSection padding="md">
-        <div className="rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard>
           <DetailRow
             icon={Calendar}
             label="When"
             value={`${teeTime.date} · ${teeTime.time}`}
           />
           <DetailRow icon={MarkerPin02} label="Course" value={teeTime.course} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">

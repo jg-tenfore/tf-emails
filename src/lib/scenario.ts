@@ -6,6 +6,16 @@
  * scenarios stay anchored to one realistic booking.
  */
 import { assets } from "./assets";
+import proV1Img from "@/assets/store/pro-v1.png";
+import poloMensImg from "@/assets/store/polo-mens.png";
+import poloLadiesImg from "@/assets/store/polo-ladies.png";
+import gloveImg from "@/assets/store/glove.png";
+import teesImg from "@/assets/store/tees.png";
+import chipsImg from "@/assets/store/chips.png";
+import gatoradeImg from "@/assets/store/gatorade.png";
+import waterImg from "@/assets/store/water.png";
+import cookiesImg from "@/assets/store/cookies.png";
+import rootBeerImg from "@/assets/store/root-beer.png";
 
 export interface Golfer {
   firstName: string;
@@ -124,6 +134,116 @@ export const receipt: Receipt = {
 };
 
 /**
+ * In-person purchases at the course (pro shop retail, snack bar / grill). Each
+ * is a simple itemized receipt distinct from the tee-time booking receipt.
+ */
+export interface PurchaseLineItem {
+  label: string;
+  qty?: number;
+  amount: string;
+  /** Product thumbnail. */
+  image?: string;
+  imageAlt?: string;
+}
+
+export interface PurchaseOrder {
+  orderNumber: string;
+  date: string;
+  /** Where the purchase happened, e.g. "Pro Shop" or "Snack Bar". */
+  location: string;
+  items: PurchaseLineItem[];
+  subtotal: string;
+  tax: string;
+  total: string;
+  cardLast4: string;
+}
+
+export const proShopOrder: PurchaseOrder = {
+  orderNumber: "PS-104872",
+  date: "April 21, 2026",
+  location: "Pro Shop",
+  items: [
+    {
+      label: "Titleist Pro V1 golf balls — 1 dozen",
+      amount: "$54.99",
+      image: proV1Img,
+      imageAlt: "Titleist Pro V1 golf balls",
+    },
+    {
+      label: "Sagamore Spring polo — men's",
+      amount: "$79.00",
+      image: poloMensImg,
+      imageAlt: "Men's golf polo",
+    },
+    {
+      label: "Sagamore Spring polo — ladies'",
+      amount: "$75.00",
+      image: poloLadiesImg,
+      imageAlt: "Ladies' golf polo",
+    },
+    {
+      label: "Titleist Players glove",
+      amount: "$24.99",
+      image: gloveImg,
+      imageAlt: "Titleist golf glove",
+    },
+    {
+      label: "Golf tees — pack of 50",
+      amount: "$4.99",
+      image: teesImg,
+      imageAlt: "Pack of golf tees",
+    },
+  ],
+  subtotal: "$238.97",
+  tax: "$14.94",
+  total: "$253.91",
+  cardLast4: "4242",
+};
+
+export const snackBarOrder: PurchaseOrder = {
+  orderNumber: "SB-228140",
+  date: "April 21, 2026",
+  location: "Snack Bar",
+  items: [
+    {
+      label: "Lay's Classic chips",
+      amount: "$2.50",
+      image: chipsImg,
+      imageAlt: "Bag of Lay's Classic chips",
+    },
+    {
+      label: "Gatorade Zero — Orange",
+      amount: "$3.50",
+      image: gatoradeImg,
+      imageAlt: "Gatorade Zero Orange",
+    },
+    {
+      label: "Smartwater",
+      amount: "$3.00",
+      image: waterImg,
+      imageAlt: "Bottle of Smartwater",
+    },
+    {
+      label: "Oreo cookies",
+      amount: "$4.50",
+      image: cookiesImg,
+      imageAlt: "Oreo cookies",
+    },
+    {
+      label: "Olipop root beer",
+      qty: 2,
+      amount: "$5.00",
+      image: rootBeerImg,
+      imageAlt: "Olipop Classic Root Beer",
+    },
+  ],
+  subtotal: "$18.50",
+  tax: "$1.16",
+  total: "$19.66",
+  cardLast4: "4242",
+};
+
+/**
  * Additional people for emails involving more than one party
  * (buddy requests, event invitations, gift cards). All anchored to the same
  * Sagamore Spring scenario; override via story args for edge cases.
@@ -134,33 +254,6 @@ export const buddy: Pick<Golfer, "firstName" | "fullName"> & { email: string } =
   email: "marcus.webb@example.com",
 };
 
-/** A simulator-bay activity reservation (single day, one or more time slots). */
-export interface ActivityBooking {
-  resource: string;
-  date: string;
-  time: string;
-  price: string;
-}
-
-export interface Activity {
-  name: string;
-  bookingId: string;
-  players: number;
-  bookings: ActivityBooking[];
-  total: string;
-}
-
-export const activity: Activity = {
-  name: "Simulator Bays",
-  bookingId: "88421",
-  players: 3,
-  bookings: [
-    { resource: "Bay 3", date: "April 21, 2026", time: "2:00 PM", price: "$50.00" },
-    { resource: "Bay 3", date: "April 21, 2026", time: "3:00 PM", price: "$50.00" },
-    { resource: "Bay 4", date: "April 21, 2026", time: "2:00 PM", price: "$50.00" },
-  ],
-  total: "$150.00",
-};
 
 /** A multi-day clinic / camp registration with intake answers. */
 export interface ClinicIntake {

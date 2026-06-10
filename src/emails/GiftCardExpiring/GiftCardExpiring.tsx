@@ -2,6 +2,8 @@ import { AlertTriangle, ArrowRight, MarkerPin02 } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
+  CTAStack,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
@@ -39,6 +41,13 @@ export const GiftCardExpiring = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Gift card"
+        title={`Your gift card expires soon, ${firstName}.`}
+        subtitle={`Expires ${giftCard.expiration}`}
+        stamps={[{ label: "Gift card", value: `#${giftCard.giftCardId}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Redeemable at"
@@ -47,13 +56,6 @@ export const GiftCardExpiring = ({
           location={course.address}
         />
       </EmailSection>
-
-      <StatusHero
-        eyebrow="Gift card"
-        title={`Your gift card expires soon, ${firstName}.`}
-        subtitle={`Expires ${giftCard.expiration}`}
-        stamps={[{ label: "Gift card", value: `#${giftCard.giftCardId}` }]}
-      />
 
       <EmailSection padding="md">
         <Callout
@@ -76,17 +78,17 @@ export const GiftCardExpiring = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Original amount" value={giftCard.amount} />
           <DetailRow label="Used so far" value={giftCard.used} />
           <DetailRow label="Remaining" value={giftCard.remaining} />
           <DetailRow label="Expires" value={giftCard.expiration} />
           <DetailRow label="Use for" value={giftCard.useFor} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">
-        <div className="flex flex-col gap-3">
+        <CTAStack>
           <CTAButton
             href={planVisitUrl}
             size="lg"
@@ -104,7 +106,7 @@ export const GiftCardExpiring = ({
           >
             Get directions
           </CTAButton>
-        </div>
+        </CTAStack>
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because you have a Sagamore Spring Golf Club gift card nearing its expiration." />

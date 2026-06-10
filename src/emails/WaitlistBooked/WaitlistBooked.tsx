@@ -7,12 +7,14 @@ import {
 import {
   Callout,
   CTAButton,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
   EmailSection,
   EmailShell,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -57,6 +59,12 @@ export const WaitlistBooked = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Waitlist filled"
+        title={`You're booked from the waitlist, ${firstName}.`}
+        stamps={[{ label: "Tee time", value: `#${teeTimeId}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your booking at"
@@ -66,12 +74,6 @@ export const WaitlistBooked = ({
         />
       </EmailSection>
 
-      <StatusHero
-        eyebrow="Waitlist filled"
-        title={`You're booked from the waitlist, ${firstName}.`}
-        stamps={[{ label: "Tee time", value: `#${teeTimeId}` }]}
-      />
-
       <EmailSection padding="md">
         <Callout tone="success" eyebrow="Waitlist filled" icon={CheckCircle}>
           {calloutBody}
@@ -79,14 +81,14 @@ export const WaitlistBooked = ({
       </EmailSection>
 
       <EmailSection padding="md">
-        <div className="rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard>
           <DetailRow
             icon={Calendar}
             label="When"
             value={`${teeTime.date} · ${teeTime.time}`}
           />
           <DetailRow icon={MarkerPin02} label="Course" value={teeTime.course} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">
@@ -98,16 +100,7 @@ export const WaitlistBooked = ({
         >
           Manage reservation
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Contact the pro shop
-          </a>
-          .
-        </p>
+        <SupportLine className="mt-4" href={helpHref} linkText="Contact the pro shop" />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because a spot opened on your Sagamore Spring Golf Club waitlist and we booked it for you." />

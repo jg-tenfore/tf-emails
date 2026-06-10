@@ -2,6 +2,7 @@ import { ArrowRight, CheckCircle } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -11,6 +12,7 @@ import {
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -43,6 +45,13 @@ export const MembershipRenewed = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Membership"
+        title="Your membership is renewed"
+        subtitle={membership.tier}
+        stamps={[{ label: "Membership", value: `#${membership.memberId}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your membership at"
@@ -51,13 +60,6 @@ export const MembershipRenewed = ({
           location={course.address}
         />
       </EmailSection>
-
-      <StatusHero
-        eyebrow="Membership"
-        title="Your membership is renewed"
-        subtitle={membership.tier}
-        stamps={[{ label: "Membership", value: `#${membership.memberId}` }]}
-      />
 
       <EmailSection padding="md">
         <Callout
@@ -72,13 +74,13 @@ export const MembershipRenewed = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Your membership" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Member" value={firstName ?? golfer.fullName} />
           <DetailRow label="Membership" value={membership.tier} />
           <DetailRow label="Term" value={membership.term} />
           <DetailRow label="Active through" value={membership.activeThrough} />
           {isAuto ? <DetailRow label="Auto-renew" value="On" /> : null}
-        </div>
+        </DetailCard>
 
         <h3 className="mt-6 text-sm font-semibold text-primary">
           What's included
@@ -115,16 +117,7 @@ export const MembershipRenewed = ({
         >
           Manage membership
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Email the pro shop
-          </a>
-          .
-        </p>
+        <SupportLine className="mt-4" href={helpHref} linkText="Email the pro shop" />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because of your membership at Sagamore Spring Golf Club." />

@@ -10,6 +10,9 @@ export interface LineItem {
   amount: string;
   /** Render the amount as a credit/discount (de-emphasised). */
   muted?: boolean;
+  /** Optional product thumbnail shown to the left of the label. */
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface LineItemGroup {
@@ -29,17 +32,26 @@ interface ItemizedListProps {
 }
 
 const Row = ({ item }: { item: LineItem }) => (
-  <div className="flex items-start justify-between gap-4 py-2.5">
-    <div className="min-w-0">
-      <p className="text-sm text-secondary">
-        {item.label}
-        {item.qty ? (
-          <span className="text-tertiary"> ×{item.qty}</span>
-        ) : null}
-      </p>
-      {item.sublabel ? (
-        <p className="mt-0.5 text-xs text-tertiary">{item.sublabel}</p>
+  <div className="flex items-center justify-between gap-4 py-2.5">
+    <div className="flex min-w-0 items-center gap-3">
+      {item.image ? (
+        <img
+          src={item.image}
+          alt={item.imageAlt ?? ""}
+          className="size-12 shrink-0 rounded-lg bg-secondary object-contain p-1 ring-1 ring-black/5"
+        />
       ) : null}
+      <div className="min-w-0">
+        <p className="text-sm text-secondary">
+          {item.label}
+          {item.qty ? (
+            <span className="text-tertiary"> ×{item.qty}</span>
+          ) : null}
+        </p>
+        {item.sublabel ? (
+          <p className="mt-0.5 text-xs text-tertiary">{item.sublabel}</p>
+        ) : null}
+      </div>
     </div>
     <span
       className={cx(

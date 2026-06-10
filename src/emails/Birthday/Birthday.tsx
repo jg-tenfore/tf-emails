@@ -27,6 +27,13 @@ export const Birthday = ({
     <EmailShell preheader={`Happy birthday, ${firstName}! A little something from Sagamore Spring.`}>
       <EmailHeader />
 
+      <StatusHero
+        icon={Heart}
+        eyebrow="Happy birthday"
+        title={`Happy birthday, ${firstName}!`}
+        subtitle="Wishing you a great year ahead."
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="A note from"
@@ -35,13 +42,6 @@ export const Birthday = ({
           location={course.address}
         />
       </EmailSection>
-
-      <StatusHero
-        icon={Heart}
-        eyebrow="Happy birthday"
-        title={`Happy birthday, ${firstName}!`}
-        subtitle="Wishing you a great year ahead."
-      />
 
       <EmailSection padding="md">
         <Callout tone="success" eyebrow="A note from the course" icon={CheckCircle}>

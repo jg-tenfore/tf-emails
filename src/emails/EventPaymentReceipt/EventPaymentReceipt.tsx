@@ -7,6 +7,7 @@ import {
 import {
   Callout,
   CTAButton,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -16,6 +17,7 @@ import {
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -50,15 +52,6 @@ export const EventPaymentReceipt = ({
     >
       <EmailHeader />
 
-      <EmailSection padding="md">
-        <VenueBadge
-          label="Your event at"
-          logoUrl={assets.logo.src}
-          name={course.name}
-          location={course.address}
-        />
-      </EmailSection>
-
       <StatusHero
         eyebrow="Payment received"
         title={`Thanks, ${firstName} — payment received.`}
@@ -70,6 +63,15 @@ export const EventPaymentReceipt = ({
       />
 
       <EmailSection padding="md">
+        <VenueBadge
+          label="Your event at"
+          logoUrl={assets.logo.src}
+          name={course.name}
+          location={course.address}
+        />
+      </EmailSection>
+
+      <EmailSection padding="md">
         <Callout tone="success" eyebrow="Payment received" icon={CheckCircle}>
           We received your {paymentAmount} payment — thank you.
         </Callout>
@@ -77,7 +79,7 @@ export const EventPaymentReceipt = ({
 
       <EmailSection padding="md">
         <SectionHeading title="This payment" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow
             icon={CreditCard02}
             label="Amount"
@@ -85,7 +87,7 @@ export const EventPaymentReceipt = ({
           />
           <DetailRow icon={Calendar} label="Date" value={paymentDate} />
           <DetailRow label="Method" value={method} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <Divider />
@@ -116,16 +118,7 @@ export const EventPaymentReceipt = ({
         >
           View event
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Contact the course
-          </a>
-          .
-        </p>
+        <SupportLine className="mt-4" href={helpHref} linkText="Contact the course" />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this receipt for a payment toward an event at Sagamore Spring Golf Club." />

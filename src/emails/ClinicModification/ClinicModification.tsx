@@ -1,6 +1,8 @@
 import { ArrowRight, Calendar, Clock, Users01 } from "@untitledui/icons";
 import {
   CTAButton,
+  CTAStack,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
@@ -40,15 +42,6 @@ export const ClinicModification = ({
     >
       <EmailHeader />
 
-      <EmailSection padding="md">
-        <VenueBadge
-          label="Your registration at"
-          logoUrl={assets.logo.src}
-          name={course.name}
-          location={course.address}
-        />
-      </EmailSection>
-
       <StatusHero
         eyebrow="Registration updated"
         title={`Your registration changed, ${firstName}.`}
@@ -60,31 +53,40 @@ export const ClinicModification = ({
       />
 
       <EmailSection padding="md">
+        <VenueBadge
+          label="Your registration at"
+          logoUrl={assets.logo.src}
+          name={course.name}
+          location={course.address}
+        />
+      </EmailSection>
+
+      <EmailSection padding="md">
         <WhatChanged changes={changes} />
       </EmailSection>
 
       <EmailSection padding="md">
         <SectionHeading title="Program details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow icon={Calendar} label="Dates" value={clinic.dateRange} />
           <DetailRow icon={Clock} label="Time" value={clinic.time} />
           <DetailRow icon={Users01} label="Ages" value={clinic.ages} />
           <DetailRow label="Equipment" value={clinic.equipment} />
-        </div>
+        </DetailCard>
         <p className="mt-4 text-sm text-secondary">{clinic.details}</p>
       </EmailSection>
 
       <EmailSection padding="md">
         <SectionHeading title="What you told us" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           {clinic.intake.map((item, i) => (
             <DetailRow key={i} label={item.label} value={item.value} />
           ))}
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">
-        <div className="flex flex-col gap-3">
+        <CTAStack>
           <CTAButton href={manageUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
             Manage registration
           </CTAButton>
@@ -97,7 +99,7 @@ export const ClinicModification = ({
           >
             Update calendar
           </CTAButton>
-        </div>
+        </CTAStack>
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because your Sagamore Spring Golf Club clinic registration was changed." />

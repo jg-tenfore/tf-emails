@@ -2,6 +2,7 @@ import { AlertTriangle, CreditCard02 } from "@untitledui/icons";
 import {
   Callout,
   ContactBlock,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -71,12 +72,12 @@ export const FailedPaymentAlert = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Charge details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Source" value={charge.source} icon={CreditCard02} />
           <DetailRow label="Amount" value={charge.amount} />
           <DetailRow label="Related to" value={charge.relatedTo} />
           <DetailRow label="Reason" value={charge.reason} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailFooter

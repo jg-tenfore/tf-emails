@@ -2,6 +2,7 @@ import { AlertTriangle, ArrowRight, CheckCircle } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -11,6 +12,7 @@ import {
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -53,15 +55,6 @@ export const InitiationDues = ({
     >
       <EmailHeader />
 
-      <EmailSection padding="md">
-        <VenueBadge
-          label="Your membership at"
-          logoUrl={assets.logo.src}
-          name={course.name}
-          location={course.address}
-        />
-      </EmailSection>
-
       <StatusHero
         eyebrow="Initiation dues"
         title={
@@ -71,6 +64,15 @@ export const InitiationDues = ({
         }
         stamps={[{ label: "Membership", value: `#${membership.memberId}` }]}
       />
+
+      <EmailSection padding="md">
+        <VenueBadge
+          label="Your membership at"
+          logoUrl={assets.logo.src}
+          name={course.name}
+          location={course.address}
+        />
+      </EmailSection>
 
       <EmailSection padding="md">
         {isCharged ? (
@@ -88,10 +90,10 @@ export const InitiationDues = ({
       {isCharged ? (
         <EmailSection padding="md">
           <SectionHeading title="Initiation schedule" />
-          <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+          <DetailCard className="mt-4">
             <DetailRow label="Status" value={remaining} />
             <DetailRow label="Next payment" value={nextPayment} />
-          </div>
+          </DetailCard>
         </EmailSection>
       ) : null}
 
@@ -132,12 +134,12 @@ export const InitiationDues = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Your membership" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Member" value={firstName ?? golfer.fullName} />
           <DetailRow label="Membership" value={membership.tier} />
           <DetailRow label="Term" value={membership.term} />
           <DetailRow label="Active through" value={membership.activeThrough} />
-        </div>
+        </DetailCard>
 
         <h3 className="mt-6 text-sm font-semibold text-primary">
           What's included
@@ -148,16 +150,7 @@ export const InitiationDues = ({
           ))}
         </ul>
 
-        <p className="mt-6 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Email the pro shop
-          </a>
-          .
-        </p>
+        <SupportLine className="mt-6" href={helpHref} linkText="Email the pro shop" />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because of your membership at Sagamore Spring Golf Club." />

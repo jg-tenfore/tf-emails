@@ -2,6 +2,8 @@ import { ArrowRight, Heart, MarkerPin02 } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
+  CTAStack,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
@@ -10,6 +12,7 @@ import {
   GiftCardVisual,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -48,6 +51,13 @@ export const GiftCardReceived = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="You received a gift card"
+        title={`A gift for you, ${firstName}.`}
+        subtitle={`From ${senderName}`}
+        stamps={[{ label: "Gift card", value: `#${giftCard.giftCardId}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Redeemable at"
@@ -56,13 +66,6 @@ export const GiftCardReceived = ({
           location={course.address}
         />
       </EmailSection>
-
-      <StatusHero
-        eyebrow="You received a gift card"
-        title={`A gift for you, ${firstName}.`}
-        subtitle={`From ${senderName}`}
-        stamps={[{ label: "Gift card", value: `#${giftCard.giftCardId}` }]}
-      />
 
       {note ? (
         <EmailSection padding="md">
@@ -78,16 +81,16 @@ export const GiftCardReceived = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Amount" value={giftCard.amount} />
           <DetailRow label="From" value={senderName} />
           <DetailRow label="Expiration" value={giftCard.expiration} />
           <DetailRow label="Use for" value={giftCard.useFor} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">
-        <div className="flex flex-col gap-3">
+        <CTAStack>
           <CTAButton
             href={planVisitUrl}
             size="lg"
@@ -105,17 +108,12 @@ export const GiftCardReceived = ({
           >
             Get directions
           </CTAButton>
-        </div>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Contact the pro shop
-          </a>
-          .
-        </p>
+        </CTAStack>
+        <SupportLine
+          className="mt-4"
+          href={helpHref}
+          linkText="Contact the pro shop"
+        />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because someone sent you a Sagamore Spring Golf Club gift card." />

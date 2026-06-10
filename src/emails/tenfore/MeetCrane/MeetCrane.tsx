@@ -15,6 +15,7 @@ import {
   EmailRating,
   EmailSection,
   EmailShell,
+  FeatureList,
   SectionHeading,
   StatusHero,
 } from "@/components/email";
@@ -73,19 +74,7 @@ export const MeetCrane = ({
 
       <EmailSection padding="lg">
         <SectionHeading title="What you can do with Crane" />
-        <div className="mt-5 flex flex-col gap-5">
-          {features.map((f) => (
-            <div key={f.title} className="flex items-start gap-3">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-primary text-brand-secondary">
-                <f.icon className="size-5" />
-              </span>
-              <div>
-                <p className="text-sm font-semibold text-primary">{f.title}</p>
-                <p className="mt-0.5 text-sm text-tertiary">{f.body}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <FeatureList className="mt-5" items={features} />
 
         <div className="mt-8">
           <CTAButton href={appUrl} size="lg" fullWidth iconTrailing={ArrowRight}>

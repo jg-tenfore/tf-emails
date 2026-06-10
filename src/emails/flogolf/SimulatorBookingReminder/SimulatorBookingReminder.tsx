@@ -6,7 +6,10 @@ import {
   Users01,
 } from "@untitledui/icons";
 import {
+  Checklist,
   CTAButton,
+  CTAStack,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
@@ -58,7 +61,7 @@ export const SimulatorBookingReminder = ({
 
       <EmailSection padding="lg">
         <SectionHeading title="Your simulator session" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Bay" value={booking.bay} />
           <DetailRow icon={Calendar} label="Date" value={booking.date} />
           <DetailRow
@@ -79,9 +82,9 @@ export const SimulatorBookingReminder = ({
               </span>
             }
           />
-        </div>
+        </DetailCard>
 
-        <div className="mt-6 flex flex-col gap-3">
+        <CTAStack className="mt-6">
           <CTAButton
             href={directionsUrl}
             size="lg"
@@ -99,17 +102,20 @@ export const SimulatorBookingReminder = ({
           >
             Manage booking
           </CTAButton>
-        </div>
+        </CTAStack>
       </EmailSection>
 
       <EmailSection padding="lg" tone="muted">
         <p className="text-sm font-semibold text-primary">Before you arrive</p>
-        <ul className="mt-2 flex flex-col gap-1.5 text-sm text-tertiary">
-          <li>· Arrive 10 minutes early to check in at the front desk.</li>
-          <li>· Clubs are provided, or bring your own — both play great.</li>
-          <li>· Full bar and food are available all session long.</li>
-          <li>· Up to 6 players can share a bay; the rate covers the bay.</li>
-        </ul>
+        <Checklist
+          className="mt-2"
+          items={[
+            "Arrive 10 minutes early to check in at the front desk.",
+            "Clubs are provided, or bring your own — both play great.",
+            "Full bar and food are available all session long.",
+            "Up to 6 players can share a bay; the rate covers the bay.",
+          ]}
+        />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this reminder for an upcoming FloGolf Lounge simulator booking." />

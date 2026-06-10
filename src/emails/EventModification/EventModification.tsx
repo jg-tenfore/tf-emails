@@ -7,6 +7,8 @@ import {
 } from "@untitledui/icons";
 import {
   CTAButton,
+  CTAStack,
+  DetailCard,
   DetailRow,
   EmailFooter,
   EmailHeader,
@@ -47,6 +49,13 @@ export const EventModification = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Event updated"
+        title={`Your event changed, ${firstName}.`}
+        subtitle="Here's what's different — and your updated event details."
+        stamps={[{ label: "Event", value: `#${event.eventId}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your event at"
@@ -56,20 +65,13 @@ export const EventModification = ({
         />
       </EmailSection>
 
-      <StatusHero
-        eyebrow="Event updated"
-        title={`Your event changed, ${firstName}.`}
-        subtitle="Here's what's different — and your updated event details."
-        stamps={[{ label: "Event", value: `#${event.eventId}` }]}
-      />
-
       <EmailSection padding="md">
         <WhatChanged changes={changes} />
       </EmailSection>
 
       <EmailSection padding="md">
         <SectionHeading title="Event details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow icon={Calendar} label="When" value={event.when} />
           <DetailRow icon={Trophy01} label="Format" value={event.format} />
           <DetailRow
@@ -78,11 +80,11 @@ export const EventModification = ({
             value={`${event.players} players`}
           />
           <DetailRow label="Groups" value={event.groups} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">
-        <div className="flex flex-col gap-3">
+        <CTAStack>
           <CTAButton href={manageUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
             Manage event
           </CTAButton>
@@ -95,7 +97,7 @@ export const EventModification = ({
           >
             Update calendar
           </CTAButton>
-        </div>
+        </CTAStack>
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because your Sagamore Spring Golf Club event was updated." />

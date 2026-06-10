@@ -3,11 +3,12 @@ import {
   Calendar,
   Clock,
   Flag01,
-  MarkerPin02,
   Users01,
 } from "@untitledui/icons";
 import {
   CTAButton,
+  CTAStack,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -15,6 +16,7 @@ import {
   EmailSection,
   EmailShell,
   type FieldChange,
+  LocationBlock,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -52,6 +54,13 @@ export const TeeTimeModification = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Reservation updated"
+        title={`Your tee time changed, ${firstName}.`}
+        subtitle="Here's what's different — and your updated reservation."
+        stamps={[{ label: "Confirmation", value: `#${teeTime.confirmation}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your reservation at"
@@ -61,20 +70,13 @@ export const TeeTimeModification = ({
         />
       </EmailSection>
 
-      <StatusHero
-        eyebrow="Reservation updated"
-        title={`Your tee time changed, ${firstName}.`}
-        subtitle="Here's what's different — and your updated reservation."
-        stamps={[{ label: "Confirmation", value: `#${teeTime.confirmation}` }]}
-      />
-
       <EmailSection padding="md">
         <WhatChanged changes={changes} />
       </EmailSection>
 
       <EmailSection padding="md">
         <SectionHeading title="Updated reservation" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow icon={Calendar} label="Date" value={teeTime.date} />
           <DetailRow icon={Clock} label="Tee time" value={teeTime.time} />
           <DetailRow
@@ -91,22 +93,14 @@ export const TeeTimeModification = ({
             label="Confirmation"
             value={<span className="font-mono">#{teeTime.confirmation}</span>}
           />
-        </div>
+        </DetailCard>
 
-        <div className="mt-4 flex items-start gap-3">
-          <MarkerPin02 className="mt-0.5 size-4 shrink-0 text-brand-secondary" />
-          <p className="text-sm text-secondary">
-            <span className="font-semibold text-primary">{teeTime.course}</span>
-            <br />
-            {teeTime.address} ·{" "}
-            <a
-              href={teeTime.mapUrl}
-              className="font-medium text-brand-secondary underline underline-offset-2"
-            >
-              Map it
-            </a>
-          </p>
-        </div>
+        <LocationBlock
+          className="mt-4"
+          name={teeTime.course}
+          address={teeTime.address}
+          mapUrl={teeTime.mapUrl}
+        />
       </EmailSection>
 
       {refund ? (
@@ -126,7 +120,7 @@ export const TeeTimeModification = ({
       ) : null}
 
       <EmailSection padding="md">
-        <div className="flex flex-col gap-3">
+        <CTAStack>
           <CTAButton href={manageUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
             Manage reservation
           </CTAButton>
@@ -139,7 +133,7 @@ export const TeeTimeModification = ({
           >
             Update calendar
           </CTAButton>
-        </div>
+        </CTAStack>
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because your Sagamore Spring Golf Club tee time was changed." />

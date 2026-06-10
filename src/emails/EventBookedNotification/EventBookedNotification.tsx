@@ -1,6 +1,7 @@
 import { Calendar, Users01 } from "@untitledui/icons";
 import {
   ContactBlock,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -60,7 +61,7 @@ export const EventBookedNotification = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Event details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="When" value={event.when} icon={Calendar} />
           <DetailRow label="Format" value={event.format} />
           <DetailRow
@@ -69,7 +70,7 @@ export const EventBookedNotification = ({
             icon={Users01}
           />
           <DetailRow label="Groups" value={event.groups} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">

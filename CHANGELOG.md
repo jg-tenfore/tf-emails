@@ -3,6 +3,48 @@
 All notable changes to the TenFore Golf email design system are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.1.0] — 2026-06-10
+
+Refinement pass: product imagery, redeemable codes, a leaner FloGolf section,
+and a real component-adoption sweep so recycled markup is actually shared.
+
+### Added
+
+- **Product thumbnails on receipts** — `ItemizedList` line items now take an
+  optional `image`, with the two Sagamore purchase receipts (Pro Shop, Snack Bar)
+  rendering real product photos. Documented as `WithImages` / `WithoutImages`
+  stories.
+- **`RedemptionCode` component** — a redeemable voucher/add-on rendered three
+  ways: a 6-digit **PIN**, a **UPC barcode**, or a **QR code**. Used for a new
+  **range-bucket add-on** on the Tee Time Confirmation (stories for all three).
+- **Two Sagamore purchase receipts** — in-person Pro Shop and Snack Bar orders
+  under `Sagamore Golf Club / Orders / Purchase Receipt`.
+- **New shared components** — `SupportLine` (the "Need help? …" line, 16 emails)
+  and `CTAStack` (vertical button stack, 12 emails).
+- **FloGolf multi-bay booking** — `SimBooking` gained optional `sessions[]`; the
+  Simulator Booking Confirmation has a `Multiple Bays` variant that itemizes
+  several bay/time slots.
+
+### Changed
+
+- **FloGolf Lounge streamlined** — collapsed two redundant parallel lifecycles
+  (Activities + Booking, 7 templates) into one `Simulator Booking` sub-group of 4
+  (Confirmation, Reminder, Modification, Cancellation); the multi-bay case is now
+  a story variant rather than a duplicate set.
+- **Simulator/bay content moved to FloGolf** — the simulator "Activities" emails
+  were relocated out of Sagamore Golf Club, where they didn't belong.
+- **Component-adoption sweep** — ~40 templates refactored to use the shared
+  primitives (`DetailCard` ×32, `SupportLine` ×16, `CTAStack` ×12, `LocationBlock`,
+  `Checklist`, `FeatureList`) instead of inlining the same markup.
+- **Header order flipped** — across all 30 venue emails the headline (`StatusHero`)
+  now comes first, with the venue `VenueBadge` beneath it as secondary context.
+- Receipt line items align thumbnail + title vertically.
+
+### Removed
+
+- The duplicate FloGolf `Activities` lifecycle and the redundant `activity`
+  scenario (merged into `SimBooking.sessions`).
+
 ## [1.0.0] — 2026-06-10
 
 The email style guide grows into a full **multi-venue email design system**:

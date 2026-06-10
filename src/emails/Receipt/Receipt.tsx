@@ -11,6 +11,7 @@ import {
 import {
   AppDownloadLink,
   CTAButton,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -93,7 +94,7 @@ export const ReceiptEmail = ({
       {/* Golfer details (traveler-details pattern) */}
       <EmailSection padding="lg">
         <SectionHeading title="Golfer details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Reserved for" value={golfer.fullName} />
           <DetailRow icon={Calendar} label="Date" value={teeTime.date} />
           <DetailRow icon={Clock} label="Tee time" value={teeTime.time} />
@@ -102,7 +103,7 @@ export const ReceiptEmail = ({
             label="Players"
             value={`${teeTime.players} ${teeTime.players === 1 ? "golfer" : "golfers"}`}
           />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <Divider />

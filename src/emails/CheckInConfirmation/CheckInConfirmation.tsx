@@ -1,6 +1,7 @@
 import { ArrowRight, Clock } from "@untitledui/icons";
 import {
   CTAButton,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -10,6 +11,7 @@ import {
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -52,6 +54,13 @@ export const CheckInConfirmation = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Check-in confirmed"
+        title={`You're checked in, ${firstName}.`}
+        subtitle={checkInTime}
+        stamps={[{ label: "Transaction", value: `#${transactionId}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your account at"
@@ -61,22 +70,15 @@ export const CheckInConfirmation = ({
         />
       </EmailSection>
 
-      <StatusHero
-        eyebrow="Check-in confirmed"
-        title={`You're checked in, ${firstName}.`}
-        subtitle={checkInTime}
-        stamps={[{ label: "Transaction", value: `#${transactionId}` }]}
-      />
-
       <EmailSection padding="md">
         <SectionHeading title="Check-in details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Type" value="Membership card scan" />
           <DetailRow label="Customer" value={firstName} />
           <DetailRow icon={Clock} label="Date" value={checkInTime} />
           <DetailRow label="Membership" value={membershipTier} />
           <DetailRow label="Expires" value={expires} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       {paid ? (
@@ -102,16 +104,7 @@ export const CheckInConfirmation = ({
         <CTAButton href={accountUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
           View account
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Contact the pro shop
-          </a>
-          .
-        </p>
+        <SupportLine className="mt-4" href={helpHref} linkText="Contact the pro shop" />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because you checked in at Sagamore Spring Golf Club." />

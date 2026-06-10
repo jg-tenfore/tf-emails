@@ -28,6 +28,15 @@ export const flogolf = {
   loungeImage: flogolfLounge,
 } as const;
 
+/** One bay/time slot within a reservation (used by multi-bay bookings). */
+export interface SimSession {
+  /** Which bay, e.g. "Bay 3". */
+  bay: string;
+  date: string;
+  time: string;
+  price: string;
+}
+
 export interface SimBooking {
   /** Which simulator bay, e.g. "Bay 7" (1–10). */
   bay: string;
@@ -42,6 +51,11 @@ export interface SimBooking {
   confirmation: string;
   ratePerHour: string;
   total: string;
+  /**
+   * Optional multi-bay breakdown. When present, the booking covers several
+   * bay/time slots and the email itemizes them instead of showing one session.
+   */
+  sessions?: SimSession[];
 }
 
 /** Canonical FloGolf simulator booking — a Saturday-evening 2-hour bay for 4. */
@@ -56,4 +70,23 @@ export const simBooking: SimBooking = {
   confirmation: "FG-58117",
   ratePerHour: "$60.00 / hour",
   total: "$120.00",
+};
+
+/** Edge case: one reservation spanning several bays/time slots. */
+export const simBookingMultiBay: SimBooking = {
+  bay: "3 bays",
+  date: "Saturday, May 9, 2026",
+  startTime: "6:00 PM",
+  endTime: "7:00 PM",
+  duration: "2 hours total",
+  players: 3,
+  experience: "Golfzon simulator",
+  confirmation: "FG-58142",
+  ratePerHour: "$50.00 / hour",
+  total: "$150.00",
+  sessions: [
+    { bay: "Bay 3", date: "May 9, 2026", time: "6:00 PM", price: "$50.00" },
+    { bay: "Bay 3", date: "May 9, 2026", time: "7:00 PM", price: "$50.00" },
+    { bay: "Bay 4", date: "May 9, 2026", time: "6:00 PM", price: "$50.00" },
+  ],
 };

@@ -11,6 +11,7 @@ import {
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -52,6 +53,12 @@ export const OrderRefund = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Refund issued"
+        title={`We issued your refund, ${firstName}.`}
+        stamps={[{ label: "Refund order", value: `#${refundId}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your order from"
@@ -60,12 +67,6 @@ export const OrderRefund = ({
           location={course.address}
         />
       </EmailSection>
-
-      <StatusHero
-        eyebrow="Refund issued"
-        title={`We issued your refund, ${firstName}.`}
-        stamps={[{ label: "Refund order", value: `#${refundId}` }]}
-      />
 
       <EmailSection padding="md">
         <Callout tone="info" eyebrow="Reason" icon={InfoCircle}>
@@ -98,16 +99,11 @@ export const OrderRefund = ({
         >
           Book again
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Contact the pro shop
-          </a>
-          .
-        </p>
+        <SupportLine
+          className="mt-4"
+          href={helpHref}
+          linkText="Contact the pro shop"
+        />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because a refund was issued for a Sagamore Spring Golf Club booking." />

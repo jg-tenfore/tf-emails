@@ -1,6 +1,7 @@
 import { Calendar, Clock, RefreshCw02, Users01 } from "@untitledui/icons";
 import {
   CTAButton,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -10,6 +11,7 @@ import {
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SupportLine,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -42,15 +44,6 @@ export const ClinicCancellation = ({
     >
       <EmailHeader />
 
-      <EmailSection padding="md">
-        <VenueBadge
-          label="Your registration at"
-          logoUrl={assets.logo.src}
-          name={course.name}
-          location={course.address}
-        />
-      </EmailSection>
-
       <StatusHero
         eyebrow="Registration cancelled"
         title={`Your registration was cancelled, ${firstName}.`}
@@ -62,13 +55,22 @@ export const ClinicCancellation = ({
       />
 
       <EmailSection padding="md">
+        <VenueBadge
+          label="Your registration at"
+          logoUrl={assets.logo.src}
+          name={course.name}
+          location={course.address}
+        />
+      </EmailSection>
+
+      <EmailSection padding="md">
         <SectionHeading title="Cancelled registration" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow label="Clinic" value={clinic.name} />
           <DetailRow icon={Calendar} label="Dates" value={clinic.dateRange} />
           <DetailRow icon={Clock} label="Time" value={clinic.time} />
           <DetailRow icon={Users01} label="Ages" value={clinic.ages} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       {refund ? (
@@ -97,16 +99,7 @@ export const ClinicCancellation = ({
         >
           Browse clinics
         </CTAButton>
-        <p className="mt-4 text-center text-sm text-tertiary">
-          Need help?{" "}
-          <a
-            href={helpHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Contact the pro shop
-          </a>
-          .
-        </p>
+        <SupportLine className="mt-4" href={helpHref} linkText="Contact the pro shop" />
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because a Sagamore Spring Golf Club clinic registration was cancelled." />

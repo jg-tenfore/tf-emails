@@ -1,5 +1,6 @@
 import {
   ContactBlock,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -67,11 +68,11 @@ export const ClinicSoldNotification = ({
           title={clinic.name}
           description={`${clinic.dateRange} · ${clinic.time}`}
         />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           {clinic.intake.map((field, i) => (
             <DetailRow key={i} label={field.label} value={field.value} />
           ))}
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">

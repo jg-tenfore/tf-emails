@@ -4,12 +4,13 @@ import {
   CheckCircle,
   Clock,
   Flag01,
-  MarkerPin02,
   Users01,
 } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import {
   CTAButton,
+  CTAStack,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -17,6 +18,9 @@ import {
   EmailHero,
   EmailSection,
   EmailShell,
+  LocationBlock,
+  RedemptionCode,
+  type RedemptionVariant,
   SectionHeading,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -34,6 +38,8 @@ export interface TeeTimeConfirmationProps {
   teeTime?: TeeTime;
   payment?: PaymentBreakdown;
   manageUrl?: string;
+  /** Optional range-bucket add-on with a redeemable code. Omit to hide it. */
+  rangeBucket?: { code: string; variant: RedemptionVariant } | null;
 }
 
 export const TeeTimeConfirmation = ({
@@ -41,6 +47,7 @@ export const TeeTimeConfirmation = ({
   teeTime = defaultTeeTime,
   payment = defaultPayment,
   manageUrl = `https://www.sagamoregolf.com/reservations/${defaultTeeTime.confirmation}`,
+  rangeBucket = { code: "482917", variant: "pin" },
 }: TeeTimeConfirmationProps) => {
   return (
     <EmailShell
@@ -85,7 +92,7 @@ export const TeeTimeConfirmation = ({
           }
         />
 
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow icon={Calendar} label="Date" value={teeTime.date} />
           <DetailRow icon={Clock} label="Tee time" value={teeTime.time} />
           <DetailRow
@@ -117,26 +124,16 @@ export const TeeTimeConfirmation = ({
             }
           />
           <DetailRow label="Group" value={teeTime.groupName} />
-        </div>
+        </DetailCard>
 
         {/* Course + address */}
-        <div className="mt-4 flex items-start gap-3">
-          <MarkerPin02 className="mt-0.5 size-4 shrink-0 text-brand-secondary" />
-          <p className="text-sm text-secondary">
-            <span className="font-semibold text-primary">{teeTime.course}</span>
-            {teeTime.courseNote ? (
-              <span className="text-tertiary"> · {teeTime.courseNote}</span>
-            ) : null}
-            <br />
-            {teeTime.address} ·{" "}
-            <a
-              href={teeTime.mapUrl}
-              className="font-medium text-brand-secondary underline underline-offset-2"
-            >
-              Map it
-            </a>
-          </p>
-        </div>
+        <LocationBlock
+          className="mt-4"
+          name={teeTime.course}
+          note={teeTime.courseNote}
+          address={teeTime.address}
+          mapUrl={teeTime.mapUrl}
+        />
 
         <p className="mt-4 flex items-center gap-2 text-sm font-medium text-success-primary">
           <CheckCircle className="size-4" />
@@ -202,6 +199,26 @@ export const TeeTimeConfirmation = ({
         </div>
       </EmailSection>
 
+      {rangeBucket ? (
+        <>
+          <Divider />
+          <EmailSection padding="lg">
+            <SectionHeading
+              title="Range bucket"
+              description="Added to your order — warm up before your round."
+            />
+            <div className="mt-4">
+              <RedemptionCode
+                variant={rangeBucket.variant}
+                code={rangeBucket.code}
+                label="Range bucket"
+                instructions="Show this at the pro shop or scan it at the ball machine to grab your bucket."
+              />
+            </div>
+          </EmailSection>
+        </>
+      ) : null}
+
       <Divider />
 
       {/* Good to know */}
@@ -234,7 +251,7 @@ export const TeeTimeConfirmation = ({
           credit valid for six months.
         </p>
 
-        <div className="mt-5 flex flex-col gap-3">
+        <CTAStack className="mt-5">
           <CTAButton
             href={`${manageUrl}/calendar`}
             color="secondary"
@@ -253,7 +270,7 @@ export const TeeTimeConfirmation = ({
           >
             Manage reservation
           </CTAButton>
-        </div>
+        </CTAStack>
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because you booked a tee time with Sagamore Spring Golf Club." />

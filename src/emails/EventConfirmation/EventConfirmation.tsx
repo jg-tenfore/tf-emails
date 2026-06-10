@@ -1,6 +1,8 @@
 import { ArrowRight, Calendar, Trophy01, Users01 } from "@untitledui/icons";
 import {
   CTAButton,
+  CTAStack,
+  DetailCard,
   DetailRow,
   Divider,
   EmailFooter,
@@ -42,6 +44,13 @@ export const EventConfirmation = ({
     >
       <EmailHeader />
 
+      <StatusHero
+        eyebrow="Event confirmed"
+        title={`Your event is booked, ${firstName}.`}
+        subtitle={event.name}
+        stamps={[{ label: "Event", value: `#${event.eventId}` }]}
+      />
+
       <EmailSection padding="md">
         <VenueBadge
           label="Your event at"
@@ -51,16 +60,9 @@ export const EventConfirmation = ({
         />
       </EmailSection>
 
-      <StatusHero
-        eyebrow="Event confirmed"
-        title={`Your event is booked, ${firstName}.`}
-        subtitle={event.name}
-        stamps={[{ label: "Event", value: `#${event.eventId}` }]}
-      />
-
       <EmailSection padding="md">
         <SectionHeading title="Event details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
+        <DetailCard className="mt-4">
           <DetailRow icon={Calendar} label="When" value={event.when} />
           <DetailRow icon={Trophy01} label="Format" value={event.format} />
           <DetailRow
@@ -69,7 +71,7 @@ export const EventConfirmation = ({
             value={`${event.players} players`}
           />
           <DetailRow label="Groups" value={event.groups} />
-        </div>
+        </DetailCard>
       </EmailSection>
 
       <Divider />
@@ -116,7 +118,7 @@ export const EventConfirmation = ({
       </EmailSection>
 
       <EmailSection padding="md">
-        <div className="flex flex-col gap-3">
+        <CTAStack>
           <CTAButton href={manageUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
             Manage event
           </CTAButton>
@@ -129,7 +131,7 @@ export const EventConfirmation = ({
           >
             Add to calendar
           </CTAButton>
-        </div>
+        </CTAStack>
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because you booked an event at Sagamore Spring Golf Club." />
