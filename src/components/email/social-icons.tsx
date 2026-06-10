@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- icon-definition file, not fast-refreshed */
 import type { FC } from "react";
 import type { SocialIconName } from "@/lib/brand";
 

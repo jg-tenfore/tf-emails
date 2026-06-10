@@ -125,7 +125,7 @@ export const ReceiptEmail = ({
           </div>
         </div>
         <p className="mt-5 text-sm text-tertiary">
-          Paid online with Visa ending in{" "}
+          Paid online on {orderDate} with Visa ending in{" "}
           <span className="font-medium text-secondary">{cardLast4}</span>.
         </p>
         <div className="mt-5">

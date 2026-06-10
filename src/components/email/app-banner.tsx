@@ -38,7 +38,7 @@ export const AppDownloadLink = ({
   </a>
 );
 
-const Rating = ({ tone }: { tone: "light" | "dark" }) => {
+const Rating = () => {
   const filled = Math.round(craneApp.rating);
   return (
     <div className="mt-2 flex items-center justify-center gap-1.5">
@@ -50,19 +50,12 @@ const Rating = ({ tone }: { tone: "light" | "dark" }) => {
               "size-3.5",
               i < filled
                 ? "fill-[#f5b800] text-[#f5b800]"
-                : tone === "dark"
-                  ? "text-white/30"
-                  : "text-quaternary",
+                : "text-quaternary",
             )}
           />
         ))}
       </span>
-      <span
-        className={cx(
-          "text-xs",
-          tone === "dark" ? "text-white/70" : "text-tertiary",
-        )}
-      >
+      <span className="text-xs text-tertiary">
         {craneApp.rating} · {craneApp.ratingCount} ratings
       </span>
     </div>
@@ -118,7 +111,7 @@ export const AppBanner = ({
       </div>
       <p className="mt-4 text-md font-semibold text-primary">{title}</p>
       <p className="mx-auto mt-1 max-w-sm text-sm text-tertiary">{body}</p>
-      {showRating ? <Rating tone="light" /> : null}
+      {showRating ? <Rating /> : null}
       {showBadge ? (
         <div className="mt-5 flex justify-center">
           <AppStoreBadge href={href} tone="light" />

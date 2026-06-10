@@ -64,7 +64,6 @@ export interface Receipt {
  */
 export const course = {
   name: "Sagamore Spring Golf Club",
-  shortName: "Sagamore Spring",
   phone: "(781) 334-3151",
   address: "1287 Main Street, Lynnfield, MA 01940",
   mapUrl: "https://maps.google.com/?q=1287+Main+Street,+Lynnfield,+MA+01940",
