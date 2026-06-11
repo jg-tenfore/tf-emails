@@ -76,9 +76,9 @@ export const WorkshopReceipt = ({
             { label: "Subtotal", value: subtotal },
             { label: "Tax", value: tax },
           ]}
-          total={{ label: "Total paid", value: total }}
+          total={{ value: total }}
           status="paid"
-          note={`Paid on ${orderDate} with Visa ending in ${cardLast4}.`}
+          charged={{ value: total, method: `Visa ending in ${cardLast4}` }}
         />
         <div className="mt-6">
           <CTAButton
