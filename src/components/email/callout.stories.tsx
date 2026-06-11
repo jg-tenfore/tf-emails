@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { CheckCircle, InfoCircle, AlertTriangle } from "@untitledui/icons";
+import {
+  AlertTriangle,
+  CheckCircle,
+  InfoCircle,
+  XCircle,
+} from "@untitledui/icons";
 import { Callout } from "./callout";
 
 const meta = {
@@ -45,5 +50,15 @@ export const Warning: Story = {
     icon: AlertTriangle,
     children:
       "Card declined — insufficient funds. Your tee time was not booked. Update your payment method and try again.",
+  },
+};
+
+export const Error: Story = {
+  args: {
+    tone: "error",
+    eyebrow: "Cancelled",
+    icon: XCircle,
+    children:
+      "Your tee time on Tuesday, April 21 has been cancelled and removed from the tee sheet.",
   },
 };

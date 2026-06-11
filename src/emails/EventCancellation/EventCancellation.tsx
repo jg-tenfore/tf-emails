@@ -1,5 +1,6 @@
-import { Calendar, Trophy01, Users01 } from "@untitledui/icons";
+import { Calendar, Trophy01, Users01, XCircle } from "@untitledui/icons";
 import {
+  Callout,
   CTAButton,
   DetailCard,
   DetailRow,
@@ -43,6 +44,7 @@ export const EventCancellation = ({
       <EmailHeader />
 
       <StatusHero
+        tone="danger"
         eyebrow="Event cancelled"
         title={`Your event was cancelled, ${firstName}.`}
         subtitle="We've cancelled the event below. We hope to see your group back on the course soon."
@@ -56,6 +58,12 @@ export const EventCancellation = ({
           name={course.name}
           location={course.address}
         />
+      </EmailSection>
+
+      <EmailSection padding="md">
+        <Callout tone="error" eyebrow="Cancelled" icon={XCircle}>
+          Your event, {event.name}, has been cancelled.
+        </Callout>
       </EmailSection>
 
       <EmailSection padding="md">

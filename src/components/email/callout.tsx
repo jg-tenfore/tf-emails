@@ -1,10 +1,10 @@
 import type { FC, ReactNode } from "react";
 import { cx } from "@/utils/cx";
 
-export type CalloutTone = "success" | "info" | "warning";
+export type CalloutTone = "success" | "info" | "warning" | "error";
 
 interface CalloutProps {
-  /** Semantic color of the box. success=green, info=blue, warning=amber. */
+  /** Semantic color of the box. success=green, info=blue, warning=amber, error=red. */
   tone?: CalloutTone;
   /** Small uppercase label above the body, rendered in the tone color. */
   eyebrow?: ReactNode;
@@ -35,6 +35,12 @@ const toneStyles: Record<
     accent: "border-l-utility-yellow-400",
     eyebrow: "text-utility-yellow-700",
     icon: "text-utility-yellow-500",
+  },
+  error: {
+    box: "border-utility-red-200 bg-utility-red-50",
+    accent: "border-l-utility-red-500",
+    eyebrow: "text-utility-red-700",
+    icon: "text-utility-red-500",
   },
 };
 

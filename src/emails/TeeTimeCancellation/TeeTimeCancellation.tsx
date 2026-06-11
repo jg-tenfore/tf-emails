@@ -4,8 +4,10 @@ import {
   Flag01,
   RefreshCw02,
   Users01,
+  XCircle,
 } from "@untitledui/icons";
 import {
+  Callout,
   CTAButton,
   DetailCard,
   DetailRow,
@@ -52,6 +54,7 @@ export const TeeTimeCancellation = ({
       <EmailHeader />
 
       <StatusHero
+        tone="danger"
         eyebrow="Reservation cancelled"
         title={`Your tee time was cancelled, ${firstName}.`}
         subtitle="We've cancelled the reservation below. We hope to see you back on the course soon."
@@ -65,6 +68,13 @@ export const TeeTimeCancellation = ({
           name={teeTime.course}
           location={teeTime.address}
         />
+      </EmailSection>
+
+      <EmailSection padding="md">
+        <Callout tone="error" eyebrow="Cancelled" icon={XCircle}>
+          Your tee time on {teeTime.date} has been cancelled and removed from the
+          tee sheet.
+        </Callout>
       </EmailSection>
 
       <EmailSection padding="md">

@@ -3,8 +3,10 @@ import {
   Clock,
   RefreshCw02,
   Users01,
+  XCircle,
 } from "@untitledui/icons";
 import {
+  Callout,
   CTAButton,
   DetailCard,
   DetailRow,
@@ -47,6 +49,7 @@ export const SimulatorBookingCancellation = ({
       <EmailHeader />
 
       <StatusHero
+        tone="danger"
         eyebrow="Booking cancelled"
         title={`Your bay booking was cancelled, ${firstName}.`}
         subtitle="We hope to see you back at the lounge soon."
@@ -60,6 +63,12 @@ export const SimulatorBookingCancellation = ({
           name={flogolf.name}
           location={`${flogolf.address.line1}, ${flogolf.address.line2}`}
         />
+      </EmailSection>
+
+      <EmailSection padding="md">
+        <Callout tone="error" eyebrow="Cancelled" icon={XCircle}>
+          Your simulator booking on {booking.date} has been cancelled.
+        </Callout>
       </EmailSection>
 
       <EmailSection padding="md">
