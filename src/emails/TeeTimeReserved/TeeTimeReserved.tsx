@@ -9,6 +9,7 @@ import {
   Divider,
   EmailFooter,
   EmailHeader,
+  EmailHero,
   EmailSection,
   EmailShell,
   LocationBlock,
@@ -17,10 +18,9 @@ import {
   type RosterPlayer,
   SectionHeading,
   StatusHero,
-  VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
-import { course, golfer } from "@/lib/scenario";
+import { course, courseImage, golfer } from "@/lib/scenario";
 
 export interface TeeTimeReservedProps {
   firstName?: string;
@@ -84,17 +84,17 @@ export const TeeTimeReserved = ({
         eyebrow="Tee time reserved"
         title={`Your tee time is reserved, ${firstName}.`}
         subtitle={`${date} · ${time}`}
-        stamps={[{ label: "Confirmation", value: `#${confirmation}` }]}
       />
 
-      <EmailSection padding="md">
-        <VenueBadge
-          label="Your reservation at"
-          logoUrl={assets.logo.src}
-          name={course.name}
-          location={course.address}
-        />
-      </EmailSection>
+      <EmailHero
+        imageUrl={courseImage}
+        imageAlt={course.name}
+        logoUrl={assets.logo.src}
+        logoAlt={course.name}
+        eyebrow={`Confirmation #${confirmation}`}
+        headline={course.name}
+        details={["Weekend · 18 holes"]}
+      />
 
       <EmailSection padding="md">
         <Callout tone="warning" eyebrow="Payment pending">
