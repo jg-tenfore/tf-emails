@@ -11,10 +11,9 @@ import {
   EmailSection,
   EmailShell,
   ForecastCard,
-  VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
-import { course, golfer, teeTime } from "@/lib/scenario";
+import { golfer, teeTime } from "@/lib/scenario";
 
 export interface TeeTimeReminderProps {
   firstName?: string;
@@ -44,15 +43,6 @@ export const TeeTimeReminder = ({
     <EmailShell preheader={`Reminder: your tee time is ${booking.time} ${booking.date}.`}>
       <EmailHeader />
 
-      <EmailSection padding="md">
-        <VenueBadge
-          label="Your reservation at"
-          logoUrl={assets.logo.src}
-          name={course.name}
-          location={course.address}
-        />
-      </EmailSection>
-
       <EmailSection padding="lg" align="center">
         <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-brand-primary text-brand-secondary">
           <Clock className="size-6" />
@@ -69,6 +59,7 @@ export const TeeTimeReminder = ({
       <EmailSection padding="sm">
         <BookingCard
           booking={booking}
+          logoUrl={assets.logo.src}
           status={{ label: "Tomorrow", color: "brand" }}
         />
 

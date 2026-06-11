@@ -17,7 +17,7 @@ import {
   type RosterPlayer,
   SectionHeading,
 } from "@/components/email";
-import { golfer } from "@/lib/scenario";
+import { course, golfer } from "@/lib/scenario";
 
 export interface WorkshopTeeTimeReservedProps {
   firstName?: string;
@@ -58,9 +58,9 @@ const defaultRoster: RosterPlayer[] = [
  */
 export const WorkshopTeeTimeReserved = ({
   firstName = golfer.firstName,
-  courseName = "Bushwood Country Club",
-  address = "115 Lantana Ridge, Spring Branch, TX 78070",
-  mapUrl = "https://maps.google.com/?q=115+Lantana+Ridge,+Spring+Branch,+TX+78070",
+  courseName = course.name,
+  address = course.address,
+  mapUrl = course.mapUrl,
   date = "Wednesday, June 10, 2026",
   time = "2:00 PM",
   teeTimeId = "TT-77420",
