@@ -21,6 +21,7 @@ import {
   EmailSection,
   EmailShell,
   LocationBlock,
+  PaymentSummary,
   RedemptionCode,
   type RedemptionVariant,
   SectionHeading,
@@ -146,40 +147,38 @@ export const TeeTimeConfirmation = ({
       <EmailSection padding="lg">
         <SectionHeading title="Payment details" />
 
-        <div className="mt-4 px-1">
-          <DetailRow
-            label="Green fees"
-            value={
-              <span>
-                {payment.greenFees}{" "}
-                <span className="font-normal text-tertiary">
-                  ({payment.greenFeesPerPlayer})
-                </span>
-              </span>
-            }
+        <div className="mt-4">
+          <PaymentSummary
+            total={{ label: "Grand total", value: payment.grandTotal }}
+            rows={[
+              {
+                label: (
+                  <>
+                    Green fees{" "}
+                    <span className="font-normal text-tertiary">
+                      ({payment.greenFeesPerPlayer})
+                    </span>
+                  </>
+                ),
+                value: payment.greenFees,
+              },
+              { label: "Convenience fee", value: payment.convenienceFee },
+              { label: "Taxes", value: payment.taxes },
+              {
+                label: (
+                  <>
+                    Discounts
+                    <span className="block text-xs text-tertiary">
+                      {payment.discountNote}
+                    </span>
+                  </>
+                ),
+                value: payment.discounts,
+                muted: true,
+              },
+              { label: "Youth On Course donation", value: payment.donation },
+            ]}
           />
-          <DetailRow label="Convenience fee" value={payment.convenienceFee} />
-          <DetailRow label="Taxes" value={payment.taxes} />
-          <DetailRow
-            label={
-              <span>
-                Discounts
-                <span className="block text-xs text-tertiary">
-                  {payment.discountNote}
-                </span>
-              </span>
-            }
-            value={
-              <span className="text-success-primary">{payment.discounts}</span>
-            }
-          />
-          <DetailRow
-            label="Youth On Course donation"
-            value={payment.donation}
-          />
-          <div className="mt-1 border-t border-secondary pt-1">
-            <DetailRow label="Grand total" value={payment.grandTotal} emphasis />
-          </div>
         </div>
 
         <SummaryStrip

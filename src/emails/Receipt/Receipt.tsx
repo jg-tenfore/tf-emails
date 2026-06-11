@@ -21,8 +21,8 @@ import {
   EmailRating,
   EmailSection,
   EmailShell,
-  Panel,
   PaymentMethod,
+  PaymentSummary,
   SectionHeading,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -110,27 +110,29 @@ export const ReceiptEmail = ({
       {/* Price details */}
       <EmailSection padding="lg">
         <SectionHeading title="Price details" />
-        <Panel className="mt-4">
-          {items.map((item) => (
-            <DetailRow
-              key={item.label}
-              label={item.label}
-              value={item.amount}
-              className="border-b border-secondary last:border-0"
-            />
-          ))}
-        </Panel>
-        <div className="mt-4 px-5">
-          <DetailRow label="Subtotal" value={subtotal} />
-          <DetailRow label="Tax" value={tax} />
-          <div className="mt-1 border-t border-secondary pt-1">
-            <DetailRow label="Total paid" value={total} emphasis />
-          </div>
+        <div className="mt-4">
+          <PaymentSummary
+            total={{ value: total }}
+            status="paid"
+            rows={[
+              ...items.map((item) => ({
+                label: item.label,
+                value: item.amount,
+                muted: item.amount.includes("−"),
+              })),
+              {
+                label: "Subtotal",
+                value: subtotal,
+                subline: { label: "Tax", value: tax },
+              },
+            ]}
+            note={`Paid online on ${orderDate}.`}
+            charged={{
+              value: total,
+              method: <PaymentMethod last4={cardLast4} />,
+            }}
+          />
         </div>
-        <p className="mt-5 text-sm text-tertiary">
-          Paid online on {orderDate} with{" "}
-          <PaymentMethod last4={cardLast4} />.
-        </p>
         <div className="mt-5">
           <CTAButton
             href={`${receiptUrl}.pdf`}
