@@ -9,7 +9,9 @@ import {
   EmailHeader,
   EmailSection,
   EmailShell,
+  NumberedSteps,
   PunchCard,
+  RedemptionCode,
   SectionHeading,
   StatusHero,
   VenueBadge,
@@ -80,6 +82,42 @@ export const PunchCardEmail = ({
       <EmailSection padding="md">
         <PunchCard total={card.total} used={card.used} label={card.label} />
       </EmailSection>
+
+      {!done ? (
+        <>
+          <Divider />
+          <EmailSection padding="md">
+            <SectionHeading
+              title="Redeem at the course"
+              description="Show this code at check-in to confirm it's your card and punch a round."
+            />
+            <div className="mt-4">
+              <RedemptionCode
+                variant="qr"
+                code={card.cardNumber}
+                label="Punch card"
+                instructions="Scan at the pro shop to verify your card and deduct one round — no extra payment."
+              />
+            </div>
+
+            {fresh ? (
+              <div className="mt-6">
+                <p className="text-sm font-semibold text-primary">
+                  How to use your punch card
+                </p>
+                <NumberedSteps
+                  className="mt-3"
+                  steps={[
+                    `Book any tee time at ${course.name}.`,
+                    "At check-in, show this QR code at the pro shop.",
+                    "We scan it to verify your card and punch one round — no extra charge.",
+                  ]}
+                />
+              </div>
+            ) : null}
+          </EmailSection>
+        </>
+      ) : null}
 
       <Divider />
 
