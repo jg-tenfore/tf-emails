@@ -17,9 +17,11 @@ import {
   EmailFooter,
   EmailHeader,
   EmailHero,
+  EmailIntro,
   EmailRating,
   EmailSection,
   EmailShell,
+  Panel,
   SectionHeading,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -64,18 +66,14 @@ export const ReceiptEmail = ({
 
       {/* Intro + view receipt on the TenFore platform */}
       <EmailSection padding="lg">
-        <h1 className="text-display-xs font-semibold text-primary">
-          Your tee time is confirmed, {firstName}.
-        </h1>
-        <p className="mt-2 text-md text-secondary">
-          Thanks for booking with TenFore. Your receipt is below — and you can
-          view it any time on the TenFore platform.
-        </p>
-        <div className="mt-5">
+        <EmailIntro
+          title={`Your tee time is confirmed, ${firstName}.`}
+          subtitle="Thanks for booking with TenFore. Your receipt is below — and you can view it any time on the TenFore platform."
+        >
           <CTAButton href={receiptUrl} size="lg" iconTrailing={ArrowRight}>
             View receipt
           </CTAButton>
-        </div>
+        </EmailIntro>
       </EmailSection>
 
       {/* Hero: course photo with dark-green caption (course, address, IDs) */}
@@ -111,7 +109,7 @@ export const ReceiptEmail = ({
       {/* Price details */}
       <EmailSection padding="lg">
         <SectionHeading title="Price details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 py-2">
+        <Panel className="mt-4">
           {items.map((item) => (
             <DetailRow
               key={item.label}
@@ -120,7 +118,7 @@ export const ReceiptEmail = ({
               className="border-b border-secondary last:border-0"
             />
           ))}
-        </div>
+        </Panel>
         <div className="mt-4 px-5">
           <DetailRow label="Subtotal" value={subtotal} />
           <DetailRow label="Tax" value={tax} />

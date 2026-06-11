@@ -9,6 +9,7 @@ import {
   EmailFooter,
   EmailHeader,
   EmailHero,
+  EmailIntro,
   EmailSection,
   EmailShell,
   LocationBlock,
@@ -44,21 +45,19 @@ export const WorkshopTeeTimeConfirmation = ({
 
       {/* Intro — one reservation CTA + promoted Add to calendar */}
       <EmailSection padding="lg">
-        <h1 className="text-display-xs font-semibold text-primary">
-          You're booked, {firstName}.
-        </h1>
-        <p className="mt-2 text-md text-secondary">
-          Your group is confirmed for {booking.date} at {booking.time}. Add it to
-          your calendar so it's locked in.
-        </p>
-        <CTAStack className="mt-5">
-          <CTAButton href={`${manageUrl}/calendar`} size="lg" fullWidth iconLeading={Calendar}>
-            Add to calendar
-          </CTAButton>
-          <CTAButton href={manageUrl} color="secondary" size="lg" fullWidth iconTrailing={ArrowRight}>
-            Manage reservation
-          </CTAButton>
-        </CTAStack>
+        <EmailIntro
+          title={`You're booked, ${firstName}.`}
+          subtitle={`Your group is confirmed for ${booking.date} at ${booking.time}. Add it to your calendar so it's locked in.`}
+        >
+          <CTAStack>
+            <CTAButton href={`${manageUrl}/calendar`} size="lg" fullWidth iconLeading={Calendar}>
+              Add to calendar
+            </CTAButton>
+            <CTAButton href={manageUrl} color="secondary" size="lg" fullWidth iconTrailing={ArrowRight}>
+              Manage reservation
+            </CTAButton>
+          </CTAStack>
+        </EmailIntro>
       </EmailSection>
 
       {/* Course-image hero */}

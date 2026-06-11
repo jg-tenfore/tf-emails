@@ -9,6 +9,7 @@ import {
   Divider,
   EmailFooter,
   EmailHeader,
+  EmailIntro,
   EmailSection,
   EmailShell,
   LocationBlock,
@@ -83,21 +84,19 @@ export const WorkshopTeeTimeReserved = ({
       <EmailHeader />
 
       <EmailSection padding="lg">
-        <h1 className="text-display-xs font-semibold text-primary">
-          Your tee time is reserved, {firstName}.
-        </h1>
-        <p className="mt-2 text-md text-secondary">
-          {date} · {time} — your spot is held. Payment is pending until each
-          player settles their portion.
-        </p>
-        <CTAStack className="mt-5">
-          <CTAButton href={`${manageUrl}/calendar`} size="lg" fullWidth iconLeading={Calendar}>
-            Add to calendar
-          </CTAButton>
-          <CTAButton href={manageUrl} color="secondary" size="lg" fullWidth iconTrailing={ArrowRight}>
-            Manage tee time
-          </CTAButton>
-        </CTAStack>
+        <EmailIntro
+          title={`Your tee time is reserved, ${firstName}.`}
+          subtitle={`${date} · ${time} — your spot is held. Payment is pending until each player settles their portion.`}
+        >
+          <CTAStack>
+            <CTAButton href={`${manageUrl}/calendar`} size="lg" fullWidth iconLeading={Calendar}>
+              Add to calendar
+            </CTAButton>
+            <CTAButton href={manageUrl} color="secondary" size="lg" fullWidth iconTrailing={ArrowRight}>
+              Manage tee time
+            </CTAButton>
+          </CTAStack>
+        </EmailIntro>
       </EmailSection>
 
       <EmailSection padding="md">

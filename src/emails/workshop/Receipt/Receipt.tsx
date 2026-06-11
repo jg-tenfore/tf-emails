@@ -6,6 +6,7 @@ import {
   EmailSection,
   EmailShell,
   ItemizedList,
+  Panel,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -64,9 +65,9 @@ export const WorkshopReceipt = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Order details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 py-2">
+        <Panel className="mt-4">
           <ItemizedList items={items} />
-        </div>
+        </Panel>
       </EmailSection>
 
       <EmailSection padding="md">

@@ -16,12 +16,14 @@ import {
   EmailFooter,
   EmailHeader,
   EmailHero,
+  EmailIntro,
   EmailSection,
   EmailShell,
   LocationBlock,
   RedemptionCode,
   type RedemptionVariant,
   SectionHeading,
+  SummaryStrip,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import {
@@ -57,18 +59,14 @@ export const TeeTimeConfirmation = ({
 
       {/* Intro band */}
       <EmailSection padding="lg">
-        <h1 className="text-display-xs font-semibold text-primary">
-          You're booked, {firstName}.
-        </h1>
-        <p className="mt-2 text-md text-secondary">
-          Your tee time is confirmed. Here are the details for your upcoming
-          round — we'll see you on the first tee.
-        </p>
-        <div className="mt-5">
+        <EmailIntro
+          title={`You're booked, ${firstName}.`}
+          subtitle="Your tee time is confirmed. Here are the details for your upcoming round — we'll see you on the first tee."
+        >
           <CTAButton href={manageUrl} size="lg" iconTrailing={ArrowRight}>
             View reservation
           </CTAButton>
-        </div>
+        </EmailIntro>
       </EmailSection>
 
       {/* Captioned hero */}
@@ -183,20 +181,13 @@ export const TeeTimeConfirmation = ({
           </div>
         </div>
 
-        <div className="mt-4 flex items-center justify-between rounded-lg bg-secondary px-4 py-3 text-sm">
-          <span className="text-tertiary">
-            Paid online{" "}
-            <span className="font-semibold text-primary">
-              {payment.paidOnline}
-            </span>
-          </span>
-          <span className="text-tertiary">
-            Due at course{" "}
-            <span className="font-semibold text-primary">
-              {payment.dueAtCourse}
-            </span>
-          </span>
-        </div>
+        <SummaryStrip
+          className="mt-4"
+          items={[
+            { label: "Paid online", value: payment.paidOnline },
+            { label: "Due at course", value: payment.dueAtCourse },
+          ]}
+        />
       </EmailSection>
 
       {rangeBucket ? (

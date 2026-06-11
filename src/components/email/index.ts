@@ -48,3 +48,7 @@ export { Checklist } from "./checklist";
 export { NumberedSteps } from "./numbered-steps";
 export { SupportLine } from "./support-line";
 export { CTAStack } from "./cta-stack";
+export { Panel } from "./panel";
+export { EmailIntro } from "./email-intro";
+export { SummaryStrip } from "./summary-strip";
+export type { SummaryStripItem } from "./summary-strip";

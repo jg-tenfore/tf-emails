@@ -9,9 +9,11 @@ import {
   EmailSection,
   EmailShell,
   ItemizedList,
+  Panel,
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SummaryStrip,
 } from "@/components/email";
 import {
   course,
@@ -75,9 +77,9 @@ export const EventBookedNotification = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Items" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 py-2">
+        <Panel className="mt-4">
           <ItemizedList items={event.items} />
-        </div>
+        </Panel>
         <div className="mt-4">
           <PaymentSummary
             rows={[
@@ -87,18 +89,13 @@ export const EventBookedNotification = ({
             ]}
             total={{ value: event.total }}
           />
-          <div className="mt-4 flex items-center justify-between gap-4 rounded-lg bg-secondary px-4 py-3 text-sm">
-            <span className="text-tertiary">
-              Paid{" "}
-              <span className="font-semibold text-primary">{event.paid}</span>
-            </span>
-            <span className="text-tertiary">
-              Balance due{" "}
-              <span className="font-semibold text-primary">
-                {event.balanceDue}
-              </span>
-            </span>
-          </div>
+          <SummaryStrip
+            className="mt-4"
+            items={[
+              { label: "Paid", value: event.paid },
+              { label: "Balance due", value: event.balanceDue },
+            ]}
+          />
         </div>
       </EmailSection>
 
