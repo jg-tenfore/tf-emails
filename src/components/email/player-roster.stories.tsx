@@ -39,3 +39,27 @@ export const NamesOnly: Story = {
     ],
   },
 };
+
+/** Per-player payment status with a rate + cart-fee breakdown (split payment). */
+export const WithStatus: Story = {
+  args: {
+    players: [
+      {
+        name: "Justin Girard",
+        status: "Paid",
+        statusTone: "paid",
+        rateType: "Public Rate · Weekday",
+        amount: "$73.90",
+        extra: [{ label: "Cart fee", value: "$22.08" }],
+      },
+      {
+        name: "Weston Farnsworth",
+        status: "Pending",
+        statusTone: "pending",
+        rateType: "Public Rate · Weekday",
+        amount: "$73.90",
+        extra: [{ label: "Cart fee", value: "$22.08" }],
+      },
+    ],
+  },
+};
