@@ -149,10 +149,10 @@ export const RedemptionCode = ({
       <div>
         <Qr code={code} />
         <p className="mt-3 text-xs text-quaternary">
-          Can't scan? Enter{" "}
-          <span className="font-mono font-semibold uppercase tracking-[0.25em] text-secondary">
-            {manualCode(code)}
-          </span>
+          Can't scan? Here's your code:
+        </p>
+        <p className="mt-1 font-mono text-sm font-semibold uppercase tracking-[0.25em] text-secondary">
+          {manualCode(code)}
         </p>
       </div>
     ) : null}
