@@ -9,10 +9,12 @@ import {
   SectionHeading,
 } from "@/components/email";
 import buddiesGraphic from "@/assets/brand/tf-buddies.png";
+import { craneApp } from "@/lib/assets";
 import { brand } from "@/lib/brand";
 
 export interface GolfBuddiesProps {
   addBuddiesUrl?: string;
+  appUrl?: string;
 }
 
 const steps = [
@@ -23,18 +25,21 @@ const steps = [
 
 export const GolfBuddies = ({
   addBuddiesUrl = `${brand.url}/profile/buddies`,
+  appUrl = craneApp.appStoreUrl,
 }: GolfBuddiesProps) => {
   return (
     <EmailShell preheader="Introducing TenFore Buddies — book your regular group in one tap.">
       <EmailHeader bordered={false} />
 
-      {/* Marketing hero graphic (headline + tagline + app preview baked in) */}
+      {/* Marketing hero graphic (headline + tagline + app preview baked in) — taps through to the app store */}
       <div className="px-8 pb-6">
-        <img
-          src={buddiesGraphic}
-          alt="Introducing TenFore Buddies — faster bookings, better data, happier golfers."
-          className="block w-full rounded-xl ring-1 ring-black/5"
-        />
+        <a href={appUrl}>
+          <img
+            src={buddiesGraphic}
+            alt="Introducing TenFore Buddies — faster bookings, better data, happier golfers. Get the Crane app."
+            className="block w-full rounded-xl ring-1 ring-black/5"
+          />
+        </a>
       </div>
 
       {/* How it works */}
