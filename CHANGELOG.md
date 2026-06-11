@@ -3,6 +3,46 @@
 All notable changes to the TenFore Golf email design system are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.2.0] — 2026-06-11
+
+Punch cards, a signed cart-rental agreement, a reworked Golf Buddies launch
+email, a pricing-hierarchy redesign, and another component-extraction pass.
+
+### Added
+
+- **Sagamore Punch Cards** — a new `Sagamore Golf Club / Punch Cards` sub-group
+  with **10-Round** and **5-Round** templates, each across its full lifecycle as
+  stories: *Fresh*, *Partially used*, *Fully used*, and *Expiring*. The fresh
+  card carries how-to-use steps; every open card shows a QR redeem code with a
+  manual `XXXX-XXXX` fallback for when the scan fails.
+- **`PunchCard` component** — the visual punch grid (dark-green checked slots,
+  numbered unused holes, "X of N left").
+- **Sagamore Cart Rental Agreement** — a signed liability receipt (terms, cart #,
+  confirmation/player IDs) under `Sagamore Golf Club / Cart Rental Agreement`,
+  backed by a new **`SignatureBlock`** component.
+- **`PaymentMethod` component** — a card-brand icon (Visa/Mastercard/Amex/
+  Discover) next to "… ending in ####", used everywhere a saved card appears.
+- **More shared components** — `IconBadge` (the brand chip behind `FeatureList`
+  and hero icons), `Panel`, `EmailIntro`, `SummaryStrip`, and `NumberedSteps`.
+- **`EmailHeader` `bordered` prop** — opt out of the header hairline (default on)
+  so an email can butt the header straight against a full-bleed hero.
+
+### Changed
+
+- **Golf Buddies relaunch** — the `TenFore Golf / Golf Buddies` email now leads
+  with the `tf-buddies` marketing hero graphic (which taps through to the Crane
+  app store), runs divider-free against the header, and ends on a "How it works"
+  block.
+- **Pricing hierarchy redesign** — `PaymentSummary` reworked so the **total leads
+  at the top**, with an optional tax sub-line plus a "Total charged" + payment-
+  method footer. Adopted across the Receipt, Tee Time Confirmation, and every
+  tee-time / orders template that shows payment.
+- **Red treatment for cancellations** — cancellation emails use the new `Callout`
+  `error` tone and `StatusHero` `danger` tone so the impact reads at a glance.
+- **Real bullets** — `Checklist` now renders true bullets with a hanging indent;
+  inline bullet lists converted to use it.
+- **Tee Time Reserved → Golf Group Details** — renamed, with a course-image hero.
+
 ## [1.1.0] — 2026-06-10
 
 Refinement pass: product imagery, redeemable codes, a leaner FloGolf section,

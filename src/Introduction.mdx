@@ -20,7 +20,7 @@ real React component, built from a shared library of primitives and previewed
 across its real-world edge cases — so design, copy, and engineering all work
 from one source of truth.
 
-**44 email templates · 34 shared components · 2 partner venues.**
+**48 email templates · 42 shared components · 2 partner venues.**
 
 ---
 
@@ -82,7 +82,7 @@ The system has three kinds of sender, and that distinction drives the branding:
 | **TenFore Partners** | The venue directory — brand assets, venue details, and general info for each partner. |
 | **Email Components** | The primitive library every email is built from (headers, heroes, callouts, cards, payment blocks…). |
 | **TenFore Golf** | Platform / app emails — Welcome, Meet Crane, Golf Buddies. |
-| **Sagamore Golf Club** | The golf-course customer emails (tee times, clinics, events, membership, gift cards, pro-shop & snack-bar receipts, account…). |
+| **Sagamore Golf Club** | The golf-course customer emails — tee times, clinics, events, membership, gift cards, pro-shop & snack-bar receipts, **punch cards**, a signed **cart-rental agreement**, account & security. |
 | **FloGolf Lounge** | The simulator-lounge customer emails — one Simulator Booking lifecycle (confirmation, reminder, modification, cancellation). |
 | **Admin** | Operator / internal notifications and reports. |
 
@@ -139,8 +139,8 @@ Variation runs along a few clear axes:
 
 - **Lifecycle** — confirm → modify → cancel → refund
 - **Payment state** — paid online · pay at venue · amount due · refund · failed
-- **Status tone** — success (green) · info (blue) · warning (amber), expressed
-  through the `Callout` color
+- **Status tone** — success (green) · info (blue) · warning (amber) · error (red,
+  for cancellations), expressed through the `Callout` color and `StatusHero` tone
 - **Audience** — customer · operator · platform-internal
 - **Single vs. multi** — one line item vs. grouped line items
 
@@ -149,6 +149,7 @@ A few representative examples you can open right now:
 - **Sagamore Golf Club / Membership / Expiring** — *Manual renew* vs. *Auto-renew*
 - **Sagamore Golf Club / Orders / Purchase Receipt** — *Pro Shop* vs. *Snack Bar* (with product thumbnails)
 - **Sagamore Golf Club / Tee Times / Confirmation** — range-bucket code as a *PIN*, *Barcode*, or *QR*
+- **Sagamore Golf Club / Punch Cards / 10-Round** — *Fresh* · *Partially used* · *Fully used* · *Expiring*
 - **FloGolf Lounge / Simulator Booking / Confirmation** — *Default* vs. *Multiple Bays*
 - **Sagamore Golf Club / Gift Cards / Purchase** — *Self* vs. *Gift*
 
@@ -183,18 +184,23 @@ cases are expressed as overrides rather than copied data.
 
 `Email Components` holds the shared building blocks, including:
 
-- **Structure & layout** — EmailShell, EmailHeader (platform + admin variants),
-  EmailFooter, EmailSection, Divider, CTAStack, SupportLine
-- **Heroes & identity** — EmailHero, StatusHero, VenueBadge, Logo, IdStamp
-- **Content** — DetailCard, DetailRow, ItemizedList (with optional product
-  thumbnails), PaymentSummary, StatusBadge, Callout, WhatChanged, BookingCard,
-  ForecastCard, GiftCardVisual, RedemptionCode (PIN / barcode / QR), FeatureList,
-  Checklist, NumberedSteps, LocationBlock, SectionHeading
+- **Structure & layout** — EmailShell, EmailHeader (platform + admin variants,
+  optional border), EmailFooter, EmailSection, Panel, Divider, CTAStack,
+  SupportLine
+- **Heroes & identity** — EmailHero, StatusHero (brand + danger tones), VenueBadge,
+  Logo, IdStamp, IconBadge, EmailIntro
+- **Content** — DetailCard, DetailRow, SummaryStrip, ItemizedList (with optional
+  product thumbnails), PaymentSummary (total-led), PaymentMethod (card-brand
+  icon), StatusBadge, Callout (success / info / warning / error), WhatChanged,
+  BookingCard, ForecastCard, GiftCardVisual, PunchCard, RedemptionCode (PIN /
+  barcode / QR), SignatureBlock, FeatureList, Checklist, NumberedSteps,
+  LocationBlock, SectionHeading
 - **Operator** — ContactBlock, DataTable
 - **App & engagement** — CTAButton, AppBanner, AppStoreBadge, EmailRating
 
-These primitives are genuinely shared, not decorative: `DetailCard` backs 32
-emails, `SupportLine` 16, `CTAStack` 12 — change one and every email follows.
+These primitives are genuinely shared, not decorative: `DetailCard` backs 37
+emails, `VenueBadge` 33, `PaymentSummary` 24, `SupportLine` 16 — change one and
+every email follows.
 
 ## Extending the system
 

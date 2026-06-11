@@ -6,7 +6,7 @@ React components and previewed across their real-world edge cases.
 
 - **Stack:** React 19 · Vite · TypeScript · Tailwind CSS v4 · Untitled UI · Storybook 10
 - **Live catalog:** https://jg-tenfore.github.io/tf-emails/
-- **46 email templates · 32 shared components · 2 partner venues**
+- **48 email templates · 42 shared components · 2 partner venues**
 
 ## The model — platform + partners
 
@@ -30,7 +30,7 @@ imagery with the venue logo overlaid. Header logos are never swapped per venue.
 | **TenFore Partners** | Venue directory — brand assets, venue details, general info per partner. |
 | **Email Components** | The primitive library every email is built from. |
 | **TenFore Golf** | Platform / app emails — Welcome, Meet Crane, Golf Buddies. |
-| **Sagamore Golf Club** | Golf-course customer emails (33) across the full booking lifecycle. |
+| **Sagamore Golf Club** | Golf-course customer emails (35) across the full booking lifecycle — tee times, clinics, events, membership, gift cards, receipts, punch cards, cart-rental agreement, account. |
 | **FloGolf Lounge** | Simulator-lounge customer emails (4). |
 | **Admin** | Operator / internal notifications and reports (6). |
 
