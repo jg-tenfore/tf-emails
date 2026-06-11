@@ -21,6 +21,7 @@ import {
   EmailRating,
   EmailSection,
   EmailShell,
+  IconBadge,
   PaymentMethod,
   PaymentSummary,
   SectionHeading,
@@ -151,9 +152,7 @@ export const ReceiptEmail = ({
       {/* TenFore guarantee */}
       <EmailSection padding="lg">
         <div className="flex items-start gap-4 rounded-xl border border-secondary bg-secondary px-5 py-5">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-primary text-brand-secondary">
-            <ShieldTick className="size-5" />
-          </span>
+          <IconBadge icon={ShieldTick} />
           <div>
             <p className="text-sm font-semibold text-primary">
               The TenFore Worry-Free Guarantee

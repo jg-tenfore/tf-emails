@@ -11,6 +11,7 @@ import {
   EmailSection,
   EmailShell,
   ForecastCard,
+  IconBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import { golfer, teeTime } from "@/lib/scenario";
@@ -44,9 +45,7 @@ export const TeeTimeReminder = ({
       <EmailHeader />
 
       <EmailSection padding="lg" align="center">
-        <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-brand-primary text-brand-secondary">
-          <Clock className="size-6" />
-        </span>
+        <IconBadge icon={Clock} shape="circle" size="lg" className="mx-auto" />
         <h1 className="mt-4 text-display-xs font-semibold text-primary">
           See you tomorrow, {firstName}
         </h1>

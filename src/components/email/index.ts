@@ -45,6 +45,7 @@ export type { RedemptionVariant } from "./redemption-code";
 export { DetailCard } from "./detail-card";
 export { FeatureList } from "./feature-list";
 export type { FeatureItem } from "./feature-list";
+export { IconBadge } from "./icon-badge";
 export { LocationBlock } from "./location-block";
 export { Checklist } from "./checklist";
 export { NumberedSteps } from "./numbered-steps";

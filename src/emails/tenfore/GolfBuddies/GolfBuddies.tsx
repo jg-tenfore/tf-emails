@@ -16,6 +16,7 @@ import {
   EmailSection,
   EmailShell,
   FeatureList,
+  NumberedSteps,
   SectionHeading,
   StatusHero,
 } from "@/components/email";
@@ -86,16 +87,7 @@ export const GolfBuddies = ({
 
       <EmailSection padding="lg">
         <SectionHeading title="How it works" />
-        <ol className="mt-4 flex flex-col gap-4">
-          {steps.map((s, i) => (
-            <li key={i} className="flex items-start gap-3">
-              <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-primary text-sm font-semibold text-brand-secondary">
-                {i + 1}
-              </span>
-              <p className="pt-0.5 text-sm text-secondary">{s}</p>
-            </li>
-          ))}
-        </ol>
+        <NumberedSteps className="mt-4" steps={steps} />
 
         <div className="mt-8">
           <CTAButton
