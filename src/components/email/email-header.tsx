@@ -1,3 +1,4 @@
+import { cx } from "@/utils/cx";
 import adminLogoUrl from "@/assets/tf-admin.svg";
 import { Logo } from "./logo";
 
@@ -8,15 +9,25 @@ interface EmailHeaderProps {
    * platform mark — the partner venue is identified in the body, never here.
    */
   variant?: "platform" | "admin";
+  /** Hairline under the header. Defaults to true; set false to butt the header against a full-bleed hero. */
+  bordered?: boolean;
 }
 
 /**
  * Email header: a centered TenFore mark on a white bar. Customer emails use the
  * platform logo; operator/internal (Admin) emails pass `variant="admin"`.
  */
-export const EmailHeader = ({ variant = "platform" }: EmailHeaderProps) => {
+export const EmailHeader = ({
+  variant = "platform",
+  bordered = true,
+}: EmailHeaderProps) => {
   return (
-    <div className="flex items-center justify-center border-b border-secondary bg-primary px-8 py-5">
+    <div
+      className={cx(
+        "flex items-center justify-center bg-primary px-8 py-5",
+        bordered && "border-b border-secondary",
+      )}
+    >
       {variant === "admin" ? (
         <img
           src={adminLogoUrl}

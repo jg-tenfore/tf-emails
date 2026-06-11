@@ -1,7 +1,6 @@
 import { ArrowRight } from "@untitledui/icons";
 import {
   CTAButton,
-  Divider,
   EmailFooter,
   EmailHeader,
   EmailSection,
@@ -27,7 +26,7 @@ export const GolfBuddies = ({
 }: GolfBuddiesProps) => {
   return (
     <EmailShell preheader="Introducing TenFore Buddies — book your regular group in one tap.">
-      <EmailHeader />
+      <EmailHeader bordered={false} />
 
       {/* Marketing hero graphic (headline + tagline + app preview baked in) */}
       <div className="px-8 pt-6 pb-6">
@@ -37,8 +36,6 @@ export const GolfBuddies = ({
           className="block w-full rounded-xl ring-1 ring-black/5"
         />
       </div>
-
-      <Divider />
 
       {/* How it works */}
       <EmailSection padding="lg">
