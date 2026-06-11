@@ -29,7 +29,7 @@ export const GolfBuddies = ({
       <EmailHeader bordered={false} />
 
       {/* Marketing hero graphic (headline + tagline + app preview baked in) */}
-      <div className="px-8 pt-6 pb-6">
+      <div className="px-8 pb-6">
         <img
           src={buddiesGraphic}
           alt="Introducing TenFore Buddies — faster bookings, better data, happier golfers."
