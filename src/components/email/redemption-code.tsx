@@ -104,6 +104,22 @@ const Qr = ({ code, size = 132 }: { code: string; size?: number }) => {
 };
 
 /**
+ * Deterministic 8-character manual-entry code (XXXX-XXXX) derived from the QR
+ * value — a fallback the recipient can read out if the QR won't scan.
+ */
+const manualCode = (seed: string) => {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const s = seed || "code";
+  let out = "";
+  for (let i = 0; i < 8; i++) {
+    const n =
+      (s.charCodeAt(i % s.length) * 31 + i * 17 + s.length * 7) % chars.length;
+    out += chars[n];
+  }
+  return `${out.slice(0, 4)}-${out.slice(4)}`;
+};
+
+/**
  * Redeemable code for vouchers/add-ons (e.g. a range bucket on an order). Render
  * it as a 6-digit PIN, a UPC barcode, or a QR code — the recipient shows it at
  * the counter or scans it at the machine.
@@ -129,7 +145,17 @@ export const RedemptionCode = ({
 
     {variant === "pin" ? <Pin code={code} /> : null}
     {variant === "barcode" ? <Barcode code={code} /> : null}
-    {variant === "qr" ? <Qr code={code} /> : null}
+    {variant === "qr" ? (
+      <div>
+        <Qr code={code} />
+        <p className="mt-3 text-xs text-quaternary">
+          Can't scan? Enter{" "}
+          <span className="font-mono font-semibold uppercase tracking-[0.25em] text-secondary">
+            {manualCode(code)}
+          </span>
+        </p>
+      </div>
+    ) : null}
 
     {instructions ? (
       <p className="mt-3 text-sm text-tertiary">{instructions}</p>
