@@ -41,7 +41,7 @@ export const GolfBuddies = ({
         <img
           src={buddiesGraphic}
           alt="Introducing TenFore Buddies — faster bookings, better data, happier golfers."
-          className="mx-auto block w-full max-w-[420px] rounded-xl ring-1 ring-black/5"
+          className="block w-full rounded-xl ring-1 ring-black/5"
         />
       </div>
 
