@@ -244,6 +244,96 @@ export const snackBarOrder: PurchaseOrder = {
 };
 
 /**
+ * Revised tee-time booking for the Workshop layouts (per Weston's feedback):
+ * a foursome with mixed per-player rates, a sub-course/layout, and a dev-facing
+ * Tee Time ID alongside the consumer confirmation number.
+ */
+export interface PlayerRate {
+  name: string;
+  rateType: string;
+  amount: string;
+}
+
+export interface RevisedBooking {
+  course: string;
+  /** Sub-course / layout, e.g. "Mountain Course · Front 9". */
+  layout: string;
+  address: string;
+  mapUrl: string;
+  date: string;
+  time: string;
+  holes: number;
+  /** Developer-facing identifier. */
+  teeTimeId: string;
+  /** Consumer-facing confirmation number. */
+  confirmation: string;
+  roster: PlayerRate[];
+  greenFees: string;
+  cartFee: string;
+  subtotal: string;
+  tax: string;
+  total: string;
+}
+
+export const revisedBooking: RevisedBooking = {
+  course: course.name,
+  layout: "Mountain Course · Front 9",
+  address: course.address,
+  mapUrl: course.mapUrl,
+  date: "Saturday, May 9, 2026",
+  time: "8:40 AM",
+  holes: 18,
+  teeTimeId: "TT-48211",
+  confirmation: "538117902",
+  roster: [
+    { name: golfer.fullName, rateType: "Birdie member", amount: "$42.00" },
+    { name: "Marcus Webb", rateType: "Public", amount: "$68.00" },
+    { name: "Cody Sanders", rateType: "Public", amount: "$68.00" },
+    { name: "Weston Farnsworth", rateType: "Public", amount: "$68.00" },
+  ],
+  greenFees: "$246.00",
+  cartFee: "$16.00",
+  subtotal: "$262.00",
+  tax: "$17.03",
+  total: "$279.03",
+};
+
+/**
+ * Prepaid punch cards — a discounted package of tee times (rounds) redeemed one
+ * at a time. Stories override `used`/`expires` to show fresh, partly-used,
+ * fully-used, and expiring states.
+ */
+export interface PunchCardData {
+  label: string;
+  total: number;
+  used: number;
+  cardNumber: string;
+  purchased: string;
+  expires: string;
+  pricePerRound: string;
+}
+
+export const punchCard10: PunchCardData = {
+  label: "10-Round Punch Card",
+  total: 10,
+  used: 0,
+  cardNumber: "PC-10-44821",
+  purchased: "April 18, 2026",
+  expires: "April 18, 2027",
+  pricePerRound: "$46.00",
+};
+
+export const punchCard5: PunchCardData = {
+  label: "5-Round Punch Card",
+  total: 5,
+  used: 0,
+  cardNumber: "PC-05-44822",
+  purchased: "April 18, 2026",
+  expires: "April 18, 2027",
+  pricePerRound: "$50.00",
+};
+
+/**
  * Additional people for emails involving more than one party
  * (buddy requests, event invitations, gift cards). All anchored to the same
  * Sagamore Spring scenario; override via story args for edge cases.

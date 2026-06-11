@@ -4,6 +4,7 @@ import {
   CheckCircle,
   CreditCard02,
 } from "@untitledui/icons";
+import type { ReactNode } from "react";
 import {
   Callout,
   CTAButton,
@@ -14,6 +15,7 @@ import {
   EmailHeader,
   EmailSection,
   EmailShell,
+  PaymentMethod,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -28,7 +30,7 @@ export interface EventPaymentReceiptProps {
   event?: GolfEvent;
   paymentAmount?: string;
   paymentDate?: string;
-  method?: string;
+  method?: ReactNode;
   viewUrl?: string;
   helpEmail?: string;
 }
@@ -38,7 +40,7 @@ export const EventPaymentReceipt = ({
   event = golfEvent,
   paymentAmount = golfEvent.paid,
   paymentDate = "Tue May 12, 2026 · 2:33 PM",
-  method = "Visa ending in 4242",
+  method = <PaymentMethod last4="4242" />,
   viewUrl = `https://www.sagamoregolf.com/events/${golfEvent.eventId}`,
   helpEmail = "proshop@sagamoregolf.com",
 }: EventPaymentReceiptProps) => {

@@ -7,6 +7,7 @@ import {
   EmailHero,
   EmailSection,
   EmailShell,
+  FeatureList,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import { course, courseImage, golfer } from "@/lib/scenario";
@@ -57,19 +58,7 @@ export const WelcomeEmail = ({
           everything you need is a tap away.
         </p>
 
-        <div className="mt-6 flex flex-col gap-5">
-          {perks.map((p) => (
-            <div key={p.title} className="flex items-start gap-3">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-primary text-brand-secondary">
-                <p.icon className="size-5" />
-              </span>
-              <div>
-                <p className="text-sm font-semibold text-primary">{p.title}</p>
-                <p className="mt-0.5 text-sm text-tertiary">{p.body}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <FeatureList className="mt-6" items={perks} />
 
         <div className="mt-8">
           <CTAButton href={ctaUrl} size="lg" fullWidth iconTrailing={ArrowRight}>

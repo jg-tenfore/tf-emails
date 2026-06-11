@@ -11,6 +11,8 @@ interface StatusHeroProps {
   icon?: FC<{ className?: string }>;
   /** Monospace identifier stamps (order IDs, confirmation numbers, etc.). */
   stamps?: IdStampItem[];
+  /** Accent for the eyebrow + icon: "brand" (green) or "danger" (red, e.g. cancellations). */
+  tone?: "brand" | "danger";
   align?: "left" | "center";
   className?: string;
 }
@@ -26,10 +28,12 @@ export const StatusHero = ({
   subtitle,
   icon: Icon,
   stamps,
+  tone = "brand",
   align = "left",
   className,
 }: StatusHeroProps) => {
   const center = align === "center";
+  const danger = tone === "danger";
   return (
     <div
       className={cx("px-8 pt-8 pb-2", center && "text-center", className)}
@@ -37,7 +41,10 @@ export const StatusHero = ({
       {Icon ? (
         <span
           className={cx(
-            "flex size-12 items-center justify-center rounded-full bg-brand-primary text-brand-secondary",
+            "flex size-12 items-center justify-center rounded-full",
+            danger
+              ? "bg-utility-red-50 text-utility-red-600"
+              : "bg-brand-primary text-brand-secondary",
             center && "mx-auto",
           )}
         >
@@ -47,7 +54,8 @@ export const StatusHero = ({
       {eyebrow ? (
         <p
           className={cx(
-            "text-xs font-semibold tracking-wide text-brand-secondary uppercase",
+            "text-xs font-semibold tracking-wide uppercase",
+            danger ? "text-utility-red-700" : "text-brand-secondary",
             Icon && "mt-4",
           )}
         >

@@ -8,6 +8,7 @@ import {
 } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import {
+  Checklist,
   CTAButton,
   CTAStack,
   DetailCard,
@@ -16,12 +17,15 @@ import {
   EmailFooter,
   EmailHeader,
   EmailHero,
+  EmailIntro,
   EmailSection,
   EmailShell,
   LocationBlock,
+  PaymentSummary,
   RedemptionCode,
   type RedemptionVariant,
   SectionHeading,
+  SummaryStrip,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import {
@@ -57,18 +61,14 @@ export const TeeTimeConfirmation = ({
 
       {/* Intro band */}
       <EmailSection padding="lg">
-        <h1 className="text-display-xs font-semibold text-primary">
-          You're booked, {firstName}.
-        </h1>
-        <p className="mt-2 text-md text-secondary">
-          Your tee time is confirmed. Here are the details for your upcoming
-          round — we'll see you on the first tee.
-        </p>
-        <div className="mt-5">
+        <EmailIntro
+          title={`You're booked, ${firstName}.`}
+          subtitle="Your tee time is confirmed. Here are the details for your upcoming round — we'll see you on the first tee."
+        >
           <CTAButton href={manageUrl} size="lg" iconTrailing={ArrowRight}>
             View reservation
           </CTAButton>
-        </div>
+        </EmailIntro>
       </EmailSection>
 
       {/* Captioned hero */}
@@ -147,56 +147,47 @@ export const TeeTimeConfirmation = ({
       <EmailSection padding="lg">
         <SectionHeading title="Payment details" />
 
-        <div className="mt-4 px-1">
-          <DetailRow
-            label="Green fees"
-            value={
-              <span>
-                {payment.greenFees}{" "}
-                <span className="font-normal text-tertiary">
-                  ({payment.greenFeesPerPlayer})
-                </span>
-              </span>
-            }
+        <div className="mt-4">
+          <PaymentSummary
+            total={{ label: "Grand total", value: payment.grandTotal }}
+            rows={[
+              {
+                label: (
+                  <>
+                    Green fees{" "}
+                    <span className="font-normal text-tertiary">
+                      ({payment.greenFeesPerPlayer})
+                    </span>
+                  </>
+                ),
+                value: payment.greenFees,
+              },
+              { label: "Convenience fee", value: payment.convenienceFee },
+              { label: "Taxes", value: payment.taxes },
+              {
+                label: (
+                  <>
+                    Discounts
+                    <span className="block text-xs text-tertiary">
+                      {payment.discountNote}
+                    </span>
+                  </>
+                ),
+                value: payment.discounts,
+                muted: true,
+              },
+              { label: "Youth On Course donation", value: payment.donation },
+            ]}
           />
-          <DetailRow label="Convenience fee" value={payment.convenienceFee} />
-          <DetailRow label="Taxes" value={payment.taxes} />
-          <DetailRow
-            label={
-              <span>
-                Discounts
-                <span className="block text-xs text-tertiary">
-                  {payment.discountNote}
-                </span>
-              </span>
-            }
-            value={
-              <span className="text-success-primary">{payment.discounts}</span>
-            }
-          />
-          <DetailRow
-            label="Youth On Course donation"
-            value={payment.donation}
-          />
-          <div className="mt-1 border-t border-secondary pt-1">
-            <DetailRow label="Grand total" value={payment.grandTotal} emphasis />
-          </div>
         </div>
 
-        <div className="mt-4 flex items-center justify-between rounded-lg bg-secondary px-4 py-3 text-sm">
-          <span className="text-tertiary">
-            Paid online{" "}
-            <span className="font-semibold text-primary">
-              {payment.paidOnline}
-            </span>
-          </span>
-          <span className="text-tertiary">
-            Due at course{" "}
-            <span className="font-semibold text-primary">
-              {payment.dueAtCourse}
-            </span>
-          </span>
-        </div>
+        <SummaryStrip
+          className="mt-4"
+          items={[
+            { label: "Paid online", value: payment.paidOnline },
+            { label: "Due at course", value: payment.dueAtCourse },
+          ]}
+        />
       </EmailSection>
 
       {rangeBucket ? (
@@ -224,21 +215,14 @@ export const TeeTimeConfirmation = ({
       {/* Good to know */}
       <EmailSection padding="lg" tone="muted">
         <SectionHeading title="Good to know" />
-        <ul className="mt-3 flex flex-col gap-2 text-sm text-tertiary">
-          <li>
-            · This tee time is played precisely at the time chosen. The Twilight
-            Deal rate is valid for this tee time only.
-          </li>
-          <li>
-            · Groups of fewer than four players may be paired with other
-            pre-paid golfers.
-          </li>
-          <li>
-            · Payment is due online in full at the time of reservation; pro-shop
-            staff can't change the tee time or honor the prepaid rate for
-            another slot.
-          </li>
-        </ul>
+        <Checklist
+          className="mt-3 gap-2"
+          items={[
+            "This tee time is played precisely at the time chosen. The Twilight Deal rate is valid for this tee time only.",
+            "Groups of fewer than four players may be paired with other pre-paid golfers.",
+            "Payment is due online in full at the time of reservation; pro-shop staff can't change the tee time or honor the prepaid rate for another slot.",
+          ]}
+        />
 
         <h3 className="mt-5 text-sm font-semibold text-primary">
           Tee time policy

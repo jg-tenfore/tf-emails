@@ -17,9 +17,13 @@ import {
   EmailFooter,
   EmailHeader,
   EmailHero,
+  EmailIntro,
   EmailRating,
   EmailSection,
   EmailShell,
+  IconBadge,
+  PaymentMethod,
+  PaymentSummary,
   SectionHeading,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -64,18 +68,14 @@ export const ReceiptEmail = ({
 
       {/* Intro + view receipt on the TenFore platform */}
       <EmailSection padding="lg">
-        <h1 className="text-display-xs font-semibold text-primary">
-          Your tee time is confirmed, {firstName}.
-        </h1>
-        <p className="mt-2 text-md text-secondary">
-          Thanks for booking with TenFore. Your receipt is below — and you can
-          view it any time on the TenFore platform.
-        </p>
-        <div className="mt-5">
+        <EmailIntro
+          title={`Your tee time is confirmed, ${firstName}.`}
+          subtitle="Thanks for booking with TenFore. Your receipt is below — and you can view it any time on the TenFore platform."
+        >
           <CTAButton href={receiptUrl} size="lg" iconTrailing={ArrowRight}>
             View receipt
           </CTAButton>
-        </div>
+        </EmailIntro>
       </EmailSection>
 
       {/* Hero: course photo with dark-green caption (course, address, IDs) */}
@@ -111,27 +111,29 @@ export const ReceiptEmail = ({
       {/* Price details */}
       <EmailSection padding="lg">
         <SectionHeading title="Price details" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 py-2">
-          {items.map((item) => (
-            <DetailRow
-              key={item.label}
-              label={item.label}
-              value={item.amount}
-              className="border-b border-secondary last:border-0"
-            />
-          ))}
+        <div className="mt-4">
+          <PaymentSummary
+            total={{ value: total }}
+            status="paid"
+            rows={[
+              ...items.map((item) => ({
+                label: item.label,
+                value: item.amount,
+                muted: item.amount.includes("−"),
+              })),
+              {
+                label: "Subtotal",
+                value: subtotal,
+                subline: { label: "Tax", value: tax },
+              },
+            ]}
+            note={`Paid online on ${orderDate}.`}
+            charged={{
+              value: total,
+              method: <PaymentMethod last4={cardLast4} />,
+            }}
+          />
         </div>
-        <div className="mt-4 px-5">
-          <DetailRow label="Subtotal" value={subtotal} />
-          <DetailRow label="Tax" value={tax} />
-          <div className="mt-1 border-t border-secondary pt-1">
-            <DetailRow label="Total paid" value={total} emphasis />
-          </div>
-        </div>
-        <p className="mt-5 text-sm text-tertiary">
-          Paid online on {orderDate} with Visa ending in{" "}
-          <span className="font-medium text-secondary">{cardLast4}</span>.
-        </p>
         <div className="mt-5">
           <CTAButton
             href={`${receiptUrl}.pdf`}
@@ -150,9 +152,7 @@ export const ReceiptEmail = ({
       {/* TenFore guarantee */}
       <EmailSection padding="lg">
         <div className="flex items-start gap-4 rounded-xl border border-secondary bg-secondary px-5 py-5">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-primary text-brand-secondary">
-            <ShieldTick className="size-5" />
-          </span>
+          <IconBadge icon={ShieldTick} />
           <div>
             <p className="text-sm font-semibold text-primary">
               The TenFore Worry-Free Guarantee

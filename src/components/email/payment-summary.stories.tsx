@@ -7,7 +7,7 @@ const meta = {
   parameters: { layout: "centered" },
   decorators: [
     (Story) => (
-      <div className="w-[480px] max-w-full rounded-xl border border-secondary bg-primary px-5 py-3">
+      <div className="w-[480px] max-w-full rounded-xl border border-secondary bg-primary px-5 py-4">
         <Story />
       </div>
     ),
@@ -16,6 +16,24 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+/** Full receipt: total on top, breakdown (with a VAT sub-line), and charged + method. */
+export const Receipt: Story = {
+  args: {
+    total: { value: "$264.12" },
+    status: "paid",
+    rows: [
+      { label: "Green fees (4 players)", value: "$232.00" },
+      { label: "Cart fee", value: "$16.00" },
+      {
+        label: "Subtotal",
+        value: "$248.00",
+        subline: { label: "Tax (6.5%)", value: "$16.12" },
+      },
+    ],
+    charged: { value: "$264.12", method: "Visa ending in 4242" },
+  },
+};
 
 export const Paid: Story = {
   args: {

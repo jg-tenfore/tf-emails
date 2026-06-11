@@ -1,5 +1,6 @@
-import { Calendar, Clock, RefreshCw02, Users01 } from "@untitledui/icons";
+import { Calendar, Clock, RefreshCw02, Users01, XCircle } from "@untitledui/icons";
 import {
+  Callout,
   CTAButton,
   DetailCard,
   DetailRow,
@@ -45,6 +46,7 @@ export const ClinicCancellation = ({
       <EmailHeader />
 
       <StatusHero
+        tone="danger"
         eyebrow="Registration cancelled"
         title={`Your registration was cancelled, ${firstName}.`}
         subtitle="We've cancelled the registration below. We hope to see you on the course soon."
@@ -61,6 +63,12 @@ export const ClinicCancellation = ({
           name={course.name}
           location={course.address}
         />
+      </EmailSection>
+
+      <EmailSection padding="md">
+        <Callout tone="error" eyebrow="Cancelled" icon={XCircle}>
+          Your registration for {clinic.name} has been cancelled.
+        </Callout>
       </EmailSection>
 
       <EmailSection padding="md">

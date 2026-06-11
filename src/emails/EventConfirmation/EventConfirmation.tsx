@@ -13,6 +13,7 @@ import {
   PaymentSummary,
   SectionHeading,
   StatusHero,
+  SummaryStrip,
   VenueBadge,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -103,18 +104,13 @@ export const EventConfirmation = ({
             total={{ value: event.total }}
           />
         </div>
-        <div className="mt-4 flex items-center justify-between gap-4 rounded-lg bg-secondary px-4 py-3">
-          <span className="text-sm text-tertiary">
-            Paid{" "}
-            <span className="font-semibold text-primary">{event.paid}</span>
-          </span>
-          <span className="text-sm text-tertiary">
-            Balance due{" "}
-            <span className="font-semibold text-primary">
-              {event.balanceDue}
-            </span>
-          </span>
-        </div>
+        <SummaryStrip
+          className="mt-4"
+          items={[
+            { label: "Paid", value: event.paid },
+            { label: "Balance due", value: event.balanceDue },
+          ]}
+        />
       </EmailSection>
 
       <EmailSection padding="md">

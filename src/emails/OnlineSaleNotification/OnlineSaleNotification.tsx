@@ -6,6 +6,7 @@ import {
   EmailSection,
   EmailShell,
   ItemizedList,
+  Panel,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -57,9 +58,9 @@ export const OnlineSaleNotification = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Items" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 py-2">
+        <Panel className="mt-4">
           <ItemizedList items={sale.items} />
-        </div>
+        </Panel>
         <div className="mt-4">
           <PaymentSummary
             rows={[{ label: "Tax", value: sale.tax }]}

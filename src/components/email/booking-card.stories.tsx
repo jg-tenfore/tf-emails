@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { assets } from "@/lib/assets";
 import { BookingCard } from "./booking-card";
 
 const meta = {
@@ -41,3 +42,12 @@ export const Pending: Story = {
 };
 
 export const NoStatus: Story = { args: { booking } };
+
+/** With the venue logo to the left of the name + location. */
+export const WithLogo: Story = {
+  args: {
+    booking,
+    logoUrl: assets.logo.src,
+    status: { label: "Tomorrow", color: "brand" },
+  },
+};

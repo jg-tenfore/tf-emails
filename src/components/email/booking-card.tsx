@@ -15,6 +15,9 @@ export interface BookingDetails {
 interface BookingCardProps {
   booking: BookingDetails;
   status?: { label: string; color: "success" | "warning" | "error" | "brand" };
+  /** Venue logo shown to the left of the course name + location. */
+  logoUrl?: string;
+  logoAlt?: string;
   className?: string;
 }
 
@@ -22,6 +25,8 @@ interface BookingCardProps {
 export const BookingCard = ({
   booking,
   status,
+  logoUrl,
+  logoAlt,
   className,
 }: BookingCardProps) => {
   return (
@@ -32,14 +37,25 @@ export const BookingCard = ({
       )}
     >
       <div className="flex items-start justify-between gap-3 bg-secondary px-5 py-4">
-        <div>
-          <p className="text-md font-semibold text-primary">{booking.course}</p>
-          {booking.location ? (
-            <p className="mt-0.5 flex items-center gap-1.5 text-sm text-tertiary">
-              <MarkerPin02 className="size-3.5" />
-              {booking.location}
-            </p>
+        <div className="flex items-start gap-3">
+          {logoUrl ? (
+            <img
+              src={logoUrl}
+              alt={logoAlt ?? booking.course}
+              className="size-10 shrink-0 rounded-lg ring-1 ring-black/5"
+            />
           ) : null}
+          <div>
+            <p className="text-md font-semibold text-primary">
+              {booking.course}
+            </p>
+            {booking.location ? (
+              <p className="mt-0.5 flex items-center gap-1.5 text-sm text-tertiary">
+                <MarkerPin02 className="size-3.5" />
+                {booking.location}
+              </p>
+            ) : null}
+          </div>
         </div>
         {status ? (
           <Badge type="pill-color" color={status.color} size="md">

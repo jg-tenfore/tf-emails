@@ -5,7 +5,7 @@ const meta = {
   title: "TenFore Golf/Golf Buddies",
   component: GolfBuddies,
   parameters: { layout: "fullscreen" },
-  argTypes: { firstName: { control: "text" } },
+  argTypes: { addBuddiesUrl: { control: "text" } },
 } satisfies Meta<typeof GolfBuddies>;
 
 export default meta;

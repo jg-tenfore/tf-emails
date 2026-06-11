@@ -6,6 +6,8 @@ import {
   EmailSection,
   EmailShell,
   ItemizedList,
+  Panel,
+  PaymentMethod,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -55,9 +57,9 @@ export const PurchaseReceipt = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Items" />
-        <div className="mt-4 rounded-xl border border-secondary px-5 py-2">
+        <Panel className="mt-4">
           <ItemizedList items={order.items} />
-        </div>
+        </Panel>
       </EmailSection>
 
       <EmailSection padding="md">
@@ -66,9 +68,12 @@ export const PurchaseReceipt = ({
             { label: "Subtotal", value: order.subtotal },
             { label: "Tax", value: order.tax },
           ]}
-          total={{ label: "Total paid", value: order.total }}
+          total={{ value: order.total }}
           status="paid"
-          note={`Paid on ${order.date} with Visa ending in ${order.cardLast4}.`}
+          charged={{
+            value: order.total,
+            method: <PaymentMethod last4={order.cardLast4} />,
+          }}
         />
 
         <div className="mt-6">

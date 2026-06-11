@@ -18,6 +18,7 @@ import {
   EmailShell,
   ItemizedList,
   LocationBlock,
+  Panel,
   PaymentSummary,
   SectionHeading,
 } from "@/components/email";
@@ -77,7 +78,7 @@ export const SimulatorBookingConfirmation = ({
         {isMultiBay ? (
           <>
             <SectionHeading title="Your bays" />
-            <div className="mt-4 rounded-xl border border-secondary px-5 py-2">
+            <Panel className="mt-4">
               <ItemizedList
                 items={sessions.map((s) => ({
                   label: s.bay,
@@ -85,7 +86,7 @@ export const SimulatorBookingConfirmation = ({
                   amount: s.price,
                 }))}
               />
-            </div>
+            </Panel>
             <p className="mt-3 text-sm text-tertiary">
               Confirmation{" "}
               <span className="font-mono tracking-wide text-secondary">
