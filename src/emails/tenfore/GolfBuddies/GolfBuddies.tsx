@@ -36,8 +36,17 @@ export const GolfBuddies = ({
     <EmailShell preheader="Introducing TenFore Buddies — book your regular group in one tap.">
       <EmailHeader />
 
+      {/* Intro — centered, above the graphic */}
+      <EmailSection padding="lg" align="center">
+        <p className="text-md text-secondary">
+          <span className="font-semibold text-primary">Hi {firstName}</span> —
+          Buddies is the fastest way to book with your regular group, and it
+          lives in the {craneApp.name} app. Download it to get started.
+        </p>
+      </EmailSection>
+
       {/* Marketing hero graphic (headline + tagline + app preview baked in) */}
-      <div className="px-8 pt-6 pb-2">
+      <div className="px-8 pb-2">
         <img
           src={buddiesGraphic}
           alt="Introducing TenFore Buddies — faster bookings, better data, happier golfers."
@@ -47,19 +56,12 @@ export const GolfBuddies = ({
 
       {/* Top priority: download Crane */}
       <EmailSection padding="lg">
-        <p className="text-md text-secondary">
-          Hi {firstName} — Buddies is the fastest way to book with your regular
-          group, and it lives in the {craneApp.name} app. Download it to get
-          started.
-        </p>
-        <div className="mt-5">
-          <AppBanner
-            variant="card"
-            title={`Download the ${craneApp.name} app`}
-            body="Get Buddies — save your group and add players to any booking in one tap."
-            href={appUrl}
-          />
-        </div>
+        <AppBanner
+          variant="card"
+          title={`Download the ${craneApp.name} app`}
+          body="Get Buddies — save your group and add players to any booking in one tap."
+          href={appUrl}
+        />
       </EmailSection>
 
       <Divider />
