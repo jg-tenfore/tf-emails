@@ -37,11 +37,13 @@ export const GolfBuddies = ({
       <EmailHeader />
 
       {/* Marketing hero graphic (headline + tagline + app preview baked in) */}
-      <img
-        src={buddiesGraphic}
-        alt="Introducing TenFore Buddies — faster bookings, better data, happier golfers."
-        className="block w-full"
-      />
+      <div className="px-8 pt-6 pb-2">
+        <img
+          src={buddiesGraphic}
+          alt="Introducing TenFore Buddies — faster bookings, better data, happier golfers."
+          className="mx-auto block w-full max-w-[420px] rounded-xl ring-1 ring-black/5"
+        />
+      </div>
 
       {/* Top priority: download Crane */}
       <EmailSection padding="lg">
