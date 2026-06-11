@@ -1,4 +1,4 @@
-import { Check, Flag01 } from "@untitledui/icons";
+import { Check } from "@untitledui/icons";
 import { cx } from "@/utils/cx";
 
 interface PunchCardProps {
@@ -39,25 +39,23 @@ export const PunchCard = ({ total, used, label, className }: PunchCardProps) => 
         </div>
       ) : null}
 
-      <div className={cx("flex flex-wrap gap-2", label && "mt-4")}>
+      <div
+        className={cx("grid grid-cols-5 justify-items-center gap-3", label && "mt-4")}
+      >
         {Array.from({ length: total }).map((_, i) => {
           const isUsed = i < used;
           return (
             <span
               key={i}
-              aria-label={isUsed ? "Round used" : "Round remaining"}
+              aria-label={isUsed ? "Round used" : `Round ${i + 1} remaining`}
               className={cx(
-                "flex size-9 items-center justify-center rounded-full ring-1",
+                "flex size-14 items-center justify-center rounded-full text-base font-semibold",
                 isUsed
-                  ? "bg-primary text-quaternary ring-secondary"
-                  : "bg-brand-primary text-brand-secondary ring-transparent",
+                  ? "bg-brand-solid text-white"
+                  : "bg-primary text-tertiary ring-1 ring-secondary",
               )}
             >
-              {isUsed ? (
-                <Check className="size-4" />
-              ) : (
-                <Flag01 className="size-4" />
-              )}
+              {isUsed ? <Check className="size-6 stroke-[3]" /> : i + 1}
             </span>
           );
         })}
