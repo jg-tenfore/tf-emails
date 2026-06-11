@@ -75,22 +75,22 @@ export const PlayerRoster = ({ players, className }: PlayerRosterProps) => (
                 </Badge>
               ) : null}
             </div>
-            <dl className="mt-2 ml-12 flex flex-col gap-1 text-xs">
-              {p.rateType ? (
-                <div className="flex justify-between gap-4">
-                  <dt className="text-tertiary">{p.rateType}</dt>
-                  {p.amount ? (
+            {p.rateType || p.amount || p.extra?.length ? (
+              <dl className="mt-2 ml-12 flex flex-col gap-1 text-xs">
+                {p.amount ? (
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-tertiary">{p.rateType ?? "Share"}</dt>
                     <dd className="font-medium text-secondary">{p.amount}</dd>
-                  ) : null}
-                </div>
-              ) : null}
-              {p.extra?.map((e, j) => (
-                <div key={j} className="flex justify-between gap-4">
-                  <dt className="text-tertiary">{e.label}</dt>
-                  <dd className="font-medium text-secondary">{e.value}</dd>
-                </div>
-              ))}
-            </dl>
+                  </div>
+                ) : null}
+                {p.extra?.map((e, j) => (
+                  <div key={j} className="flex justify-between gap-4">
+                    <dt className="text-tertiary">{e.label}</dt>
+                    <dd className="font-medium text-secondary">{e.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : null}
           </div>
         );
       }
