@@ -244,6 +244,61 @@ export const snackBarOrder: PurchaseOrder = {
 };
 
 /**
+ * Revised tee-time booking for the Workshop layouts (per Weston's feedback):
+ * a foursome with mixed per-player rates, a sub-course/layout, and a dev-facing
+ * Tee Time ID alongside the consumer confirmation number.
+ */
+export interface PlayerRate {
+  name: string;
+  rateType: string;
+  amount: string;
+}
+
+export interface RevisedBooking {
+  course: string;
+  /** Sub-course / layout, e.g. "Mountain Course · Front 9". */
+  layout: string;
+  address: string;
+  mapUrl: string;
+  date: string;
+  time: string;
+  holes: number;
+  /** Developer-facing identifier. */
+  teeTimeId: string;
+  /** Consumer-facing confirmation number. */
+  confirmation: string;
+  roster: PlayerRate[];
+  greenFees: string;
+  cartFee: string;
+  subtotal: string;
+  tax: string;
+  total: string;
+}
+
+export const revisedBooking: RevisedBooking = {
+  course: course.name,
+  layout: "Mountain Course · Front 9",
+  address: course.address,
+  mapUrl: course.mapUrl,
+  date: "Saturday, May 9, 2026",
+  time: "8:40 AM",
+  holes: 18,
+  teeTimeId: "TT-48211",
+  confirmation: "538117902",
+  roster: [
+    { name: golfer.fullName, rateType: "Birdie member", amount: "$42.00" },
+    { name: "Marcus Webb", rateType: "Public", amount: "$68.00" },
+    { name: "Cody Sanders", rateType: "Public", amount: "$68.00" },
+    { name: "Weston Farnsworth", rateType: "Public", amount: "$68.00" },
+  ],
+  greenFees: "$246.00",
+  cartFee: "$16.00",
+  subtotal: "$262.00",
+  tax: "$17.03",
+  total: "$279.03",
+};
+
+/**
  * Additional people for emails involving more than one party
  * (buddy requests, event invitations, gift cards). All anchored to the same
  * Sagamore Spring scenario; override via story args for edge cases.

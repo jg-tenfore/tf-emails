@@ -35,6 +35,8 @@ export type { ContactField } from "./contact-block";
 export { DataTable } from "./data-table";
 export type { DataColumn } from "./data-table";
 export { VenueBadge } from "./venue-badge";
+export { PlayerRoster } from "./player-roster";
+export type { RosterPlayer } from "./player-roster";
 export { RedemptionCode } from "./redemption-code";
 export type { RedemptionVariant } from "./redemption-code";
 export { DetailCard } from "./detail-card";
