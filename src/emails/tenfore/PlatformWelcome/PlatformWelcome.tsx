@@ -1,6 +1,7 @@
 import { ArrowRight, Calendar, Flag01, Users01, Zap } from "@untitledui/icons";
 import {
   AppBanner,
+  Checklist,
   CTAButton,
   Divider,
   EmailFooter,
@@ -75,19 +76,22 @@ export const PlatformWelcome = ({
           title="A growing network of partners"
           description="One TenFore account books seamlessly across every venue — with more added all the time."
         />
-        <div className="mt-4 flex flex-col gap-2 text-sm text-secondary">
-          <p>
-            · <span className="font-medium text-primary">{course.name}</span> —
-            Lynnfield, MA
-          </p>
-          <p>
-            · <span className="font-medium text-primary">{flogolf.name}</span> —
-            Saugus, MA
-          </p>
-          <p className="text-tertiary">
-            · …and more courses, lounges, and resorts joining every month.
-          </p>
-        </div>
+        <Checklist
+          className="mt-4 text-secondary"
+          items={[
+            <span key="sagamore">
+              <span className="font-medium text-primary">{course.name}</span> —
+              Lynnfield, MA
+            </span>,
+            <span key="flogolf">
+              <span className="font-medium text-primary">{flogolf.name}</span> —
+              Saugus, MA
+            </span>,
+            <span key="more" className="text-tertiary">
+              …and more courses, lounges, and resorts joining every month.
+            </span>,
+          ]}
+        />
       </EmailSection>
 
       <Divider />

@@ -8,6 +8,7 @@ import {
 } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import {
+  Checklist,
   CTAButton,
   CTAStack,
   DetailCard,
@@ -215,21 +216,14 @@ export const TeeTimeConfirmation = ({
       {/* Good to know */}
       <EmailSection padding="lg" tone="muted">
         <SectionHeading title="Good to know" />
-        <ul className="mt-3 flex flex-col gap-2 text-sm text-tertiary">
-          <li>
-            · This tee time is played precisely at the time chosen. The Twilight
-            Deal rate is valid for this tee time only.
-          </li>
-          <li>
-            · Groups of fewer than four players may be paired with other
-            pre-paid golfers.
-          </li>
-          <li>
-            · Payment is due online in full at the time of reservation; pro-shop
-            staff can't change the tee time or honor the prepaid rate for
-            another slot.
-          </li>
-        </ul>
+        <Checklist
+          className="mt-3 gap-2"
+          items={[
+            "This tee time is played precisely at the time chosen. The Twilight Deal rate is valid for this tee time only.",
+            "Groups of fewer than four players may be paired with other pre-paid golfers.",
+            "Payment is due online in full at the time of reservation; pro-shop staff can't change the tee time or honor the prepaid rate for another slot.",
+          ]}
+        />
 
         <h3 className="mt-5 text-sm font-semibold text-primary">
           Tee time policy
