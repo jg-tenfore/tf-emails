@@ -21,7 +21,7 @@ export const PunchCard = ({ total, used, label, className }: PunchCardProps) => 
   return (
     <div
       className={cx(
-        "rounded-xl border border-secondary bg-secondary p-5",
+        "rounded-xl border border-secondary bg-secondary p-6",
         className,
       )}
     >
@@ -40,7 +40,10 @@ export const PunchCard = ({ total, used, label, className }: PunchCardProps) => 
       ) : null}
 
       <div
-        className={cx("grid grid-cols-5 justify-items-center gap-3", label && "mt-4")}
+        className={cx(
+          "grid grid-cols-5 justify-items-center gap-x-3 gap-y-5 py-1",
+          label && "mt-6",
+        )}
       >
         {Array.from({ length: total }).map((_, i) => {
           const isUsed = i < used;
@@ -49,13 +52,13 @@ export const PunchCard = ({ total, used, label, className }: PunchCardProps) => 
               key={i}
               aria-label={isUsed ? "Round used" : `Round ${i + 1} remaining`}
               className={cx(
-                "flex size-14 items-center justify-center rounded-full text-base font-semibold",
+                "flex size-16 items-center justify-center rounded-full text-lg font-semibold",
                 isUsed
                   ? "bg-brand-solid text-white"
                   : "bg-primary text-tertiary ring-1 ring-secondary",
               )}
             >
-              {isUsed ? <Check className="size-6 stroke-[3]" /> : i + 1}
+              {isUsed ? <Check className="size-7 stroke-[3]" /> : i + 1}
             </span>
           );
         })}
