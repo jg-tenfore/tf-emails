@@ -299,6 +299,41 @@ export const revisedBooking: RevisedBooking = {
 };
 
 /**
+ * Prepaid punch cards — a discounted package of tee times (rounds) redeemed one
+ * at a time. Stories override `used`/`expires` to show fresh, partly-used,
+ * fully-used, and expiring states.
+ */
+export interface PunchCardData {
+  label: string;
+  total: number;
+  used: number;
+  cardNumber: string;
+  purchased: string;
+  expires: string;
+  pricePerRound: string;
+}
+
+export const punchCard10: PunchCardData = {
+  label: "10-Round Punch Card",
+  total: 10,
+  used: 0,
+  cardNumber: "PC-10-44821",
+  purchased: "April 18, 2026",
+  expires: "April 18, 2027",
+  pricePerRound: "$46.00",
+};
+
+export const punchCard5: PunchCardData = {
+  label: "5-Round Punch Card",
+  total: 5,
+  used: 0,
+  cardNumber: "PC-05-44822",
+  purchased: "April 18, 2026",
+  expires: "April 18, 2027",
+  pricePerRound: "$50.00",
+};
+
+/**
  * Additional people for emails involving more than one party
  * (buddy requests, event invitations, gift cards). All anchored to the same
  * Sagamore Spring scenario; override via story args for edge cases.
