@@ -7,6 +7,7 @@ import {
   EmailShell,
   ItemizedList,
   Panel,
+  PaymentMethod,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -78,7 +79,7 @@ export const WorkshopReceipt = ({
           ]}
           total={{ value: total }}
           status="paid"
-          charged={{ value: total, method: `Visa ending in ${cardLast4}` }}
+          charged={{ value: total, method: <PaymentMethod last4={cardLast4} /> }}
         />
         <div className="mt-6">
           <CTAButton

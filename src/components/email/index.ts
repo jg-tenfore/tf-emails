@@ -39,6 +39,7 @@ export { PlayerRoster } from "./player-roster";
 export type { RosterPlayer } from "./player-roster";
 export { PunchCard } from "./punch-card";
 export { SignatureBlock } from "./signature-block";
+export { PaymentMethod } from "./payment-method";
 export { RedemptionCode } from "./redemption-code";
 export type { RedemptionVariant } from "./redemption-code";
 export { DetailCard } from "./detail-card";

@@ -7,6 +7,7 @@ import {
   EmailShell,
   ItemizedList,
   Panel,
+  PaymentMethod,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -71,7 +72,7 @@ export const PurchaseReceipt = ({
           status="paid"
           charged={{
             value: order.total,
-            method: `Visa ending in ${order.cardLast4}`,
+            method: <PaymentMethod last4={order.cardLast4} />,
           }}
         />
 

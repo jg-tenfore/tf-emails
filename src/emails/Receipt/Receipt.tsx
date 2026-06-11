@@ -22,6 +22,7 @@ import {
   EmailSection,
   EmailShell,
   Panel,
+  PaymentMethod,
   SectionHeading,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -127,8 +128,8 @@ export const ReceiptEmail = ({
           </div>
         </div>
         <p className="mt-5 text-sm text-tertiary">
-          Paid online on {orderDate} with Visa ending in{" "}
-          <span className="font-medium text-secondary">{cardLast4}</span>.
+          Paid online on {orderDate} with{" "}
+          <PaymentMethod last4={cardLast4} />.
         </p>
         <div className="mt-5">
           <CTAButton
