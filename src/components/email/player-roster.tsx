@@ -3,6 +3,8 @@ import { Badge } from "@/components/base/badges/badges";
 
 export interface RosterPlayer {
   name: string;
+  /** TenFore golfer ID, e.g. "TF-100482", shown under the player's name. */
+  golferId?: string;
   /** Rate label, e.g. "Public Rate · Weekday". */
   rateType?: string;
   /** Primary per-player price (rates can differ within a group). */
@@ -61,9 +63,16 @@ export const PlayerRoster = ({ players, className }: PlayerRosterProps) => (
             <div className="flex items-start justify-between gap-3">
               <div className="flex min-w-0 items-center gap-3">
                 <Avatar name={p.name} />
-                <p className="truncate text-sm font-semibold text-primary">
-                  {p.name}
-                </p>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-semibold text-primary">
+                    {p.name}
+                  </p>
+                  {p.golferId ? (
+                    <p className="truncate font-mono text-xs text-tertiary">
+                      {p.golferId}
+                    </p>
+                  ) : null}
+                </div>
               </div>
               {p.status ? (
                 <Badge
@@ -106,6 +115,11 @@ export const PlayerRoster = ({ players, className }: PlayerRosterProps) => (
               <p className="truncate text-sm font-medium text-primary">
                 {p.name}
               </p>
+              {p.golferId ? (
+                <p className="truncate font-mono text-xs text-tertiary">
+                  {p.golferId}
+                </p>
+              ) : null}
               {p.rateType ? (
                 <p className="text-xs text-tertiary">{p.rateType}</p>
               ) : null}

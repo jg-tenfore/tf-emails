@@ -1,8 +1,8 @@
 import {
   ArrowRight,
   Calendar,
+  CheckCircle,
   Clock,
-  MarkerPin02,
   Users01,
 } from "@untitledui/icons";
 import {
@@ -14,10 +14,10 @@ import {
   EmailFooter,
   EmailHeader,
   EmailHero,
+  EmailIntro,
   EmailSection,
   EmailShell,
   ItemizedList,
-  LocationBlock,
   Panel,
   PaymentSummary,
   SectionHeading,
@@ -45,13 +45,26 @@ export const SimulatorBookingConfirmation = ({
     >
       <EmailHeader />
 
+      <EmailSection padding="lg" className="pb-6">
+        <EmailIntro
+          icon={CheckCircle}
+          title={`You're booked, ${firstName}.`}
+          subtitle={`Your simulator ${isMultiBay ? "bays are" : "bay is"} locked in at ${flogolf.name}. Bring your crew, grab a drink, and play world-famous courses on Golfzon — here are your details.`}
+        >
+          <CTAButton href={manageUrl} size="lg" iconTrailing={ArrowRight}>
+            Manage booking
+          </CTAButton>
+        </EmailIntro>
+      </EmailSection>
+
       <EmailHero
+        className="pt-4"
         imageUrl={flogolf.loungeImage}
         imageAlt={`${flogolf.name} simulator lounge`}
         logoUrl={flogolf.logo}
         logoAlt={flogolf.name}
         eyebrow="Booking confirmed"
-        headline={`You're booked, ${firstName}.`}
+        headline={flogolf.name}
         details={[
           `${flogolf.name} · ${flogolf.address.line1}, ${flogolf.address.line2}`,
           isMultiBay
@@ -59,20 +72,8 @@ export const SimulatorBookingConfirmation = ({
             : `${booking.bay} · ${booking.date} · ${booking.startTime}–${booking.endTime}`,
           `Confirmation #${booking.confirmation}`,
         ]}
+        mapUrl={flogolf.mapUrl}
       />
-
-      <EmailSection padding="lg">
-        <p className="text-md text-secondary">
-          Your simulator {isMultiBay ? "bays are" : "bay is"} locked in at{" "}
-          {flogolf.name}. Bring your crew, grab a drink, and play world-famous
-          courses on Golfzon — here are your details.
-        </p>
-        <div className="mt-5">
-          <CTAButton href={manageUrl} size="lg" iconTrailing={ArrowRight}>
-            Manage booking
-          </CTAButton>
-        </div>
-      </EmailSection>
 
       <EmailSection padding="lg">
         {isMultiBay ? (
@@ -124,13 +125,6 @@ export const SimulatorBookingConfirmation = ({
             </DetailCard>
           </>
         )}
-
-        <LocationBlock
-          className="mt-4"
-          name={flogolf.name}
-          address={`${flogolf.address.line1}, ${flogolf.address.line2}`}
-          mapUrl={flogolf.mapUrl}
-        />
       </EmailSection>
 
       <Divider />
@@ -168,17 +162,6 @@ export const SimulatorBookingConfirmation = ({
             "Up to 6 players can share a bay; your rate covers the whole bay.",
           ]}
         />
-        <div className="mt-5">
-          <CTAButton
-            href={flogolf.mapUrl}
-            color="secondary"
-            size="lg"
-            fullWidth
-            iconLeading={MarkerPin02}
-          >
-            Get directions
-          </CTAButton>
-        </div>
       </EmailSection>
 
       <EmailFooter reason={`You're receiving this because you booked at ${flogolf.name}.`} />

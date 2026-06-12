@@ -19,12 +19,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/** With a course note and a "Map it" link — used on modification emails. */
 export const Sagamore: Story = {
   args: {
     label: "Your reservation at",
     logoUrl: assets.logo.src,
     name: "Sagamore Spring Golf Club",
+    note: "Twilight · 9 holes",
     location: "1287 Main Street, Lynnfield, MA 01940",
+    mapUrl: "https://maps.google.com/?q=1287+Main+Street,+Lynnfield,+MA+01940",
   },
 };
 
@@ -34,5 +37,17 @@ export const FloGolf: Story = {
     logoUrl: flogolf.logo,
     name: flogolf.name,
     location: `${flogolf.address.line1}, ${flogolf.address.line2}`,
+    mapUrl: flogolf.mapUrl,
+  },
+};
+
+/** Plain — name + address only, no directions (e.g. cancellation emails). */
+export const NoDirections: Story = {
+  args: {
+    label: "Your reservation at",
+    logoUrl: assets.logo.src,
+    name: "Sagamore Spring Golf Club",
+    note: "Twilight · 9 holes",
+    location: "1287 Main Street, Lynnfield, MA 01940",
   },
 };

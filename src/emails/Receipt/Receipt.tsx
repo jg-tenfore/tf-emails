@@ -67,7 +67,7 @@ export const ReceiptEmail = ({
       <EmailHeader />
 
       {/* Intro + view receipt on the TenFore platform */}
-      <EmailSection padding="lg">
+      <EmailSection padding="lg" className="pb-2">
         <EmailIntro
           title={`Your tee time is confirmed, ${firstName}.`}
           subtitle="Thanks for booking with TenFore. Your receipt is below — and you can view it any time on the TenFore platform."
@@ -80,6 +80,7 @@ export const ReceiptEmail = ({
 
       {/* Hero: course photo with dark-green caption (course, address, IDs) */}
       <EmailHero
+        className="pt-2"
         imageUrl={courseImage}
         imageAlt={course.name}
         logoUrl={assets.logo.src}

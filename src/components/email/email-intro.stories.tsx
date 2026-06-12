@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ArrowRight } from "@untitledui/icons";
+import { ArrowRight, CheckCircle, Clock } from "@untitledui/icons";
 import { CTAButton } from "./cta-button";
 import { EmailIntro } from "./email-intro";
 
@@ -36,5 +36,30 @@ export const CopyOnly: Story = {
   args: {
     title: "Welcome aboard, Justin.",
     subtitle: "One account to book tee times, simulators, lessons, and dining.",
+  },
+};
+
+/** With an icon in a brand circle above the headline (booking confirmations). */
+export const WithIcon: Story = {
+  args: {
+    icon: CheckCircle,
+    title: "You're booked, Justin.",
+    subtitle:
+      "Your simulator bay is locked in. Bring your crew, grab a drink, and play world-famous courses on Golfzon.",
+    children: (
+      <CTAButton href="#" size="lg" iconTrailing={ArrowRight}>
+        Manage booking
+      </CTAButton>
+    ),
+  },
+};
+
+/** Icon + copy only — used at the top of reminder emails. */
+export const WithIconCopyOnly: Story = {
+  args: {
+    icon: Clock,
+    title: "See you soon, Justin.",
+    subtitle:
+      "Your simulator bay is coming up — here are the details one more time.",
   },
 };

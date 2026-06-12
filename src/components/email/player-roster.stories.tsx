@@ -21,10 +21,10 @@ type Story = StoryObj<typeof meta>;
 export const MixedRates: Story = {
   args: {
     players: [
-      { name: "Justin Girard", rateType: "Birdie member", amount: "$42.00" },
-      { name: "Marcus Webb", rateType: "Public", amount: "$68.00" },
-      { name: "Cody Sanders", rateType: "Public", amount: "$68.00" },
-      { name: "Weston Farnsworth", rateType: "Public", amount: "$68.00" },
+      { name: "Justin Girard", golferId: "TF-100482", rateType: "Birdie member", amount: "$42.00" },
+      { name: "Marcus Webb", golferId: "TF-238815", rateType: "Public", amount: "$68.00" },
+      { name: "Cody Sanders", golferId: "TF-194730", rateType: "Public", amount: "$68.00" },
+      { name: "Weston Farnsworth", golferId: "TF-205518", rateType: "Public", amount: "$68.00" },
     ],
   },
 };
@@ -46,6 +46,7 @@ export const WithStatus: Story = {
     players: [
       {
         name: "Justin Girard",
+        golferId: "TF-100482",
         status: "Paid",
         statusTone: "paid",
         rateType: "Public Rate · Weekday",
@@ -54,6 +55,7 @@ export const WithStatus: Story = {
       },
       {
         name: "Weston Farnsworth",
+        golferId: "TF-205518",
         status: "Pending",
         statusTone: "pending",
         rateType: "Public Rate · Weekday",

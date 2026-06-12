@@ -91,10 +91,8 @@ export const CartRentalAgreement = ({
             value={<span className="font-mono">#{confirmationId}</span>}
           />
         </DetailCard>
-      </EmailSection>
 
-      <EmailSection padding="md">
-        <Callout tone="warning" eyebrow="Liability">
+        <Callout tone="warning" eyebrow="Liability" className="mt-4">
           By signing, you take responsibility for Cart {cartNumber} for the
           duration of your round and accept liability for any loss or damage to
           the cart, its keys, and accessories while in your care.

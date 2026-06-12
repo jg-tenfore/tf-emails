@@ -47,6 +47,7 @@ export { FeatureList } from "./feature-list";
 export type { FeatureItem } from "./feature-list";
 export { IconBadge } from "./icon-badge";
 export { LocationBlock } from "./location-block";
+export { PolicyTag } from "./policy-tag";
 export { Checklist } from "./checklist";
 export { NumberedSteps } from "./numbered-steps";
 export { SupportLine } from "./support-line";

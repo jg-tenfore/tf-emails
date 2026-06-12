@@ -16,7 +16,6 @@ import {
   EmailSection,
   EmailShell,
   type FieldChange,
-  LocationBlock,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -66,7 +65,9 @@ export const TeeTimeModification = ({
           label="Your reservation at"
           logoUrl={assets.logo.src}
           name={teeTime.course}
+          note={teeTime.courseNote}
           location={teeTime.address}
+          mapUrl={teeTime.mapUrl}
         />
       </EmailSection>
 
@@ -94,13 +95,6 @@ export const TeeTimeModification = ({
             value={<span className="font-mono">#{teeTime.confirmation}</span>}
           />
         </DetailCard>
-
-        <LocationBlock
-          className="mt-4"
-          name={teeTime.course}
-          address={teeTime.address}
-          mapUrl={teeTime.mapUrl}
-        />
       </EmailSection>
 
       {refund ? (

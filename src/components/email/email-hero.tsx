@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { MarkerPin02 } from "@untitledui/icons";
 import { cx } from "@/utils/cx";
 
 interface EmailHeroProps {
@@ -7,8 +8,10 @@ interface EmailHeroProps {
   /** Small eyebrow above the headline. */
   eyebrow?: ReactNode;
   headline?: ReactNode;
-  /** Extra caption lines under the headline (e.g. address, IDs). */
+  /** Extra caption lines under the headline (e.g. address, course note). */
   details?: ReactNode[];
+  /** When set, renders a "Get directions" link with a map pin in the band. */
+  mapUrl?: string;
   /** Venue logo overlaid on the image as a badge, identifying the sender. */
   logoUrl?: string;
   logoAlt?: string;
@@ -29,14 +32,15 @@ export const EmailHero = ({
   eyebrow,
   headline,
   details,
+  mapUrl,
   logoUrl,
   logoAlt,
   imageHeight = 224,
   className,
 }: EmailHeroProps) => {
-  const hasText = Boolean(eyebrow || headline || details?.length);
+  const hasText = Boolean(eyebrow || headline || details?.length || mapUrl);
   return (
-    <div className={cx("px-8 py-3", className)}>
+    <div className={cx("px-8 pt-8 pb-2", className)}>
       <div className="overflow-hidden rounded-xl ring-1 ring-black/5">
         <div className="relative">
           <img
@@ -80,6 +84,15 @@ export const EmailHero = ({
                   </p>
                 ))}
               </div>
+            ) : null}
+            {mapUrl ? (
+              <a
+                href={mapUrl}
+                className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white underline underline-offset-2"
+              >
+                <MarkerPin02 className="size-4 shrink-0" />
+                Get directions
+              </a>
             ) : null}
           </div>
         ) : null}

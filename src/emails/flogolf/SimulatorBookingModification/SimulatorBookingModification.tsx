@@ -1,13 +1,6 @@
-import {
-  ArrowRight,
-  Calendar,
-  Clock,
-  MarkerPin02,
-  Users01,
-} from "@untitledui/icons";
+import { ArrowRight, Calendar, Clock, Users01 } from "@untitledui/icons";
 import {
   CTAButton,
-  CTAStack,
   DetailCard,
   DetailRow,
   Divider,
@@ -66,6 +59,7 @@ export const SimulatorBookingModification = ({
           logoUrl={flogolf.logo}
           name={flogolf.name}
           location={`${flogolf.address.line1}, ${flogolf.address.line2}`}
+          mapUrl={flogolf.mapUrl}
         />
       </EmailSection>
 
@@ -116,25 +110,14 @@ export const SimulatorBookingModification = ({
       ) : null}
 
       <EmailSection padding="md">
-        <CTAStack>
-          <CTAButton
-            href={manageUrl}
-            size="lg"
-            fullWidth
-            iconTrailing={ArrowRight}
-          >
-            Manage booking
-          </CTAButton>
-          <CTAButton
-            href={flogolf.mapUrl}
-            color="secondary"
-            size="lg"
-            fullWidth
-            iconLeading={MarkerPin02}
-          >
-            Get directions
-          </CTAButton>
-        </CTAStack>
+        <CTAButton
+          href={manageUrl}
+          size="lg"
+          fullWidth
+          iconTrailing={ArrowRight}
+        >
+          Manage booking
+        </CTAButton>
       </EmailSection>
 
       <EmailFooter reason="You're receiving this because your FloGolf Lounge simulator booking was changed." />

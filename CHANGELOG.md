@@ -3,6 +3,51 @@
 All notable changes to the TenFore Golf email design system are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.3.0] — 2026-06-12
+
+Directions consolidated into the hero and venue badge, a new policy-tag banner,
+TenFore golfer IDs on group rosters, and the FloGolf reminder rebuilt on the
+Sagamore reminder design.
+
+### Added
+
+- **`PolicyTag` component** — a colored tag for a single policy line, as an
+  inline pill or a full-width centered banner. Used for "Free cancellation up to
+  24 hours before your tee time" (yellow) and "Inside 24 hours, this rate is
+  non-refundable" (pink); reuses the badge color system.
+- **`EmailHero` `mapUrl`** — renders a **Get directions** link inside the
+  dark-green caption band.
+- **`VenueBadge` `note` + `mapUrl`** — an optional course note after the name and
+  a **Map it** link after the address, so updates carry directions without a
+  separate location row.
+- **`EmailIntro` `icon`** — an optional icon in a brand circle above the headline.
+- **`PlayerRoster` `golferId`** — a per-golfer TenFore ID under each name, shown
+  on the Tee Times / Golf Group Details roster.
+- **`BookingCard` generalized** — an optional `unit` row (e.g. "Bay 7") plus
+  `timeLabel` and `playerNoun`, so the same card serves tee times and simulator
+  bays.
+
+### Changed
+
+- **Directions consolidated** — Tee Time and Simulator confirmation /
+  modification / reserved emails now carry the course/address and directions in
+  the dark-green hero band or the `VenueBadge`, dropping the redundant in-body
+  `LocationBlock` and the standalone "Get directions" buttons.
+- **FloGolf reminder** rebuilt on the Sagamore reminder design — centered icon +
+  headline, `BookingCard` summary, and directions / manage CTAs (minus the
+  weather forecast, since the lounge is indoors).
+- **FloGolf confirmation & reminder** now lead with an icon + headline intro
+  above the hero, and the hero band headline is the venue name.
+- **Reminder weather icon** is derived from the forecast text (rain / snow /
+  sunny / clear), with an optional explicit override.
+- **Hero padding** — symmetric top/side padding with a tightened bottom, and the
+  intro→hero gap tuned across the confirmation and receipt emails.
+
+### Fixed
+
+- The Tee Time Reminder's rainy forecast showed a sunset icon; it now shows a
+  rain cloud.
+
 ## [1.2.0] — 2026-06-11
 
 Punch cards, a signed cart-rental agreement, a reworked Golf Buddies launch

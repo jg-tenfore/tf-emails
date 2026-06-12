@@ -1,11 +1,4 @@
-import {
-  ArrowRight,
-  Calendar,
-  CheckCircle,
-  Clock,
-  Flag01,
-  Users01,
-} from "@untitledui/icons";
+import { ArrowRight, Calendar, Clock, Flag01, Users01 } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import {
   Checklist,
@@ -20,8 +13,8 @@ import {
   EmailIntro,
   EmailSection,
   EmailShell,
-  LocationBlock,
   PaymentSummary,
+  PolicyTag,
   RedemptionCode,
   type RedemptionVariant,
   SectionHeading,
@@ -60,7 +53,7 @@ export const TeeTimeConfirmation = ({
       <EmailHeader />
 
       {/* Intro band */}
-      <EmailSection padding="lg">
+      <EmailSection padding="lg" className="pb-6">
         <EmailIntro
           title={`You're booked, ${firstName}.`}
           subtitle="Your tee time is confirmed. Here are the details for your upcoming round — we'll see you on the first tee."
@@ -73,12 +66,15 @@ export const TeeTimeConfirmation = ({
 
       {/* Captioned hero */}
       <EmailHero
+        className="pt-4"
         imageUrl={courseImage}
         imageAlt={teeTime.course}
         logoUrl={assets.logo.src}
         logoAlt={teeTime.course}
         eyebrow={`Confirmation #${teeTime.confirmation}`}
         headline={teeTime.course}
+        details={[teeTime.courseNote, teeTime.address]}
+        mapUrl={teeTime.mapUrl}
       />
 
       {/* Tee time details */}
@@ -108,7 +104,7 @@ export const TeeTimeConfirmation = ({
           <DetailRow
             label="Rate type"
             value={
-              <Badge type="pill-color" color="warning" size="sm">
+              <Badge type="pill-color" color="purple" size="sm">
                 {teeTime.rateType}
               </Badge>
             }
@@ -126,19 +122,9 @@ export const TeeTimeConfirmation = ({
           <DetailRow label="Group" value={teeTime.groupName} />
         </DetailCard>
 
-        {/* Course + address */}
-        <LocationBlock
-          className="mt-4"
-          name={teeTime.course}
-          note={teeTime.courseNote}
-          address={teeTime.address}
-          mapUrl={teeTime.mapUrl}
-        />
-
-        <p className="mt-4 flex items-center gap-2 text-sm font-medium text-success-primary">
-          <CheckCircle className="size-4" />
-          Free cancellation up to 24 hours before your tee time.
-        </p>
+        <PolicyTag block color="warning" className="mt-5">
+          Free cancellation up to 24 hours before your tee time
+        </PolicyTag>
       </EmailSection>
 
       <Divider />

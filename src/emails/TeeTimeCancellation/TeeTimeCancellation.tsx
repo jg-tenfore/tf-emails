@@ -16,7 +16,6 @@ import {
   EmailHeader,
   EmailSection,
   EmailShell,
-  LocationBlock,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -66,6 +65,7 @@ export const TeeTimeCancellation = ({
           label="Your reservation at"
           logoUrl={assets.logo.src}
           name={teeTime.course}
+          note={teeTime.courseNote}
           location={teeTime.address}
         />
       </EmailSection>
@@ -93,12 +93,6 @@ export const TeeTimeCancellation = ({
             value={`${teeTime.holes} holes`}
           />
         </DetailCard>
-
-        <LocationBlock
-          className="mt-4"
-          name={teeTime.course}
-          address={teeTime.address}
-        />
       </EmailSection>
 
       {refund ? (

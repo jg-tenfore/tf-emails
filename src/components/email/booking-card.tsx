@@ -6,6 +6,8 @@ import { DetailRow } from "./detail-row";
 export interface BookingDetails {
   course: string;
   location?: string;
+  /** Optional resource row shown first, e.g. { label: "Bay", value: "Bay 7" }. */
+  unit?: { label: string; value: string };
   date: string;
   time: string;
   players: number;
@@ -18,15 +20,21 @@ interface BookingCardProps {
   /** Venue logo shown to the left of the course name + location. */
   logoUrl?: string;
   logoAlt?: string;
+  /** Label for the time row. Defaults to "Tee time". */
+  timeLabel?: string;
+  /** Noun for the player count, e.g. "golfer" or "player". Defaults to "golfer". */
+  playerNoun?: string;
   className?: string;
 }
 
-/** Tee-time summary card used in confirmation / reminder emails. */
+/** Booking summary card used in confirmation / reminder emails. */
 export const BookingCard = ({
   booking,
   status,
   logoUrl,
   logoAlt,
+  timeLabel = "Tee time",
+  playerNoun = "golfer",
   className,
 }: BookingCardProps) => {
   return (
@@ -64,12 +72,15 @@ export const BookingCard = ({
         ) : null}
       </div>
       <div className="px-5 py-1 [&>*+*]:border-t [&>*+*]:border-secondary">
+        {booking.unit ? (
+          <DetailRow label={booking.unit.label} value={booking.unit.value} />
+        ) : null}
         <DetailRow icon={Calendar} label="Date" value={booking.date} />
-        <DetailRow icon={Clock} label="Tee time" value={booking.time} />
+        <DetailRow icon={Clock} label={timeLabel} value={booking.time} />
         <DetailRow
           icon={Users01}
           label="Players"
-          value={`${booking.players} ${booking.players === 1 ? "golfer" : "golfers"}`}
+          value={`${booking.players} ${booking.players === 1 ? playerNoun : `${playerNoun}s`}`}
         />
         <DetailRow
           label="Confirmation"

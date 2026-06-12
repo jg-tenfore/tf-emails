@@ -20,14 +20,15 @@ export const AllPaid: Story = {
   args: {
     roster: (
       [
-        ["Justin Girard"],
-        ["Marcus Webb"],
-        ["Cody Sanders"],
-        ["Weston Farnsworth"],
+        ["Justin Girard", "TF-100482"],
+        ["Marcus Webb", "TF-238815"],
+        ["Cody Sanders", "TF-194730"],
+        ["Weston Farnsworth", "TF-205518"],
       ] as const
     ).map(
-      ([name]): RosterPlayer => ({
+      ([name, golferId]): RosterPlayer => ({
         name,
+        golferId,
         status: "Paid",
         statusTone: "paid",
         rateType: "Weekend 18 · with cart",

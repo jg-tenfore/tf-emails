@@ -51,3 +51,24 @@ export const WithLogo: Story = {
     status: { label: "Tomorrow", color: "brand" },
   },
 };
+
+/**
+ * Reused for a FloGolf simulator bay — a `unit` row, a custom time label, and
+ * "player" instead of "golfer".
+ */
+export const SimulatorBay: Story = {
+  args: {
+    booking: {
+      course: "FloGolf Lounge",
+      location: "880 Broadway, Saugus, MA 01906",
+      unit: { label: "Bay", value: "Bay 7" },
+      date: "Saturday, May 9, 2026",
+      time: "6:00 PM–8:00 PM (2 hours)",
+      players: 4,
+      confirmationCode: "FG-58117",
+    },
+    timeLabel: "Time",
+    playerNoun: "player",
+    status: { label: "Upcoming", color: "brand" },
+  },
+};

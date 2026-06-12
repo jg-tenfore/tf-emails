@@ -1,4 +1,13 @@
-import { ArrowRight, Clock, MarkerPin02, SunSetting03 } from "@untitledui/icons";
+import type { FC } from "react";
+import {
+  ArrowRight,
+  Clock,
+  CloudRaining04,
+  MarkerPin02,
+  Snowflake01,
+  Sun,
+  SunSetting03,
+} from "@untitledui/icons";
 import {
   BookingCard,
   type BookingDetails,
@@ -12,6 +21,7 @@ import {
   EmailShell,
   ForecastCard,
   IconBadge,
+  PolicyTag,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import { golfer, teeTime } from "@/lib/scenario";
@@ -19,10 +29,24 @@ import { golfer, teeTime } from "@/lib/scenario";
 export interface TeeTimeReminderProps {
   firstName?: string;
   booking?: BookingDetails;
-  forecast?: { summary: string; tempF: number };
+  /** Optional `icon` overrides the auto-picked weather icon. */
+  forecast?: {
+    summary: string;
+    tempF: number;
+    icon?: FC<{ className?: string }>;
+  };
   directionsUrl?: string;
   manageUrl?: string;
 }
+
+/** Pick a weather icon from the forecast summary text. */
+const weatherIcon = (summary: string): FC<{ className?: string }> => {
+  const s = summary.toLowerCase();
+  if (/rain|shower|storm|drizzle|wet/.test(s)) return CloudRaining04;
+  if (/snow|frost|ice|sleet/.test(s)) return Snowflake01;
+  if (/sunny/.test(s)) return Sun;
+  return SunSetting03;
+};
 
 const defaultBooking: BookingDetails = {
   course: teeTime.course,
@@ -56,6 +80,9 @@ export const TeeTimeReminder = ({
       </EmailSection>
 
       <EmailSection padding="sm">
+        <PolicyTag block color="pink" className="mb-4">
+          Inside 24 hours, this rate is non-refundable
+        </PolicyTag>
         <BookingCard
           booking={booking}
           logoUrl={assets.logo.src}
@@ -66,7 +93,7 @@ export const TeeTimeReminder = ({
           className="mt-4"
           summary={forecast.summary}
           tempF={forecast.tempF}
-          icon={SunSetting03}
+          icon={forecast.icon ?? weatherIcon(forecast.summary)}
         />
 
         <CTAStack className="mt-6">

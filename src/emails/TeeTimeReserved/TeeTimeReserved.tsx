@@ -12,7 +12,6 @@ import {
   EmailHero,
   EmailSection,
   EmailShell,
-  LocationBlock,
   PaymentSummary,
   PlayerRoster,
   type RosterPlayer,
@@ -39,8 +38,10 @@ const share = (
   name: string,
   status: string,
   tone: RosterPlayer["statusTone"],
+  golferId: string,
 ): RosterPlayer => ({
   name,
+  golferId,
   status,
   statusTone: tone,
   rateType: "Weekend 18 · with cart",
@@ -48,10 +49,10 @@ const share = (
 });
 
 const defaultRoster: RosterPlayer[] = [
-  share(golfer.fullName, "Paid", "paid"),
-  share("Marcus Webb", "Pending", "pending"),
-  share("Cody Sanders", "Pending", "pending"),
-  share("Weston Farnsworth", "Pending", "pending"),
+  share(golfer.fullName, "Paid", "paid", "TF-100482"),
+  share("Marcus Webb", "Pending", "pending", "TF-238815"),
+  share("Cody Sanders", "Pending", "pending", "TF-194730"),
+  share("Weston Farnsworth", "Pending", "pending", "TF-205518"),
 ];
 
 /**
@@ -93,7 +94,8 @@ export const TeeTimeReserved = ({
         logoAlt={course.name}
         eyebrow={`Confirmation #${confirmation}`}
         headline={course.name}
-        details={["Weekend · 18 holes"]}
+        details={["Weekend · 18 holes", course.address]}
+        mapUrl={course.mapUrl}
       />
 
       <EmailSection padding="md">
@@ -139,14 +141,6 @@ export const TeeTimeReserved = ({
             value={<span className="font-mono">#{confirmation}</span>}
           />
         </DetailCard>
-
-        <LocationBlock
-          className="mt-4"
-          name={course.name}
-          note="Weekend · 18 holes"
-          address={course.address}
-          mapUrl={course.mapUrl}
-        />
       </EmailSection>
 
       <Divider />
