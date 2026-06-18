@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EmailHeader } from "./email-header";
+import { JarretteHeader } from "./jarrette-header";
 
 const meta = {
   title: "Email Components/Header",
@@ -22,3 +23,9 @@ export const Platform: Story = { args: { variant: "platform" } };
 
 /** Admin logo — used on operator / internal emails. */
 export const Admin: Story = { args: { variant: "admin" } };
+
+/** Jarrette variant — Sagamore logo stacked over the club name and address, centered. */
+export const Jarrette: Story = {
+  name: "Jarrette - Centered",
+  render: () => <JarretteHeader />,
+};

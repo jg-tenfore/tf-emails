@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EmailFooter } from "./email-footer";
+import { JarretteFooter } from "./jarrette-footer";
 
 const meta = {
   title: "Email Components/Footer",
@@ -16,3 +17,9 @@ export const LeftAligned: Story = { args: { align: "left" } };
 
 /** Centered variant. */
 export const Centered: Story = { args: { align: "center" } };
+
+/** Jarrette variant — no TenFore logo, course name + address, "Powered by TenFore Golf.", centered. */
+export const Jarrette: Story = {
+  name: "Jarrette - Centered",
+  render: () => <JarretteFooter align="center" />,
+};

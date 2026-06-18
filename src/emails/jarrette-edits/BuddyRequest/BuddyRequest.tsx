@@ -1,0 +1,105 @@
+import { InfoCircle, UserPlus01, Users01 } from "@untitledui/icons";
+import {
+  Callout,
+  CTAButton,
+  CTAStack,
+  DetailCard,
+  DetailRow,
+  JarretteFooter,
+  JarretteHeader,
+  EmailSection,
+  EmailShell,
+  SectionHeading,
+  StatusHero,
+} from "@/components/email";
+import { buddy, golfer } from "@/lib/scenario";
+
+export interface BuddyRequestProps {
+  firstName?: string;
+  senderName?: string;
+  senderEmail?: string;
+  sentAt?: string;
+  acceptUrl?: string;
+  buddiesUrl?: string;
+  ignoreEmail?: string;
+}
+
+export const BuddyRequest = ({
+  firstName = golfer.firstName,
+  senderName = buddy.fullName,
+  senderEmail = buddy.email,
+  sentAt = "Sun May 18, 2026 · 10:30 AM",
+  acceptUrl = "https://www.sagamoregolf.com/buddies/requests",
+  buddiesUrl = "https://www.sagamoregolf.com/buddies",
+  ignoreEmail,
+}: BuddyRequestProps) => {
+  const ignoreHref = ignoreEmail
+    ? `mailto:${ignoreEmail}?subject=${encodeURIComponent(
+        `Buddy request from ${senderName}`,
+      )}`
+    : "#";
+
+  return (
+    <EmailShell
+      preheader={`${senderName} wants to add you as a golf buddy.`}
+    >
+      <JarretteHeader />
+
+      <StatusHero
+        icon={UserPlus01}
+        eyebrow="Buddies"
+        title="You've got a buddy request"
+        subtitle={`From ${senderName}`}
+      />
+
+      <EmailSection padding="md">
+        <Callout tone="info" eyebrow="Golf buddy request" icon={InfoCircle}>
+          Hi {firstName}, {senderName} wants to add you as a golf buddy. Buddies
+          can share tee times, see each other's bookings, and play together more
+          easily.
+        </Callout>
+      </EmailSection>
+
+      <EmailSection padding="md">
+        <SectionHeading title="Request details" />
+        <DetailCard className="mt-4">
+          <DetailRow label="From" value={senderName} />
+          <DetailRow label="Email" value={senderEmail} />
+          <DetailRow label="Sent" value={sentAt} />
+        </DetailCard>
+      </EmailSection>
+
+      <EmailSection padding="md">
+        <CTAStack>
+          <CTAButton
+            href={acceptUrl}
+            size="lg"
+            fullWidth
+            iconLeading={UserPlus01}
+          >
+            Accept buddy request
+          </CTAButton>
+          <CTAButton
+            href={buddiesUrl}
+            color="secondary"
+            size="lg"
+            fullWidth
+            iconLeading={Users01}
+          >
+            View buddies list
+          </CTAButton>
+        </CTAStack>
+        <p className="mt-4 text-center text-sm text-tertiary">
+          <a
+            href={ignoreHref}
+            className="font-medium text-brand-secondary underline underline-offset-2"
+          >
+            Not interested? Ignore this email
+          </a>
+        </p>
+      </EmailSection>
+
+      <JarretteFooter reason="You're receiving this because someone sent you a golf buddy request on Sagamore Spring Golf Club." />
+    </EmailShell>
+  );
+};

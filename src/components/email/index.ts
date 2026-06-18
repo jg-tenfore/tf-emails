@@ -1,5 +1,7 @@
 export { EmailShell } from "./email-shell";
 export { EmailHeader } from "./email-header";
+export { JarretteHeader } from "./jarrette-header";
+export { JarretteFooter } from "./jarrette-footer";
 export { Logo } from "./logo";
 export { SectionHeading } from "./section-heading";
 export { AppBanner, AppDownloadLink } from "./app-banner";

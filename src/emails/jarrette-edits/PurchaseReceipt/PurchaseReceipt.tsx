@@ -1,0 +1,86 @@
+import { Download01, Receipt as ReceiptIcon } from "@untitledui/icons";
+import {
+  CTAButton,
+  JarretteFooter,
+  JarretteHeader,
+  EmailSection,
+  EmailShell,
+  ItemizedList,
+  Panel,
+  PaymentMethod,
+  PaymentSummary,
+  SectionHeading,
+  StatusHero,
+} from "@/components/email";
+import {
+  course,
+  golfer,
+  proShopOrder,
+  type PurchaseOrder,
+} from "@/lib/scenario";
+
+export interface PurchaseReceiptProps {
+  firstName?: string;
+  order?: PurchaseOrder;
+  receiptUrl?: string;
+}
+
+export const PurchaseReceipt = ({
+  firstName = golfer.firstName,
+  order = proShopOrder,
+  receiptUrl = `https://www.tenfore.golf/receipts/${proShopOrder.orderNumber}`,
+}: PurchaseReceiptProps) => {
+  return (
+    <EmailShell
+      preheader={`Receipt for your ${order.location} purchase at ${course.name} — ${order.total}.`}
+    >
+      <JarretteHeader />
+
+      <StatusHero
+        icon={ReceiptIcon}
+        eyebrow={`${order.location} receipt`}
+        title={`Thanks for your purchase, ${firstName}.`}
+        subtitle={`${order.location} · ${order.date}`}
+        stamps={[{ label: "Order", value: `#${order.orderNumber}` }]}
+      />
+
+      <EmailSection padding="md">
+        <SectionHeading title="Items" />
+        <Panel className="mt-4">
+          <ItemizedList items={order.items} />
+        </Panel>
+      </EmailSection>
+
+      <EmailSection padding="md">
+        <PaymentSummary
+          rows={[
+            { label: "Subtotal", value: order.subtotal },
+            { label: "Tax", value: order.tax },
+          ]}
+          total={{ value: order.total }}
+          status="paid"
+          charged={{
+            value: order.total,
+            method: <PaymentMethod last4={order.cardLast4} />,
+          }}
+        />
+
+        <div className="mt-6">
+          <CTAButton
+            href={`${receiptUrl}.pdf`}
+            color="secondary"
+            size="lg"
+            fullWidth
+            iconLeading={Download01}
+          >
+            Download PDF receipt
+          </CTAButton>
+        </div>
+      </EmailSection>
+
+      <JarretteFooter
+        reason={`You're receiving this receipt for a ${order.location} purchase at ${course.name}.`}
+      />
+    </EmailShell>
+  );
+};
