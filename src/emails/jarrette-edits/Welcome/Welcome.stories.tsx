@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { WelcomeEmail } from "./Welcome";
 
 const meta = {
-  title: "Jarrette Edits/Account & Security/Welcome",
+  title: "Email Templates/Account & Security/Welcome",
   component: WelcomeEmail,
   parameters: { layout: "fullscreen" },
   argTypes: {

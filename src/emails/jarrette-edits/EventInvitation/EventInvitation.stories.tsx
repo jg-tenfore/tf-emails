@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EventInvitation } from "./EventInvitation";
 
 const meta = {
-  title: "Jarrette Edits/Events/Invitation",
+  title: "Email Templates/Events/Invitation",
   component: EventInvitation,
   parameters: { layout: "fullscreen" },
   argTypes: {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EventInvitation } from "./EventInvitation";
 
 const meta = {
-  title: "Sagamore Golf Club/Events/Invitation",
+  title: "Tenfore Branded/Events/Invitation",
   component: EventInvitation,
   parameters: { layout: "fullscreen" },
   argTypes: {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EventPaymentReceipt } from "./EventPaymentReceipt";
 
 const meta = {
-  title: "Sagamore Golf Club/Events/Payment Receipt",
+  title: "Tenfore Branded/Events/Payment Receipt",
   component: EventPaymentReceipt,
   parameters: { layout: "fullscreen" },
   argTypes: {

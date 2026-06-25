@@ -3,7 +3,7 @@ import type { EventLineItem } from "@/lib/scenario";
 import { EventConfirmation } from "./EventConfirmation";
 
 const meta = {
-  title: "Jarrette Edits/Events/Confirmation",
+  title: "Email Templates/Events/Confirmation",
   component: EventConfirmation,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

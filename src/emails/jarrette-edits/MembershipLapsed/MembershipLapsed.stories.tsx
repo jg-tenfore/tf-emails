@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MembershipLapsed } from "./MembershipLapsed";
 
 const meta = {
-  title: "Jarrette Edits/Membership/Lapsed",
+  title: "Email Templates/Membership/Lapsed",
   component: MembershipLapsed,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

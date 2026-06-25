@@ -12,6 +12,10 @@ const config: StorybookConfig = {
     "@storybook/addon-docs",
     "@storybook/addon-mcp"
   ],
-  "framework": "@storybook/react-vite"
+  "framework": "@storybook/react-vite",
+  "staticDirs": [
+    { from: "../store-big/images", to: "/store-images" },
+    { from: "../marketing-buck", to: "/marketing-images" }
+  ]
 };
 export default config;

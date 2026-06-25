@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BuddyRequest } from "./BuddyRequest";
 
 const meta = {
-  title: "Jarrette Edits/Social/Buddy Request",
+  title: "Email Templates/Social/Buddy Request",
   component: BuddyRequest,
   parameters: { layout: "fullscreen" },
   argTypes: {

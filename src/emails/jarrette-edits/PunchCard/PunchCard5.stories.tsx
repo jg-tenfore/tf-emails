@@ -3,7 +3,7 @@ import { punchCard5 } from "@/lib/scenario";
 import { PunchCardEmail } from "./PunchCard";
 
 const meta = {
-  title: "Jarrette Edits/Punch Cards/5-Round",
+  title: "Email Templates/Punch Cards/5-Round",
   component: PunchCardEmail,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

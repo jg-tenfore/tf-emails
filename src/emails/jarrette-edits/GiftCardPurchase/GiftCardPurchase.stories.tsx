@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { GiftCardPurchase } from "./GiftCardPurchase";
 
 const meta = {
-  title: "Jarrette Edits/Gift Cards/Purchase",
+  title: "Email Templates/Gift Cards/Purchase",
   component: GiftCardPurchase,
   parameters: { layout: "fullscreen" },
   argTypes: {

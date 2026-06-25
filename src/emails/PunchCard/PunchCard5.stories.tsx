@@ -3,7 +3,7 @@ import { punchCard5 } from "@/lib/scenario";
 import { PunchCardEmail } from "./PunchCard";
 
 const meta = {
-  title: "Sagamore Golf Club/Punch Cards/5-Round",
+  title: "Tenfore Branded/Punch Cards/5-Round",
   component: PunchCardEmail,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

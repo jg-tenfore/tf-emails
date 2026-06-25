@@ -3,7 +3,7 @@ import { proShopOrder, snackBarOrder } from "@/lib/scenario";
 import { PurchaseReceipt } from "./PurchaseReceipt";
 
 const meta = {
-  title: "Sagamore Golf Club/Orders/Purchase Receipt",
+  title: "Tenfore Branded/Orders/Purchase Receipt",
   component: PurchaseReceipt,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

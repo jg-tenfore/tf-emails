@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { TeeTimeReminder } from "./TeeTimeReminder";
 
 const meta = {
-  title: "Sagamore Golf Club/Tee Times/Reminder",
+  title: "Tenfore Branded/Tee Times/Reminder",
   component: TeeTimeReminder,
   parameters: { layout: "fullscreen" },
 } satisfies Meta<typeof TeeTimeReminder>;
