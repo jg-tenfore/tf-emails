@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { GolfShopInsider } from "./GolfShopInsider";
+import { GolfShopInsiderUnlayer } from "./GolfShopInsider.unlayer";
+import unlayerSource from "./GolfShopInsider.unlayer.tsx?raw";
+import { unlayerHandoffSafe } from "@/unlayer/render";
 
 const meta = {
   title: "Marketing Buck/Golf Shop Insider",
@@ -17,4 +20,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /** New merchandise with real product photos, a Shop by Brand strip, and a spend incentive. */
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    unlayer: unlayerHandoffSafe(() => GolfShopInsiderUnlayer(), unlayerSource),
+  },
+};

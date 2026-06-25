@@ -89,7 +89,60 @@ export const heroes = {
     src: `${IMAGE_BASE}/marketing-images/charity-scramble.webp`,
     alt: "Charity Golf Tournament — 3-Man Scramble event flyer",
   },
+  lessonInstruction: {
+    src: `${IMAGE_BASE}/marketing-images/lesson-instruction.jpg`,
+    alt: "A pro coaching a golfer through their swing on the range",
+  },
+  proShop: {
+    src: `${IMAGE_BASE}/marketing-images/pro-shop.jpg`,
+    alt: "A golfer inspecting a club in the pro shop",
+  },
+  demoDay: {
+    src: `${IMAGE_BASE}/marketing-images/titleist-demo-day.jpg`,
+    alt: "Golfers hitting on the range at a Titleist demo day",
+  },
+  clubhouseAeration: {
+    src: `${IMAGE_BASE}/marketing-images/aeration.jpg`,
+    alt: "A greenskeeper aerating a green, pulling cores from the turf",
+  },
+  twilightTwosome: {
+    src: `${IMAGE_BASE}/marketing-images/twilight-twosome.jpg`,
+    alt: "A couple walking the course with their trolleys at sunset",
+  },
 } as const;
+
+/**
+ * Featured pro-shop products (NOTE: store images are .webp — host PNG fallbacks
+ * for Outlook). Mirrors lib/store-catalog.ts picks used by the merchandise emails.
+ */
+export const products = {
+  mensPolo: { title: "Bennet Short Sleeve Men's Golf Polo Shirt", price: "$85.00", src: `${IMAGE_BASE}/store-images/apparel/mens/2000000059347-81-01_pc-072059d417.webp` },
+  womensDress: { title: "Moveknit Zip 2.0 Women's Sleeveless Golf Dress", price: "$98.00", src: `${IMAGE_BASE}/store-images/apparel/womens/2000000045603-1109-01_pc-aa571058bd.webp` },
+  golfBalls: { title: "Pro V1 AIM Red, White, & Blue 1776", price: "$54.99", src: `${IMAGE_BASE}/store-images/equipment/golf-balls/2000000061434-01_pc-d7700b7e9f.webp` },
+  gpsWatch: { title: "Approach S44 Golf GPS Watch", price: "$199.99", src: `${IMAGE_BASE}/store-images/equipment/accessories-and-training/2000000050686-117-01_pc-e8807554a6.webp` },
+  glove: { title: "Titleist Players Golf Glove", price: "$26.00", src: `${IMAGE_BASE}/store-images/equipment/accessories-and-training/0200211000123-01_pc-51c422a3e2.webp` },
+  puttingAid: { title: "Putting Thing Training Aid", price: "$39.99", src: `${IMAGE_BASE}/store-images/equipment/accessories-and-training/2000000057993-01_pc-645c5bf741.webp` },
+} as const;
+
+/** Titleist partner assets for the Demo Day fitting feature. */
+export const titleist = {
+  logo: `${IMAGE_BASE}/marketing-images/titleist-logo.svg`,
+  lineup: `${IMAGE_BASE}/marketing-images/titleist-lineup.webp`,
+};
+
+/** Twilight dinner-menu showcase (2×2 grid). Mirrors lib/marketing-images.ts twilightMenu. */
+export const twilightMenu = [
+  { src: `${IMAGE_BASE}/marketing-images/menu/menu-lobster.jpg`, title: "Baked Stuffed Lobster", alt: "Baked stuffed lobster on a platter" },
+  { src: `${IMAGE_BASE}/marketing-images/menu/menu-filet.jpg`, title: "Center-Cut Filet", alt: "Grilled filet with a glass of red wine" },
+  { src: `${IMAGE_BASE}/marketing-images/menu/menu-salmon.jpg`, title: "Pan-Seared Salmon", alt: "Pan-seared salmon over vegetables" },
+  { src: `${IMAGE_BASE}/marketing-images/menu/menu-peppers.jpg`, title: "Bacon-Wrapped Peppers", alt: "Bacon-wrapped cherry peppers appetizer" },
+] as const;
+
+/** Dining dish showcase (2-up). Mirrors lib/marketing-images.ts diningDishes. */
+export const diningDishes = [
+  { src: `${IMAGE_BASE}/marketing-images/dish-trio.jpg`, title: "Clubhouse classics", alt: "Burgers and salad with a course view" },
+  { src: `${IMAGE_BASE}/marketing-images/dish-salmon.jpg`, title: "Chef's specials", alt: "Plated salmon entrée with a glass of wine" },
+] as const;
 
 /**
  * Club logo. NOTE: the source logo is bundled with a hashed name and has no
