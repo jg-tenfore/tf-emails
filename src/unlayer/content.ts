@@ -63,35 +63,35 @@ export const brand = {
 /** Marketing Buck hero photography. Mirrors lib/marketing-images.ts. */
 export const heroes = {
   golfersSunset: {
-    src: `${IMAGE_BASE}/marketing-images/golfers-sunset.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/golfers-sunset.jpg`,
     alt: "Smiling golfers heading out for a round at golden hour",
   },
   golfersMen: {
-    src: `${IMAGE_BASE}/marketing-images/evening-golf.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/evening-golf.jpg`,
     alt: "Two golfers enjoying a round together at sunset",
   },
   golferSwing: {
-    src: `${IMAGE_BASE}/marketing-images/golfer-swing.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/golfer-swing.jpg`,
     alt: "Golfer following through on a driver swing at sunset",
   },
   courseHero: {
-    src: `${IMAGE_BASE}/marketing-images/course-hero.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/course-hero.jpg`,
     alt: "A round at Sagamore Spring Golf Club",
   },
   clubhouseDining: {
-    src: `${IMAGE_BASE}/marketing-images/clubhouse-dining.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/clubhouse-dining.jpg`,
     alt: "A set table on the clubhouse deck overlooking the course",
   },
   fathersDay: {
-    src: `${IMAGE_BASE}/marketing-images/jr-golf.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/jr-golf.jpg`,
     alt: "A father and child sharing a high-five on the green",
   },
   juniorCamp: {
-    src: `${IMAGE_BASE}/marketing-images/junior-golfer.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/junior-golfer.jpg`,
     alt: "A young junior golfer celebrating a shot on the course",
   },
   seniorLeague: {
-    src: `${IMAGE_BASE}/marketing-images/senior-golfers.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/senior-golfers.jpg`,
     alt: "A smiling senior couple out for a round of golf",
   },
   charityScramble: {
@@ -99,23 +99,23 @@ export const heroes = {
     alt: "Charity Golf Tournament — 3-Man Scramble event flyer",
   },
   lessonInstruction: {
-    src: `${IMAGE_BASE}/marketing-images/lesson-instruction.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/lesson-instruction.jpg`,
     alt: "A pro coaching a golfer through their swing on the range",
   },
   proShop: {
-    src: `${IMAGE_BASE}/marketing-images/pro-shop.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/pro-shop.jpg`,
     alt: "A golfer inspecting a club in the pro shop",
   },
   demoDay: {
-    src: `${IMAGE_BASE}/marketing-images/titleist-demo-day.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/titleist-demo-day.jpg`,
     alt: "Golfers hitting on the range at a Titleist demo day",
   },
   clubhouseAeration: {
-    src: `${IMAGE_BASE}/marketing-images/aeration.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/aeration.jpg`,
     alt: "A greenskeeper aerating a green, pulling cores from the turf",
   },
   twilightTwosome: {
-    src: `${IMAGE_BASE}/marketing-images/twilight-twosome.jpg`,
+    src: `${IMAGE_BASE}/marketing-images/hero/twilight-twosome.jpg`,
     alt: "A couple walking the course with their trolleys at sunset",
   },
 } as const;
