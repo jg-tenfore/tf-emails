@@ -1,0 +1,7 @@
+<script>
+  // @unlayer/react-elements contains an unguarded `process.env` reference, which
+  // throws "process is not defined" in the browser. Define a shim BEFORE any
+  // module evaluates so the email renderer (used by the "unLayer Code" panel)
+  // works regardless of Vite's build-time define or dependency-cache state.
+  window.process = window.process || { env: {} };
+</script>

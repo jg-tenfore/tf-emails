@@ -9,10 +9,14 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "gen:email": "node scripts/gen-email.mjs",
+    "export:unlayer": "tsx --tsconfig tsconfig.app.json scripts/export-unlayer.mts",
+    "check:unlayer": "node scripts/check-unlayer.mjs"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.20",
+    "@unlayer/react-elements": "^0.1.9",
     "@untitledui/icons": "^0.0.22",
     "react": "^19.2.6",
     "react-aria-components": "^1.18.0",
@@ -44,6 +48,7 @@
     "globals": "^17.6.0",
     "playwright": "^1.60.0",
     "storybook": "^10.4.3",
+    "tsx": "^4.19.2",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12",
