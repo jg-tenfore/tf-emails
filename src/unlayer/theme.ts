@@ -20,5 +20,18 @@ export const palette = {
   onBrandMuted: "#b9cabf",
 } as const;
 
+/**
+ * Callout tone colors — email-safe hex equivalents of the Tailwind utility-color
+ * Callout tones (box background + uppercase eyebrow text). Source: callout.tsx.
+ */
+export const calloutTones = {
+  success: { box: "#ecfdf3", eyebrow: "#067647" },
+  info: { box: "#eff8ff", eyebrow: "#175cd3" },
+  warning: { box: "#fffaeb", eyebrow: "#b54708" },
+  error: { box: "#fef3f2", eyebrow: "#b42318" },
+} as const;
+
+export type CalloutTone = keyof typeof calloutTones;
+
 /** Most email clients cap usable width near 600px. */
 export const contentWidth = "600px";

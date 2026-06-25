@@ -5,6 +5,8 @@ export { Feature, FeatureList } from "./feature-list";
 export type { FeatureItem } from "./feature-list";
 export { Cta } from "./cta";
 export type { CtaProps } from "./cta";
+export { Callout } from "./callout";
+export type { CalloutProps } from "./callout";
 export { TextAlerts } from "./text-alerts";
 export type { TextAlertsProps } from "./text-alerts";
 export { BrandStrip } from "./brand-strip";

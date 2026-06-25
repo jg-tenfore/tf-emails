@@ -61,6 +61,22 @@ export const heroes = {
     src: `${IMAGE_BASE}/marketing-images/evening-golf.jpg`,
     alt: "Two golfers enjoying a round together at sunset",
   },
+  golferSwing: {
+    src: `${IMAGE_BASE}/marketing-images/golfer-swing.jpg`,
+    alt: "Golfer following through on a driver swing at sunset",
+  },
+  courseHero: {
+    src: `${IMAGE_BASE}/marketing-images/course-hero.jpg`,
+    alt: "A round at Sagamore Spring Golf Club",
+  },
+  clubhouseDining: {
+    src: `${IMAGE_BASE}/marketing-images/clubhouse-dining.jpg`,
+    alt: "A set table on the clubhouse deck overlooking the course",
+  },
+  fathersDay: {
+    src: `${IMAGE_BASE}/marketing-images/jr-golf.jpg`,
+    alt: "A father and child sharing a high-five on the green",
+  },
 } as const;
 
 /**

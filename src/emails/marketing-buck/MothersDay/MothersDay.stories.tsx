@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MothersDay } from "./MothersDay";
+import { MothersDayUnlayer } from "./MothersDay.unlayer";
+import unlayerSource from "./MothersDay.unlayer.tsx?raw";
+import { unlayerHandoffSafe } from "@/unlayer/render";
 
 const meta = {
   title: "Marketing Buck/Mother's Day",
@@ -15,4 +18,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /** Mother's Day brunch with a reservation CTA and a "Mom plays free" offer. */
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    unlayer: unlayerHandoffSafe(() => MothersDayUnlayer(), unlayerSource),
+  },
+};
