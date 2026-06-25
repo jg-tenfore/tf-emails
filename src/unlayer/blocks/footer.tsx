@@ -15,8 +15,8 @@ export interface FooterProps {
  */
 export function Footer({ reason, unsubscribeUrl = "#" }: FooterProps) {
   return [
-    <Row key="identity" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="28px 32px 4px">
-      <Column>
+    <Row key="identity" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.muted} padding="28px 32px 4px">
         <Paragraph
           textAlign="center"
           html={
@@ -32,21 +32,21 @@ export function Footer({ reason, unsubscribeUrl = "#" }: FooterProps) {
       </Column>
     </Row>,
 
-    <Row key="contact" layout={ColumnLayouts.TwoEqual} backgroundColor={palette.muted} padding="14px 32px 8px">
-      <Column padding="4px">
+    <Row key="contact" layout={ColumnLayouts.TwoEqual} backgroundColor={palette.canvas} padding="0px 0px">
+      <Column backgroundColor={palette.muted} padding="12px 4px 8px">
         <Button href={brand.salesUrl} backgroundColor={palette.white} color={palette.brandDark} fontSize="14px" fontWeight={600} borderRadius="8px" textAlign="center" width="100%" padding="10px 16px">
           Sales Inquiry
         </Button>
       </Column>
-      <Column padding="4px">
+      <Column backgroundColor={palette.muted} padding="12px 4px 8px">
         <Button href={brand.supportUrl} backgroundColor={palette.white} color={palette.textSecondary} fontSize="14px" fontWeight={600} borderRadius="8px" textAlign="center" width="100%" padding="10px 16px">
           Customer Support
         </Button>
       </Column>
     </Row>,
 
-    <Row key="social" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="12px 32px 4px">
-      <Column>
+    <Row key="social" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.muted} padding="12px 32px 4px">
         <Social
           align="center"
           iconType="rounded"
@@ -55,8 +55,8 @@ export function Footer({ reason, unsubscribeUrl = "#" }: FooterProps) {
       </Column>
     </Row>,
 
-    <Row key="legal" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="8px 32px 28px">
-      <Column>
+    <Row key="legal" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.muted} padding="8px 32px 28px">
         {reason ? (
           <Paragraph textAlign="center" color={palette.textQuaternary} fontSize="12px">
             {reason}
