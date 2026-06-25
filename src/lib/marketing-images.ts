@@ -3,7 +3,9 @@
  * ("/marketing-images" → the root `marketing-buck/` folder), so the large files
  * aren't bundled. Reference these by importing `marketingHeroes`.
  */
-const BASE = "/marketing-images";
+// Relative (no leading slash) so URLs resolve under both the local root and the
+// GitHub Pages subpath (/<repo>/) — the build uses a relative Vite base.
+const BASE = "marketing-images";
 
 export interface MarketingHero {
   src: string;
