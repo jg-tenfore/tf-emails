@@ -80,7 +80,7 @@ export function DemoDayClubFittingUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.demoDay.src, imageAlt: heroes.demoDay.alt, eyebrow: "Demo day & club fitting", headline: "Find clubs built for your swing" }),
     intro,
     ...FeatureList({ items: features }),

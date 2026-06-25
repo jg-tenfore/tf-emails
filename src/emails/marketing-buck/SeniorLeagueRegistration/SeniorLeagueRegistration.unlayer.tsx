@@ -62,7 +62,7 @@ export function SeniorLeagueRegistrationUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.seniorLeague.src, imageAlt: heroes.seniorLeague.alt, eyebrow: "Senior league", headline: "Make it a standing tee time" }),
     intro,
     ...FeatureList({ items: features }),

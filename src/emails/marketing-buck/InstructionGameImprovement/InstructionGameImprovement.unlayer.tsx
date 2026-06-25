@@ -58,7 +58,7 @@ export function InstructionGameImprovementUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.lessonInstruction.src, imageAlt: heroes.lessonInstruction.alt, eyebrow: "Instruction", headline: "Play your best golf this season" }),
     intro,
     ...FeatureList({ items: programs }),

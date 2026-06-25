@@ -133,6 +133,9 @@ export const products = {
   puttingAid: { title: "Putting Thing Training Aid", price: "$39.99", src: `${IMAGE_BASE}/store-images/equipment/accessories-and-training/2000000057993-01_pc-645c5bf741.webp` },
 } as const;
 
+/** Flattened "Shop by Brand" logo grid (one grayscale PNG). gen-brand-strip.mjs */
+export const brandStripImage = `${IMAGE_BASE}/marketing-images/brand-strip.png`;
+
 /** Titleist partner assets for the Demo Day fitting feature. */
 export const titleist = {
   logo: `${IMAGE_BASE}/marketing-images/titleist-logo.svg`,

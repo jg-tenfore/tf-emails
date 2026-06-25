@@ -58,7 +58,7 @@ export function FathersDayUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.fathersDay.src, imageAlt: heroes.fathersDay.alt, eyebrow: "Father's Day", headline: "Give Dad his perfect day" }),
     intro,
     ...FeatureList({ items: ideas }),

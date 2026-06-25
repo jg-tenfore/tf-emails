@@ -1,5 +1,6 @@
-import { Row, Column, Heading, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
+import { Row, Column, ColumnLayouts } from "@unlayer/react-elements";
 import { palette } from "@/unlayer/theme";
+import { RawHtml } from "./raw";
 
 export interface HeroProps {
   imageUrl: string;
@@ -9,46 +10,37 @@ export interface HeroProps {
 }
 
 /**
- * Contained hero — Unlayer port of <EmailHero>. A full-width photo with a solid
- * dark-green caption band beneath (eyebrow + headline).
+ * Contained hero — Unlayer port of <EmailHero>. The full-bleed photo and the
+ * dark-green caption band are rendered as ONE HTML block in a single
+ * zero-padding row, so the band sits flush against the image (no element
+ * padding gap), both are the same 600px width, and the eyebrow→headline spacing
+ * is tight. Source: src/components/email/email-hero.tsx
  *
- * Returns an array of literal <Row>s so the template can flatten them as direct
- * <Email> children (required by renderToJson). The source overlays the club logo
- * on the image with absolute positioning — email clients can't do that, so the
- * logo lives in the <Header> instead.
- * Source: src/components/email/email-hero.tsx
+ * Returns a one-element array so it flattens as a direct <Email> child. The club
+ * logo is baked into the hero photo (see scripts/gen-hero-composites.mjs) since
+ * email can't overlay it.
  */
 export function Hero({ imageUrl, imageAlt = "", eyebrow, headline }: HeroProps) {
-  // Rendered as a raw <img> (not Unlayer's <Image>, which hard-caps at 500px) so
-  // it fills the 600px column; display:block removes the inline descender gap so
-  // it sits flush against the caption band.
   const alt = imageAlt.replace(/"/g, "&quot;");
-  const imageRow = (
-    <Row key="img" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px">
-      <Column padding="0px">
-        <Paragraph html={`<img src="${imageUrl}" alt="${alt}" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;margin:0;" />`} />
-      </Column>
-    </Row>
-  );
-
-  // Self-contained art (e.g. a flyer): show the image only, no caption band.
-  if (!eyebrow && !headline) return [imageRow];
+  const img =
+    `<div style="font-size:0;line-height:0;">` +
+    `<img src="${imageUrl}" alt="${alt}" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;margin:0;" />` +
+    `</div>`;
+  const band =
+    eyebrow || headline
+      ? `<div style="background:${palette.brandDark};padding:18px 32px;">` +
+        (eyebrow
+          ? `<div style="font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:${palette.onBrandMuted};">${eyebrow.toUpperCase()}</div>`
+          : "") +
+        (headline
+          ? `<div style="margin-top:6px;font-size:24px;font-weight:600;line-height:1.25;color:${palette.white};">${headline}</div>`
+          : "") +
+        `</div>`
+      : "";
 
   return [
-    imageRow,
-    <Row key="band" layout={ColumnLayouts.OneColumn} backgroundColor={palette.brandDark} padding="16px 32px 18px">
-      <Column>
-        {eyebrow ? (
-          <Paragraph color={palette.onBrandMuted} fontSize="12px" fontWeight={600} letterSpacing="1px">
-            {eyebrow.toUpperCase()}
-          </Paragraph>
-        ) : null}
-        {headline ? (
-          <Heading headingType="h2" color={palette.white} fontSize="24px" fontWeight={600}>
-            {headline}
-          </Heading>
-        ) : null}
-      </Column>
+    <Row key="hero" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px">
+      <Column padding="0px">{RawHtml({ html: `${img}${band}` })}</Column>
     </Row>,
   ];
 }

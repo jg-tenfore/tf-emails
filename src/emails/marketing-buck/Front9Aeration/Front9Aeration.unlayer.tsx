@@ -63,7 +63,7 @@ export function Front9AerationUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.clubhouseAeration.src, imageAlt: heroes.clubhouseAeration.alt, eyebrow: "Course update", headline: "We're aerating the front 9" }),
     intro,
     Callout({ tone: "info", eyebrow: "What to expect", body: "The back 9 stays fully open during the work, and the front 9 greens typically recover within 10–14 days. You may see sand and cores on the greens for a few days — that's the good stuff doing its job." }),

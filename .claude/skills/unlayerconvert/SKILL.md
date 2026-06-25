@@ -70,7 +70,40 @@ parameters: { unlayer: unlayerHandoffSafe(() => <Name>Unlayer({ /* same args */ 
 - `npm run check:unlayer` — the email should no longer be listed.
 - Report the byte counts and confirm the email appears in `dist/unlayer/`.
 
+## Rule: flatten complex layouts to static graphics
+
+Some layouts can't be faithfully (or safely) reproduced with Unlayer's native
+rows/columns. **When a layout element is "complex", pre-render it to a single
+flattened PNG via Playwright and drop it in as one `<img>`** instead of fighting
+Unlayer. A layout is complex when any of these hold:
+
+- **Overlays / compositing** — text or a logo on top of an image (email has no
+  absolute positioning). e.g. the hero club-logo → baked into the photo.
+- **Mixed-width multi-item wraps** — a logo wall / brand strip where items have
+  different widths and wrap across rows. e.g. the "Shop by Brand" grid.
+- **Pixel-precise small UI** — icon chips, badges, barcodes (centering and
+  rounded boxes don't survive email CSS). e.g. the FeatureList icon chips.
+- **Unsafe source formats** — `.webp` logos or inline SVG (Outlook strips them).
+  Rasterizing to PNG fixes deliverability for free.
+
+Keep **live** anything that's dynamic (headlines, per-recipient text, prices,
+CTAs, labels) — flatten only the static visual. The existing generators are the
+pattern to copy (all read images over the running Storybook, write to
+`marketing-buck/...`, and are referenced from `src/unlayer/content.ts`):
+
+- `scripts/gen-unlayer-icon-pngs.mjs` — FeatureList icon chips (40×40 PNG).
+- `scripts/gen-hero-composites.mjs` — hero photo + club logo baked in.
+- `scripts/gen-brand-strip.mjs` — the flattened brand logo grid.
+- `scripts/shot.mjs` — screenshot a rendered `dist/unlayer/*.html` to eyeball it.
+
+To add a new flattened graphic: write a small Playwright script modeled on the
+above, host the PNG under `marketing-buck/`, expose its URL from `content.ts`,
+and reference it from the block as a single `RawHtml`/`<img>`.
+
 ## Notes
 - The conversion is a faithful rewrite, not auto-translation — match copy, order,
   colors, and links to the source. Flag (don't silently drop) anything email-unsafe
-  (absolute-positioned overlays, SVG icons, webp logos) per the README caveats.
+  (absolute-positioned overlays, SVG icons, webp logos) per the README caveats —
+  or, better, **flatten it** per the rule above.
+- Full-bleed / flush blocks (hero, header divider, flattened graphics) use the
+  `RawHtml` block (a zero-`containerPadding` Paragraph) so they sit edge-to-edge.

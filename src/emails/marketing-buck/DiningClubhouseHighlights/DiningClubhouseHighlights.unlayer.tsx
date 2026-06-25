@@ -56,7 +56,7 @@ export function DiningClubhouseHighlightsUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.clubhouseDining.src, imageAlt: heroes.clubhouseDining.alt, eyebrow: "At the grill", headline: "Great food after a great round" }),
     intro,
     ...FeatureList({ items: highlights }),

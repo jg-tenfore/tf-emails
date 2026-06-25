@@ -4,7 +4,7 @@
  * inline styles, so colors must be concrete values, not CSS variables.
  */
 export const palette = {
-  canvas: "#eceff3", // EmailShell background
+  canvas: "#edeff3", // Email canvas background (behind the 600px content)
   white: "#ffffff",
   /** Brand dark green — the hero caption band (BAND in email-hero.tsx). */
   brandDark: "#0a3d24",

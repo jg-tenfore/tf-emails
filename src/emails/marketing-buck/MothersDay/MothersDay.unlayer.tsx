@@ -56,7 +56,7 @@ export function MothersDayUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.clubhouseDining.src, imageAlt: heroes.clubhouseDining.alt, eyebrow: "Mother's Day", headline: "Treat Mom to her day" }),
     intro,
     ...FeatureList({ items: highlights }),

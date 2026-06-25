@@ -60,7 +60,7 @@ export function TwilightTwosomeUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.twilightTwosome.src, imageAlt: heroes.twilightTwosome.alt, eyebrow: "Twilight golf", headline: "Nine and dine at twilight" }),
     intro,
     ...FeatureList({ items: perks }),

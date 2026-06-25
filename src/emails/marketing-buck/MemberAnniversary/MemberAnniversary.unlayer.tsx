@@ -59,7 +59,7 @@ export function MemberAnniversaryUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.courseHero.src, imageAlt: heroes.courseHero.alt, eyebrow: "Member anniversary", headline: `${years} years strong, ${firstName}` }),
     intro,
     ...FeatureList({ items: perks }),

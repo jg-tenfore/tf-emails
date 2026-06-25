@@ -58,7 +58,7 @@ export function WeekendWarmUpUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.golferSwing.src, imageAlt: heroes.golferSwing.alt, eyebrow: "This weekend", headline: "Your weekend tee time awaits" }),
     intro,
     ...FeatureList({ items: perks }),

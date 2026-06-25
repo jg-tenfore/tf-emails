@@ -62,7 +62,7 @@ export function JuniorCampRegistrationUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.juniorCamp.src, imageAlt: heroes.juniorCamp.alt, eyebrow: "Junior camp", headline: "Summer golf for the kids" }),
     intro,
     ...FeatureList({ items: features }),

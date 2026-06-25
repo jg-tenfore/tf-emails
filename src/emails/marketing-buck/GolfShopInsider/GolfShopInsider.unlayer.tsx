@@ -77,7 +77,7 @@ export function GolfShopInsiderUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.proShop.src, imageAlt: heroes.proShop.alt, eyebrow: "Golf shop insider", headline: "New gear just landed" }),
     intro,
     SectionHeading({ title: "Just in", description: "Fresh picks for him, for her, on the green, and on your wrist." }),

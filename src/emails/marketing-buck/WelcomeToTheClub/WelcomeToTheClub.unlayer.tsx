@@ -66,7 +66,7 @@ export function WelcomeToTheClubUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: hero.src, imageAlt: hero.alt, eyebrow: "Welcome to the club", headline: `Great to have you, ${firstName}` }),
     intro,
     ...FeatureList({ items: perks }),

@@ -64,7 +64,7 @@ export function ScrambleCharityRegistrationUnlayer({
   );
 
   const rows = [
-    Header(),
+    ...Header(),
     ...Hero({ imageUrl: heroes.charityScramble.src, imageAlt: heroes.charityScramble.alt }),
     intro,
     ...FeatureList({ items: features }),
