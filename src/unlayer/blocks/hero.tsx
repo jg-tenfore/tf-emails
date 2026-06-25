@@ -32,7 +32,7 @@ export function Hero({ imageUrl, imageAlt = "", eyebrow, headline }: HeroProps) 
 
   return [
     imageRow,
-    <Row key="band" layout={ColumnLayouts.OneColumn} backgroundColor={palette.brandDark} padding="20px 32px">
+    <Row key="band" layout={ColumnLayouts.OneColumn} backgroundColor={palette.brandDark} padding="16px 32px 18px">
       <Column>
         {eyebrow ? (
           <Paragraph color={palette.onBrandMuted} fontSize="12px" fontWeight={600} letterSpacing="1px">

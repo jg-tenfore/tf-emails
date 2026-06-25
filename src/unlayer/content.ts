@@ -150,7 +150,7 @@ export const diningDishes = [
  * it). Placeholder points at a reachable asset so previews render.
  */
 export const logo = {
-  src: `${IMAGE_BASE}/marketing-images/titleist-logo.svg`, // TODO: hosted Sagamore logo
+  src: `${IMAGE_BASE}/marketing-images/sagamore-logo.jpg`,
   alt: course.name,
 };
 
