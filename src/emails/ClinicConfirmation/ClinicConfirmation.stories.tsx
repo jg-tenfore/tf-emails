@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ClinicConfirmation } from "./ClinicConfirmation";
 
 const meta = {
-  title: "Sagamore Golf Club/Clinics/Confirmation",
+  title: "Tenfore Branded/Clinics/Confirmation",
   component: ClinicConfirmation,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

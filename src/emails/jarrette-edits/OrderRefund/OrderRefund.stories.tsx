@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { OrderRefund } from "./OrderRefund";
 
 const meta = {
-  title: "Jarrette Edits/Orders/Refund",
+  title: "Email Templates/Orders/Refund",
   component: OrderRefund,
   parameters: { layout: "fullscreen" },
   argTypes: {

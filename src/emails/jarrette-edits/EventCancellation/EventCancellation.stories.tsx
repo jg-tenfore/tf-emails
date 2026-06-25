@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EventCancellation } from "./EventCancellation";
 
 const meta = {
-  title: "Jarrette Edits/Events/Cancellation",
+  title: "Email Templates/Events/Cancellation",
   component: EventCancellation,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" }, refund: { control: "text" } },

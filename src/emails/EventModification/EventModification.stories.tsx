@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EventModification } from "./EventModification";
 
 const meta = {
-  title: "Sagamore Golf Club/Events/Modification",
+  title: "Tenfore Branded/Events/Modification",
   component: EventModification,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

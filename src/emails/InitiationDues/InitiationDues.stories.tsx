@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InitiationDues } from "./InitiationDues";
 
 const meta = {
-  title: "Sagamore Golf Club/Membership/Initiation Dues",
+  title: "Tenfore Branded/Membership/Initiation Dues",
   component: InitiationDues,
   parameters: { layout: "fullscreen" },
   argTypes: {

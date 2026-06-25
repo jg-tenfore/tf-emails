@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CartRentalAgreement } from "./CartRentalAgreement";
 
 const meta = {
-  title: "Sagamore Golf Club/Cart Rental Agreement",
+  title: "Tenfore Branded/Cart Rental Agreement",
   component: CartRentalAgreement,
   parameters: { layout: "fullscreen" },
   argTypes: {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Birthday } from "./Birthday";
 
 const meta = {
-  title: "Sagamore Golf Club/Social/Birthday",
+  title: "Tenfore Branded/Social/Birthday",
   component: Birthday,
   parameters: { layout: "fullscreen" },
   argTypes: {

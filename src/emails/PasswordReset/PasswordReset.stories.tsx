@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { PasswordReset } from "./PasswordReset";
 
 const meta = {
-  title: "Sagamore Golf Club/Account & Security/Password Reset",
+  title: "Tenfore Branded/Account & Security/Password Reset",
   component: PasswordReset,
   parameters: { layout: "fullscreen" },
   argTypes: {

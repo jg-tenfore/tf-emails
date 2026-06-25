@@ -3,7 +3,7 @@ import type { RosterPlayer } from "@/components/email";
 import { TeeTimeReserved } from "./TeeTimeReserved";
 
 const meta = {
-  title: "Jarrette Edits/Tee Times/Golf Group Details",
+  title: "Email Templates/Tee Times/Golf Group Details",
   component: TeeTimeReserved,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

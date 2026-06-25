@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InitiationDues } from "./InitiationDues";
 
 const meta = {
-  title: "Jarrette Edits/Membership/Initiation Dues",
+  title: "Email Templates/Membership/Initiation Dues",
   component: InitiationDues,
   parameters: { layout: "fullscreen" },
   argTypes: {

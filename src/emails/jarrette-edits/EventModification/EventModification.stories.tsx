@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EventModification } from "./EventModification";
 
 const meta = {
-  title: "Jarrette Edits/Events/Modification",
+  title: "Email Templates/Events/Modification",
   component: EventModification,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

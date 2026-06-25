@@ -3,7 +3,7 @@ import { proShopOrder, snackBarOrder } from "@/lib/scenario";
 import { PurchaseReceipt } from "./PurchaseReceipt";
 
 const meta = {
-  title: "Jarrette Edits/Orders/Purchase Receipt",
+  title: "Email Templates/Orders/Purchase Receipt",
   component: PurchaseReceipt,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

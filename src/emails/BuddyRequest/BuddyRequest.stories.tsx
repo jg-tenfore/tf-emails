@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BuddyRequest } from "./BuddyRequest";
 
 const meta = {
-  title: "Sagamore Golf Club/Social/Buddy Request",
+  title: "Tenfore Branded/Social/Buddy Request",
   component: BuddyRequest,
   parameters: { layout: "fullscreen" },
   argTypes: {

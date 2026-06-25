@@ -3,7 +3,7 @@ import type { EventLineItem } from "@/lib/scenario";
 import { EventConfirmation } from "./EventConfirmation";
 
 const meta = {
-  title: "Sagamore Golf Club/Events/Confirmation",
+  title: "Tenfore Branded/Events/Confirmation",
   component: EventConfirmation,
   parameters: { layout: "fullscreen" },
   argTypes: { firstName: { control: "text" } },

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MembershipExpiring } from "./MembershipExpiring";
 
 const meta = {
-  title: "Jarrette Edits/Membership/Expiring",
+  title: "Email Templates/Membership/Expiring",
   component: MembershipExpiring,
   parameters: { layout: "fullscreen" },
   argTypes: {

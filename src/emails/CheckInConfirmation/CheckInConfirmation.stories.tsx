@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CheckInConfirmation } from "./CheckInConfirmation";
 
 const meta = {
-  title: "Sagamore Golf Club/Account & Security/Check-In Confirmation",
+  title: "Tenfore Branded/Account & Security/Check-In Confirmation",
   component: CheckInConfirmation,
   parameters: { layout: "fullscreen" },
   argTypes: {
