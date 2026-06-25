@@ -19,12 +19,19 @@ export interface HeroProps {
  * Source: src/components/email/email-hero.tsx
  */
 export function Hero({ imageUrl, imageAlt = "", eyebrow, headline }: HeroProps) {
-  return [
+  const imageRow = (
     <Row key="img" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px">
       <Column>
         <Image src={{ url: imageUrl }} alt={imageAlt} />
       </Column>
-    </Row>,
+    </Row>
+  );
+
+  // Self-contained art (e.g. a flyer): show the image only, no caption band.
+  if (!eyebrow && !headline) return [imageRow];
+
+  return [
+    imageRow,
     <Row key="band" layout={ColumnLayouts.OneColumn} backgroundColor={palette.brandDark} padding="20px 32px">
       <Column>
         {eyebrow ? (

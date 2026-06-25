@@ -77,6 +77,18 @@ export const heroes = {
     src: `${IMAGE_BASE}/marketing-images/jr-golf.jpg`,
     alt: "A father and child sharing a high-five on the green",
   },
+  juniorCamp: {
+    src: `${IMAGE_BASE}/marketing-images/junior-golfer.jpg`,
+    alt: "A young junior golfer celebrating a shot on the course",
+  },
+  seniorLeague: {
+    src: `${IMAGE_BASE}/marketing-images/senior-golfers.jpg`,
+    alt: "A smiling senior couple out for a round of golf",
+  },
+  charityScramble: {
+    src: `${IMAGE_BASE}/marketing-images/charity-scramble.webp`,
+    alt: "Charity Golf Tournament — 3-Man Scramble event flyer",
+  },
 } as const;
 
 /**
