@@ -1,4 +1,4 @@
-import { Row, Column, Image, Heading, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
+import { Row, Column, Heading, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { palette } from "@/unlayer/theme";
 
 export interface HeroProps {
@@ -19,10 +19,14 @@ export interface HeroProps {
  * Source: src/components/email/email-hero.tsx
  */
 export function Hero({ imageUrl, imageAlt = "", eyebrow, headline }: HeroProps) {
+  // Rendered as a raw <img> (not Unlayer's <Image>, which hard-caps at 500px) so
+  // it fills the 600px column; display:block removes the inline descender gap so
+  // it sits flush against the caption band.
+  const alt = imageAlt.replace(/"/g, "&quot;");
   const imageRow = (
     <Row key="img" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px">
-      <Column>
-        <Image src={{ url: imageUrl }} alt={imageAlt} />
+      <Column padding="0px">
+        <Paragraph html={`<img src="${imageUrl}" alt="${alt}" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;margin:0;" />`} />
       </Column>
     </Row>
   );

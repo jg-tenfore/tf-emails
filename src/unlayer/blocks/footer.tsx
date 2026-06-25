@@ -1,4 +1,4 @@
-import { Row, Column, Heading, Paragraph, Button, Social, Menu, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Row, Column, Paragraph, Button, Social, Menu, ColumnLayouts } from "@unlayer/react-elements";
 import { palette } from "@/unlayer/theme";
 import { brand, course } from "@/unlayer/content";
 
@@ -15,33 +15,24 @@ export interface FooterProps {
  */
 export function Footer({ reason, unsubscribeUrl = "#" }: FooterProps) {
   return [
-    <Row key="identity" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="36px 32px 8px">
+    <Row key="identity" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="28px 32px 4px">
       <Column>
-        <Heading headingType="h3" textAlign="center" color={palette.textPrimary} fontSize="14px" fontWeight={600}>
-          {course.name}
-        </Heading>
-        <Paragraph textAlign="center" color={palette.textTertiary} fontSize="14px">
-          {course.address}
-        </Paragraph>
-        <Divider width="48px" borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" textAlign="center" />
-        <Paragraph textAlign="center" color={palette.textSecondary} fontSize="14px" fontWeight={500}>
-          {`Powered by ${brand.name}.`}
-        </Paragraph>
-        <Paragraph textAlign="center" color={palette.textTertiary} fontSize="14px">
-          {brand.tagline}
-        </Paragraph>
-        <Paragraph textAlign="center" color={palette.textTertiary} fontSize="14px">
-          {`${brand.addressLine1} · ${brand.addressLine2}`}
-        </Paragraph>
         <Paragraph
           textAlign="center"
-          fontSize="14px"
-          html={`<a href="${brand.url}" style="color:${palette.brandDark};font-weight:500;text-decoration:none;">${brand.domain}</a>`}
+          html={
+            `<div style="font-size:14px;font-weight:600;color:${palette.textPrimary};">${course.name}</div>` +
+            `<div style="margin-top:2px;font-size:14px;color:${palette.textTertiary};">${course.address}</div>` +
+            `<div style="width:48px;height:1px;background:${palette.border};margin:14px auto;"></div>` +
+            `<div style="font-size:14px;font-weight:500;color:${palette.textSecondary};">Powered by ${brand.name}.</div>` +
+            `<div style="margin:8px auto 0;max-width:420px;font-size:14px;line-height:1.5;color:${palette.textTertiary};">${brand.tagline}</div>` +
+            `<div style="margin-top:8px;font-size:14px;color:${palette.textTertiary};">${brand.addressLine1} · ${brand.addressLine2}</div>` +
+            `<div style="margin-top:2px;"><a href="${brand.url}" style="font-size:14px;color:${palette.brandDark};font-weight:500;text-decoration:none;">${brand.domain}</a></div>`
+          }
         />
       </Column>
     </Row>,
 
-    <Row key="contact" layout={ColumnLayouts.TwoEqual} backgroundColor={palette.muted} padding="12px 32px">
+    <Row key="contact" layout={ColumnLayouts.TwoEqual} backgroundColor={palette.muted} padding="14px 32px 8px">
       <Column padding="4px">
         <Button href={brand.salesUrl} backgroundColor={palette.white} color={palette.brandDark} fontSize="14px" fontWeight={600} borderRadius="8px" textAlign="center" width="100%" padding="10px 16px">
           Sales Inquiry
@@ -64,7 +55,7 @@ export function Footer({ reason, unsubscribeUrl = "#" }: FooterProps) {
       </Column>
     </Row>,
 
-    <Row key="legal" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="8px 32px 36px">
+    <Row key="legal" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="8px 32px 28px">
       <Column>
         {reason ? (
           <Paragraph textAlign="center" color={palette.textQuaternary} fontSize="12px">

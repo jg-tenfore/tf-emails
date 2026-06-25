@@ -16,8 +16,17 @@
  * IMAGE_BASE_URL when exporting for a different CDN.
  */
 export const IMAGE_BASE =
+  // 1) Explicit override (export for a CDN) wins.
   (typeof process !== "undefined" && process.env?.IMAGE_BASE_URL) ||
+  // 2) In the browser (Storybook preview) use a relative base so images load
+  //    from the same origin — works at the local root AND the Pages subpath,
+  //    and picks up newly-added images without a deploy.
+  (typeof window !== "undefined" ? "." : "") ||
+  // 3) Node default (sending / export with no override): the deployed Storybook.
   "https://jg-tenfore.github.io/tf-emails";
+
+/** Absolute (or preview-relative) URL for a hosted marketing image path. */
+export const imageUrl = (path: string) => `${IMAGE_BASE}/${path.replace(/^\//, "")}`;
 
 /** Partner course (swappable content). Mirrors lib/scenario.ts `course`. */
 export const course = {
