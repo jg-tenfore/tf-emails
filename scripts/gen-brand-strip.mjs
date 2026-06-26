@@ -15,7 +15,7 @@ const { chromium } = require("playwright");
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const BASE = process.env.STORYBOOK_URL || "http://localhost:6006";
-const MUTED = "#f3f4f6";
+const MUTED = "#fafafa";
 
 const LOGOS = [
   "logo-Titleist-5191ae6257.webp", "logo-TaylorMade-2f17ac4849.webp",

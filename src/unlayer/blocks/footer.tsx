@@ -13,6 +13,14 @@ export interface FooterProps {
  * platform block, contact buttons, social icons, and legal lines.
  * Source: src/components/email/jarrette-footer.tsx
  */
+/** 1px border for the white footer buttons. */
+const contactBtnBorder = {
+  borderTopColor: palette.border, borderTopStyle: "solid", borderTopWidth: "1px" as const,
+  borderRightColor: palette.border, borderRightStyle: "solid", borderRightWidth: "1px" as const,
+  borderBottomColor: palette.border, borderBottomStyle: "solid", borderBottomWidth: "1px" as const,
+  borderLeftColor: palette.border, borderLeftStyle: "solid", borderLeftWidth: "1px" as const,
+};
+
 export function Footer({ reason, unsubscribeUrl = "#" }: FooterProps) {
   return [
     <Row key="identity" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
@@ -33,13 +41,13 @@ export function Footer({ reason, unsubscribeUrl = "#" }: FooterProps) {
     </Row>,
 
     <Row key="contact" layout={ColumnLayouts.TwoEqual} backgroundColor={palette.canvas} padding="0px 0px">
-      <Column backgroundColor={palette.muted} padding="12px 4px 8px">
-        <Button href={brand.salesUrl} backgroundColor={palette.white} color={palette.brandDark} fontSize="14px" fontWeight={600} borderRadius="8px" textAlign="center" width="100%" padding="10px 16px">
+      <Column backgroundColor={palette.muted} padding="12px 6px 8px 64px">
+        <Button href={brand.salesUrl} backgroundColor={palette.white} color={palette.brandDark} border={contactBtnBorder} fontSize="14px" fontWeight={600} borderRadius="8px" textAlign="center" width="100%" padding="10px 16px">
           Sales Inquiry
         </Button>
       </Column>
-      <Column backgroundColor={palette.muted} padding="12px 4px 8px">
-        <Button href={brand.supportUrl} backgroundColor={palette.white} color={palette.textSecondary} fontSize="14px" fontWeight={600} borderRadius="8px" textAlign="center" width="100%" padding="10px 16px">
+      <Column backgroundColor={palette.muted} padding="12px 64px 8px 6px">
+        <Button href={brand.supportUrl} backgroundColor={palette.white} color={palette.textSecondary} border={contactBtnBorder} fontSize="14px" fontWeight={600} borderRadius="8px" textAlign="center" width="100%" padding="10px 16px">
           Customer Support
         </Button>
       </Column>
