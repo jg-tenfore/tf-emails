@@ -13,8 +13,8 @@ import { RawHtml } from "./raw";
  */
 export function Header() {
   return [
-    <Row key="header" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="24px 32px">
-      <Column>
+    <Row key="header" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="24px 32px">
         <Image src={{ url: logo.src, width: 56 }} alt={logo.alt} textAlign="center" />
         <Paragraph
           textAlign="center"
@@ -25,8 +25,8 @@ export function Header() {
         />
       </Column>
     </Row>,
-    <Row key="header-divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px">
-      <Column padding="0px">{RawHtml({ html: `<div style="height:1px;background:${palette.border};line-height:1px;font-size:0;">&nbsp;</div>` })}</Column>
+    <Row key="header-divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="0px">{RawHtml({ html: `<div style="height:1px;background:${palette.border};line-height:1px;font-size:0;">&nbsp;</div>` })}</Column>
     </Row>,
   ];
 }

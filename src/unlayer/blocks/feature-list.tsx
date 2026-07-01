@@ -54,8 +54,8 @@ export function Feature(item: FeatureItem) {
     `</td>` +
     `</tr></table>`;
   return (
-    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="8px 32px">
-      <Column>
+    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="8px 32px">
         <Paragraph html={html} />
       </Column>
     </Row>

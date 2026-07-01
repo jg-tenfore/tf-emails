@@ -32,8 +32,8 @@ const border = (color: string) => ({
 export function Cta({ href, label, variant = "primary", padding = "16px 32px" }: CtaProps) {
   const isSecondary = variant === "secondary";
   return (
-    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding={padding}>
-      <Column>
+    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding={padding}>
         <Button
           href={href}
           backgroundColor={isSecondary ? palette.white : palette.ctaGreen}

@@ -1,5 +1,6 @@
-import { Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
+import { Row, Column, ColumnLayouts } from "@unlayer/react-elements";
 import { palette, calloutTones, type CalloutTone } from "@/unlayer/theme";
+import { RawHtml } from "./raw";
 
 export interface CalloutProps {
   /** Tone color of the box + eyebrow. Default "info". */
@@ -24,11 +25,14 @@ export function Callout({ tone = "info", eyebrow, emoji, body }: CalloutProps) {
     ? `<span style="display:block;font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:${t.eyebrow};margin:0 0 6px;">${emoji ? `${emoji} ` : ""}${eyebrow}</span>`
     : "";
   return (
-    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="24px 32px 0px">
-      <Column backgroundColor={t.box} padding="16px 20px">
-        <Paragraph
-          html={`${eyebrowHtml}<span style="font-size:14px;line-height:1.5;color:${palette.textSecondary};">${body}</span>`}
-        />
+    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="24px 32px 0px">
+        {RawHtml({
+          html:
+            `<div style="background:${t.box};border-radius:8px;padding:16px 20px;">` +
+            `${eyebrowHtml}<span style="font-size:14px;line-height:1.5;color:${palette.textSecondary};">${body}</span>` +
+            `</div>`,
+        })}
       </Column>
     </Row>
   );

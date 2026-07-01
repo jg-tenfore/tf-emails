@@ -19,9 +19,9 @@ export function ImageGrid({ items, columns = 2 }: { items: readonly ImageCard[];
   for (let i = 0; i < items.length; i += columns) chunks.push(items.slice(i, i + columns));
 
   return chunks.map((chunk, ri) => (
-    <Row key={`ig-${ri}`} layout={layout} backgroundColor={palette.white} padding="6px 32px">
+    <Row key={`ig-${ri}`} layout={layout} backgroundColor={palette.canvas} padding="0px">
       {chunk.map((p, ci) => (
-        <Column key={`ig-${ri}-${ci}`} padding="0px 6px">
+        <Column key={`ig-${ri}-${ci}`} backgroundColor={palette.white} padding="6px 6px">
           <Image src={{ url: p.src }} alt={p.alt ?? p.title ?? ""} />
           {p.title ? (
             <Heading headingType="h3" color={palette.textPrimary} fontSize="13px" fontWeight={600}>

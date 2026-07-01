@@ -27,8 +27,8 @@ export function MemberAnniversaryUnlayer({
   ];
 
   const intro = (
-    <Row key="intro" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="24px 32px 8px">
-      <Column>
+    <Row key="intro" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="24px 32px 8px">
         <Paragraph color={palette.textSecondary} fontSize="16px" lineHeight="160%">
           It's been {years} years since you joined {course.name} — and we're grateful for every round.
           To say thank you, here's an anniversary gift to enjoy on your next visit.
@@ -38,16 +38,16 @@ export function MemberAnniversaryUnlayer({
   );
 
   const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px 32px">
-      <Column>
+    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="0px 32px">
         <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
       </Column>
     </Row>
   );
 
   const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="20px 32px">
-      <Column>
+    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.muted} padding="20px 32px">
         <Paragraph
           textAlign="center"
           color={palette.textTertiary}

@@ -35,8 +35,8 @@ export function Barcode({ code, label, instructions }: BarcodeProps) {
       : "") +
     `</div>`;
   return (
-    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="16px 32px 0px">
-      <Column>
+    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="16px 32px 0px">
         <Paragraph html={html} />
       </Column>
     </Row>

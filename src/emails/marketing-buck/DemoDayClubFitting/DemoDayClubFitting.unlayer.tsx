@@ -28,8 +28,8 @@ export function DemoDayClubFittingUnlayer({
   bookingUrl = "https://www.sagamoregolf.com/demo-day",
 }: DemoDayClubFittingUnlayerProps = {}) {
   const intro = (
-    <Row key="intro" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="24px 32px 8px">
-      <Column>
+    <Row key="intro" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="24px 32px 8px">
         <Paragraph color={palette.textSecondary} fontSize="16px" lineHeight="160%">
           Hi {firstName}, the reps are coming to the range. Try the newest clubs, get fit by the pros,
           and find exactly what your game's been missing — all in one afternoon.
@@ -39,16 +39,16 @@ export function DemoDayClubFittingUnlayer({
   );
 
   const titleistImage = (
-    <Row key="ti-img" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="16px 32px 0px">
-      <Column>
+    <Row key="ti-img" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="16px 32px 0px">
         <Image src={{ url: titleist.lineup }} alt="Titleist GT drivers, T-Series irons, and Scotty Cameron putters" />
       </Column>
     </Row>
   );
 
   const titleistCaption = (
-    <Row key="ti-cap" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="14px 32px">
-      <Column>
+    <Row key="ti-cap" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.muted} padding="14px 32px">
         <Paragraph
           color={palette.textSecondary}
           fontSize="14px"
@@ -59,16 +59,16 @@ export function DemoDayClubFittingUnlayer({
   );
 
   const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px 32px">
-      <Column>
+    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="0px 32px">
         <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
       </Column>
     </Row>
   );
 
   const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="20px 32px">
-      <Column>
+    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.muted} padding="20px 32px">
         <Paragraph
           textAlign="center"
           color={palette.textTertiary}

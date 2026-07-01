@@ -29,8 +29,8 @@ export function GolfShopInsiderUnlayer({
   discountCode = "SHOP10",
 }: GolfShopInsiderUnlayerProps = {}) {
   const intro = (
-    <Row key="intro" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="24px 32px 8px">
-      <Column>
+    <Row key="intro" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="24px 32px 8px">
         <Paragraph color={palette.textSecondary} fontSize="16px" lineHeight="160%">
           Hi {firstName}, the latest gear is in the shop now — apparel for him and her, fresh balls,
           and a little tech to sharpen your game. Quantities are limited.
@@ -40,8 +40,8 @@ export function GolfShopInsiderUnlayer({
   );
 
   const promo = (
-    <Row key="promo" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="16px 32px 0px">
-      <Column>
+    <Row key="promo" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="16px 32px 0px">
         <Paragraph
           html={
             `<div style="border:1px solid ${palette.border};background:${palette.muted};border-radius:12px;padding:20px;text-align:center;">` +
@@ -56,16 +56,16 @@ export function GolfShopInsiderUnlayer({
   );
 
   const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px 32px">
-      <Column>
+    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="0px 32px">
         <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
       </Column>
     </Row>
   );
 
   const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="20px 32px">
-      <Column>
+    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.muted} padding="20px 32px">
         <Paragraph
           textAlign="center"
           color={palette.textTertiary}
