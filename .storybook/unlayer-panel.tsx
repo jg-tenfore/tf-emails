@@ -28,7 +28,9 @@ function CopyButton({ text }: { text: string }) {
           await navigator.clipboard.writeText(text);
           setCopied(true);
           setTimeout(() => setCopied(false), 1200);
-        } catch {}
+        } catch {
+          /* clipboard unavailable — leave the button state unchanged */
+        }
       }}
       style={{
         position: "absolute", top: 8, right: 8, zIndex: 2,

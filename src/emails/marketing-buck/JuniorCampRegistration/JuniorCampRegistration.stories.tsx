@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { JuniorCampRegistration } from "./JuniorCampRegistration";
+import { JuniorCampRegistrationUnlayer } from "./JuniorCampRegistration.unlayer";
+import unlayerSource from "./JuniorCampRegistration.unlayer.tsx?raw";
+import { unlayerHandoffSafe } from "@/unlayer/render";
 
 const meta = {
   title: "Marketing Buck/Junior Camp Registration",
@@ -18,4 +21,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /** Junior summer camp registration with a sibling discount. */
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    unlayer: unlayerHandoffSafe(() => JuniorCampRegistrationUnlayer(), unlayerSource),
+  },
+};

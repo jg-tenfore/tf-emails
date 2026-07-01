@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SeniorLeagueRegistration } from "./SeniorLeagueRegistration";
+import { SeniorLeagueRegistrationUnlayer } from "./SeniorLeagueRegistration.unlayer";
+import unlayerSource from "./SeniorLeagueRegistration.unlayer.tsx?raw";
+import { unlayerHandoffSafe } from "@/unlayer/render";
 
 const meta = {
   title: "Marketing Buck/Senior League Registration",
@@ -18,4 +21,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /** 55+ weekly league sign-up with early-bird member pricing. */
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    unlayer: unlayerHandoffSafe(() => SeniorLeagueRegistrationUnlayer(), unlayerSource),
+  },
+};
