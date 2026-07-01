@@ -31,7 +31,7 @@ export function ProductGrid({ items, columns = 3 }: { items: ProductCard[]; colu
   for (let i = 0; i < items.length; i += columns) chunks.push(items.slice(i, i + columns));
 
   return chunks.map((chunk, ri) => (
-    <Row key={`pg-${ri}`} layout={layout} backgroundColor={palette.white} padding="8px 24px">
+    <Row key={`pg-${ri}`} layout={layout} backgroundColor={palette.canvas} padding="8px 24px">
       {chunk.map((p, ci) => (
         <Column key={`pg-${ri}-${ci}`} backgroundColor={palette.white} border={cardBorder} padding="0px 0px 12px">
           {RawHtml({

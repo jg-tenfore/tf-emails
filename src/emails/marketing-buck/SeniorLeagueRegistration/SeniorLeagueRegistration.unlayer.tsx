@@ -30,8 +30,8 @@ export function SeniorLeagueRegistrationUnlayer({
   registerUrl = "https://www.sagamoregolf.com/senior-league",
 }: SeniorLeagueRegistrationUnlayerProps = {}) {
   const intro = (
-    <Row key="intro" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="24px 32px 8px">
-      <Column>
+    <Row key="intro" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="24px 32px 8px">
         <Paragraph color={palette.textSecondary} fontSize="16px" lineHeight="160%">
           Hi {firstName}, our 55+ Senior League is back, and it's the easiest way to keep golf in your
           week — good company, friendly games, and a tee time that's always yours.
@@ -41,16 +41,16 @@ export function SeniorLeagueRegistrationUnlayer({
   );
 
   const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px 32px">
-      <Column>
+    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="0px 32px">
         <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
       </Column>
     </Row>
   );
 
   const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="20px 32px">
-      <Column>
+    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.muted} padding="20px 32px">
         <Paragraph
           textAlign="center"
           color={palette.textTertiary}

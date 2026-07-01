@@ -39,8 +39,8 @@ export function Hero({ imageUrl, imageAlt = "", eyebrow, headline }: HeroProps) 
       : "";
 
   return [
-    <Row key="hero" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px">
-      <Column padding="0px">{RawHtml({ html: `${img}${band}` })}</Column>
+    <Row key="hero" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="0px">{RawHtml({ html: `${img}${band}` })}</Column>
     </Row>,
   ];
 }

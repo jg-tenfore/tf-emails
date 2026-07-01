@@ -39,8 +39,8 @@ export function DetailCard({ rows }: DetailCardProps) {
     .join("");
   const table = `<table role="presentation" width="100%" style="border-collapse:collapse;border:1px solid ${palette.border};border-radius:12px;"><tbody>${trs}</tbody></table>`;
   return (
-    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="16px 32px 0px">
-      <Column>
+    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="16px 32px 0px">
         <Paragraph html={table} />
       </Column>
     </Row>

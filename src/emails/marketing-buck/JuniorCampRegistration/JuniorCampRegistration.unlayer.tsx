@@ -30,8 +30,8 @@ export function JuniorCampRegistrationUnlayer({
   registerUrl = "https://www.sagamoregolf.com/junior-camp",
 }: JuniorCampRegistrationUnlayerProps = {}) {
   const intro = (
-    <Row key="intro" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="24px 32px 8px">
-      <Column>
+    <Row key="intro" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="24px 32px 8px">
         <Paragraph color={palette.textSecondary} fontSize="16px" lineHeight="160%">
           Hi {parentName}, registration for Junior Summer Camp is open. Five mornings of fundamentals,
           fun, and real improvement — spots are limited and fill quickly.
@@ -41,16 +41,16 @@ export function JuniorCampRegistrationUnlayer({
   );
 
   const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px 32px">
-      <Column>
+    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="0px 32px">
         <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
       </Column>
     </Row>
   );
 
   const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.muted} padding="20px 32px">
-      <Column>
+    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.muted} padding="20px 32px">
         <Paragraph
           textAlign="center"
           color={palette.textTertiary}

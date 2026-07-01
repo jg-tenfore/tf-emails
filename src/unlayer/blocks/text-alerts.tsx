@@ -19,8 +19,8 @@ export function TextAlerts({
 }: TextAlertsProps) {
   const html = `${prompt} <a href="${href}" style="color:${palette.brandDark};font-weight:600;text-decoration:underline;">${label}</a>`;
   return (
-    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="0px 32px 8px">
-      <Column>
+    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="0px 32px 8px">
         <Paragraph textAlign="center" color={palette.textTertiary} fontSize="14px" html={html} />
       </Column>
     </Row>

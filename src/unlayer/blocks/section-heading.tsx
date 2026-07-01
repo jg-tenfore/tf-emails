@@ -15,8 +15,8 @@ export interface SectionHeadingProps {
  */
 export function SectionHeading({ title, description }: SectionHeadingProps) {
   return (
-    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.white} padding="24px 32px 0px">
-      <Column padding="0px">
+    <Row layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+      <Column backgroundColor={palette.white} padding="24px 32px 0px">
         {RawHtml({
           html:
             `<div style="font-size:18px;font-weight:600;color:${palette.textPrimary};">${title}</div>` +
