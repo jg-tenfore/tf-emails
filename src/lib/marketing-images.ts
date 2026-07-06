@@ -67,6 +67,10 @@ export const marketingHeroes = {
   },
 } satisfies Record<string, MarketingHero>;
 
+/** Flattened "Shop by Brand" logo grid — one grayscale PNG (supplied component).
+ *  Shared by the React BrandStrip and its Unlayer port so both render identically. */
+export const brandStripImage = `${BASE}/brand-strip-070626.png`;
+
 /** Titleist partner assets for the Demo Day fitting feature. */
 export const titleistLogo = `${BASE}/titleist-logo.svg`;
 export const titleistLineup = `${BASE}/titleist-lineup.webp`;
