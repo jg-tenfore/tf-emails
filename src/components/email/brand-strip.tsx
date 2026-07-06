@@ -1,20 +1,19 @@
 import { cx } from "@/utils/cx";
-import { brandLogos as defaultLogos, type BrandLogo } from "@/lib/store-catalog";
+import { brandStripImage } from "@/lib/marketing-images";
 
 interface BrandStripProps {
-  /** Logos to show. Defaults to the curated set of recognizable golf brands. */
-  logos?: BrandLogo[];
   /** Small uppercase label above the logos. */
   label?: string;
   className?: string;
 }
 
 /**
- * "Shop by Brand" strip — a centered row of recognizable brand logos used in
- * merchandise and welcome emails to add credibility and visual interest.
+ * "Shop by Brand" strip — a centered grid of recognizable brand logos used in
+ * merchandise and welcome emails to add credibility and visual interest. Rendered
+ * as a single supplied graphic (brand-strip-070626.png) so it matches the Unlayer
+ * port exactly.
  */
 export const BrandStrip = ({
-  logos = defaultLogos,
   label = "Shop your favorite brands",
   className,
 }: BrandStripProps) => (
@@ -24,20 +23,10 @@ export const BrandStrip = ({
         {label}
       </p>
     ) : null}
-    <div
-      className={cx(
-        "flex flex-wrap items-center justify-center gap-x-7 gap-y-5",
-        label && "mt-5",
-      )}
-    >
-      {logos.map((b) => (
-        <img
-          key={b.name}
-          src={b.src}
-          alt={b.name}
-          className="h-6 w-auto object-contain opacity-75"
-        />
-      ))}
-    </div>
+    <img
+      src={brandStripImage}
+      alt="Brands we carry"
+      className={cx("mx-auto h-auto w-full max-w-[536px]", label && "mt-5")}
+    />
   </div>
 );
