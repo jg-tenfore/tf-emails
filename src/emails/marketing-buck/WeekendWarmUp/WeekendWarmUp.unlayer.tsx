@@ -1,4 +1,4 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, TextAlerts, Footer, Callout } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
@@ -36,27 +36,6 @@ export function WeekendWarmUpUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`See you on the first tee. Questions? Just reply or call the pro shop at <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span>.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.golferSwing.src, imageAlt: heroes.golferSwing.alt, eyebrow: "This weekend", headline: "Your weekend tee time awaits" }),
@@ -65,8 +44,6 @@ export function WeekendWarmUpUnlayer({
     Callout({ tone: "success", eyebrow: "Weekend perk", body: "Book any Saturday or Sunday round this weekend and receive a complimentary range bucket at check-in." }),
     Cta({ href: bookingUrl, label: "Book Tee Time" }),
     TextAlerts({ href: course.textAlertsUrl, prompt: "Want first dibs on weekend tee times?", label: "Sign up" }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're a golfer at Sagamore Spring Golf Club." }),
   ];
 

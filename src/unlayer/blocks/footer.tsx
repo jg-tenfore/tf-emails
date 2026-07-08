@@ -1,69 +1,63 @@
-import { Row, Column, Paragraph, Button, Social, Menu, ColumnLayouts } from "@unlayer/react-elements";
+import { Row, Column, Paragraph, Social, Menu, ColumnLayouts } from "@unlayer/react-elements";
 import { palette } from "@/unlayer/theme";
-import { brand, course } from "@/unlayer/content";
+import { brand } from "@/unlayer/content";
 
 export interface FooterProps {
   /** Per-email context line, e.g. "You're receiving this because you joined …". */
   reason?: string;
   unsubscribeUrl?: string;
+  /** "View in browser" link target. */
+  viewInBrowserUrl?: string;
 }
 
-/**
- * Brand footer — Unlayer port of <JarretteFooter>. Club identity, the TenFore
- * platform block, contact buttons, social icons, and legal lines.
- * Source: src/components/email/jarrette-footer.tsx
- */
-/** 1px border for the white footer buttons. */
-const contactBtnBorder = {
-  borderTopColor: palette.border, borderTopStyle: "solid", borderTopWidth: "1px" as const,
-  borderRightColor: palette.border, borderRightStyle: "solid", borderRightWidth: "1px" as const,
-  borderBottomColor: palette.border, borderBottomStyle: "solid", borderBottomWidth: "1px" as const,
-  borderLeftColor: palette.border, borderLeftStyle: "solid", borderLeftWidth: "1px" as const,
+/** Generic template placeholders — a club drops in its own details. */
+const PLACEHOLDER = {
+  name: "Your Golf Course",
+  address: "123 Fairway Drive, Anytown, ST 00000",
+  phone: "(555) 555-0123",
 };
 
-export function Footer({ reason, unsubscribeUrl = "#" }: FooterProps) {
+/** The club's social channels, in display order (FB · IG · X). */
+const SOCIAL_ORDER = ["Facebook", "Instagram", "Twitter"];
+
+/**
+ * Club-only footer — Unlayer port of <JarretteFooter>. A "reply or call" support
+ * line, the course identity (name · address · phone), social channels, and the
+ * view-in-browser / unsubscribe utility links. No TenFore platform branding.
+ * Rows sit on the canvas with muted (#fafafa) Columns so the footer stays a
+ * contained 600px card. Source: src/components/email/jarrette-footer.tsx
+ */
+export function Footer({ reason, unsubscribeUrl = "#", viewInBrowserUrl = "#" }: FooterProps) {
+  const socials = SOCIAL_ORDER.map((n) => brand.social.find((s) => s.network === n)).filter(
+    (s): s is (typeof brand.social)[number] => Boolean(s),
+  );
+
   return [
-    <Row key="identity" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+    <Row key="footer-main" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
       <Column backgroundColor={palette.muted} padding="28px 32px 4px">
         <Paragraph
           textAlign="center"
           html={
-            `<div style="font-size:14px;font-weight:600;color:${palette.textPrimary};">${course.name}</div>` +
-            `<div style="margin-top:2px;font-size:14px;color:${palette.textTertiary};">${course.address}</div>` +
-            `<div style="width:48px;height:1px;background:${palette.border};margin:14px auto;"></div>` +
-            `<div style="font-size:14px;font-weight:500;color:${palette.textSecondary};">Powered by ${brand.name}.</div>` +
-            `<div style="margin:8px auto 0;max-width:420px;font-size:14px;line-height:1.5;color:${palette.textTertiary};">${brand.tagline}</div>` +
-            `<div style="margin-top:8px;font-size:14px;color:${palette.textTertiary};">${brand.addressLine1} · ${brand.addressLine2}</div>` +
-            `<div style="margin-top:2px;"><a href="${brand.url}" style="font-size:14px;color:${palette.brandDark};font-weight:500;text-decoration:none;">${brand.domain}</a></div>`
+            `<div style="font-size:14px;color:${palette.textTertiary};">Questions? Just reply to this email or call the pro shop at <span style="color:${palette.textSecondary};font-weight:600;">${PLACEHOLDER.phone}</span>.</div>` +
+            `<div style="width:100%;max-width:320px;height:1px;background:${palette.border};margin:22px auto;"></div>` +
+            `<div style="font-size:16px;font-weight:600;color:${palette.textPrimary};">${PLACEHOLDER.name}</div>` +
+            `<div style="margin-top:4px;font-size:14px;color:${palette.textTertiary};">${PLACEHOLDER.address} &bull; ${PLACEHOLDER.phone}</div>`
           }
         />
       </Column>
     </Row>,
 
-    <Row key="contact" layout={ColumnLayouts.TwoEqual} backgroundColor={palette.canvas} padding="0px 0px">
-      <Column backgroundColor={palette.muted} padding="12px 6px 8px 64px">
-        <Button href={brand.salesUrl} backgroundColor={palette.white} color={palette.brandDark} border={contactBtnBorder} fontSize="14px" fontWeight={600} borderRadius="8px" textAlign="center" width="100%" padding="10px 16px">
-          Sales Inquiry
-        </Button>
-      </Column>
-      <Column backgroundColor={palette.muted} padding="12px 64px 8px 6px">
-        <Button href={brand.supportUrl} backgroundColor={palette.white} color={palette.textSecondary} border={contactBtnBorder} fontSize="14px" fontWeight={600} borderRadius="8px" textAlign="center" width="100%" padding="10px 16px">
-          Customer Support
-        </Button>
-      </Column>
-    </Row>,
-
-    <Row key="social" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+    <Row key="footer-social" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
       <Column backgroundColor={palette.muted} padding="12px 32px 4px">
         <Social
           align="center"
           iconType="rounded"
-          icons={brand.social.map((s) => ({ name: s.network, url: s.href }))}
+          icons={socials.map((s) => ({ name: s.network, url: s.href }))}
         />
       </Column>
     </Row>,
 
-    <Row key="legal" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
+    <Row key="footer-legal" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
       <Column backgroundColor={palette.muted} padding="8px 32px 28px">
         {reason ? (
           <Paragraph textAlign="center" color={palette.textQuaternary} fontSize="12px">
@@ -75,14 +69,10 @@ export function Footer({ reason, unsubscribeUrl = "#" }: FooterProps) {
           linkColor={palette.textQuaternary}
           fontSize="12px"
           items={[
-            { text: "Terms of Service", href: brand.termsUrl },
-            { text: "Privacy", href: brand.privacyUrl },
+            { text: "View in browser", href: viewInBrowserUrl },
             { text: "Unsubscribe", href: unsubscribeUrl },
           ]}
         />
-        <Paragraph textAlign="center" color={palette.textQuaternary} fontSize="12px">
-          {`© 2026 ${brand.legalName}. All rights reserved.`}
-        </Paragraph>
       </Column>
     </Row>,
   ];

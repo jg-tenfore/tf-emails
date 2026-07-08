@@ -1,8 +1,8 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, Cta, Footer, Callout, SectionHeading, ProductGrid, BrandStrip } from "@/unlayer/blocks";
 import type { ProductCard } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
-import { heroes, course, products, brandLogos, mergeTags } from "@/unlayer/content";
+import { heroes, products, brandLogos, mergeTags } from "@/unlayer/content";
 
 export interface GolfShopInsiderUnlayerProps {
   firstName?: string;
@@ -55,27 +55,6 @@ export function GolfShopInsiderUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Stop by the pro shop or call <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span> to check availability.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.proShop.src, imageAlt: heroes.proShop.alt, eyebrow: "Golf shop insider", headline: "New gear just landed" }),
@@ -86,8 +65,6 @@ export function GolfShopInsiderUnlayer({
     promo,
     Cta({ href: shopUrl, label: "Shop New Arrivals" }),
     ...BrandStrip({ label: "Shop your favorite brands", logos: brandLogos }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're a golfer at Sagamore Spring Golf Club." }),
   ];
 

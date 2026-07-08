@@ -2,6 +2,8 @@ export { EmailShell } from "./email-shell";
 export { EmailHeader } from "./email-header";
 export { JarretteHeader } from "./jarrette-header";
 export { JarretteFooter } from "./jarrette-footer";
+export { BuckHeader } from "./buck-header";
+export { BuckFooter } from "./buck-footer";
 export { ProductGrid } from "./product-grid";
 export type { ProductGridItem } from "./product-grid";
 export { BrandStrip } from "./brand-strip";

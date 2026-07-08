@@ -1,4 +1,4 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, TextAlerts, Footer, Callout, SectionHeading, Barcode } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
@@ -41,27 +41,6 @@ export function Front9AerationUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Questions about the schedule? Call the pro shop at <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span> — we're happy to help you plan your round.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.clubhouseAeration.src, imageAlt: heroes.clubhouseAeration.alt, eyebrow: "Course update", headline: "We're aerating the front 9" }),
@@ -73,8 +52,6 @@ export function Front9AerationUnlayer({
     Barcode({ code: discountCode, label: `Aeration week · ${discount}`, instructions: "Show this at the pro shop or starter. Valid this week only — one round per golfer." }),
     Cta({ href: bookingUrl, label: "Book a Discounted Round" }),
     TextAlerts({ href: course.textAlertsUrl, prompt: "Want updates on course conditions and open times?", label: "Sign up" }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this course update because you're a golfer at Sagamore Spring Golf Club." }),
   ];
 

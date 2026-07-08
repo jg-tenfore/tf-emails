@@ -2,13 +2,12 @@ import { ArrowRight, Calendar, Star01, Users01 } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   SectionHeading,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -48,7 +47,7 @@ export const DiningClubhouseHighlights = ({
 }: DiningClubhouseHighlightsProps) => {
   return (
     <EmailShell preheader="Chef's specials, weekend brunch, and live music at the 19th hole.">
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.clubhouseDining.src}
@@ -101,17 +100,7 @@ export const DiningClubhouseHighlights = ({
         </div>
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Planning a group? Call{" "}
-          <span className="font-medium text-secondary">{course.phone}</span> and
-          we'll set the table.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're a guest at Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this because you're a guest at Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

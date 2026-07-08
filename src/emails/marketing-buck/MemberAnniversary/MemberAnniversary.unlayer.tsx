@@ -1,4 +1,4 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, TextAlerts, Footer, Callout } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
@@ -37,27 +37,6 @@ export function MemberAnniversaryUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Here's to many more. Questions? Call the pro shop at <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span>.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.courseHero.src, imageAlt: heroes.courseHero.alt, eyebrow: "Member anniversary", headline: `${years} years strong, ${firstName}` }),
@@ -66,8 +45,6 @@ export function MemberAnniversaryUnlayer({
     Callout({ tone: "success", eyebrow: "Anniversary gift", emoji: "🎖️", body: `Your ${credit} clubhouse credit is ready. Book your next round and we'll have it waiting at check-in.` }),
     Cta({ href: bookingUrl, label: "Book Your Round" }),
     TextAlerts({ href: course.textAlertsUrl, prompt: "Want first dibs on open tee times?", label: "Sign up" }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're a valued member of Sagamore Spring Golf Club." }),
   ];
 

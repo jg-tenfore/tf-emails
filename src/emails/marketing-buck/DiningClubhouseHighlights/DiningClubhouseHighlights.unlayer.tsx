@@ -1,8 +1,8 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, Footer, Callout, SectionHeading, ImageGrid } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
-import { heroes, course, diningDishes, mergeTags } from "@/unlayer/content";
+import { heroes, diningDishes, mergeTags } from "@/unlayer/content";
 
 export interface DiningClubhouseHighlightsUnlayerProps {
   firstName?: string;
@@ -34,27 +34,6 @@ export function DiningClubhouseHighlightsUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Planning a group? Call <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span> and we'll set the table.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.clubhouseDining.src, imageAlt: heroes.clubhouseDining.alt, eyebrow: "At the grill", headline: "Great food after a great round" }),
@@ -64,8 +43,6 @@ export function DiningClubhouseHighlightsUnlayer({
     Cta({ href: reserveUrl, label: "Make a Reservation" }),
     SectionHeading({ title: "On the menu", description: "A taste of what's coming off the grill." }),
     ...ImageGrid({ items: diningDishes, columns: 2 }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're a guest at Sagamore Spring Golf Club." }),
   ];
 

@@ -1,8 +1,8 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, Footer, Callout, SectionHeading, DetailCard } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
-import { heroes, course, mergeTags } from "@/unlayer/content";
+import { heroes, mergeTags } from "@/unlayer/content";
 
 export interface ScrambleCharityRegistrationUnlayerProps {
   firstName?: string;
@@ -42,27 +42,6 @@ export function ScrambleCharityRegistrationUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Interested in sponsoring a hole? Call the pro shop at <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span>.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.charityScramble.src, imageAlt: heroes.charityScramble.alt }),
@@ -76,8 +55,6 @@ export function ScrambleCharityRegistrationUnlayer({
     ] }),
     Callout({ tone: "success", eyebrow: "Early-bird offer", emoji: "🏆", body: "Register your foursome before July 1 and receive two mulligans per player plus a tee gift for every golfer." }),
     Cta({ href: registerUrl, label: "Register Your Foursome" }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're part of the Sagamore Spring Golf Club community." }),
   ];
 
