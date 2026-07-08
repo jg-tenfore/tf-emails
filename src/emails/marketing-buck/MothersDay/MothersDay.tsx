@@ -2,13 +2,12 @@ import { ArrowRight, Flag01, Heart, Star01 } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import { course, golfer } from "@/lib/scenario";
@@ -47,7 +46,7 @@ export const MothersDay = ({
 }: MothersDayProps) => {
   return (
     <EmailShell preheader="Treat Mom this Mother's Day — brunch on the patio and she plays free.">
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.clubhouseDining.src}
@@ -79,17 +78,7 @@ export const MothersDay = ({
         </div>
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Reserving for a big group? Call the clubhouse at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span> and
-          we'll take care of the details.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're a guest at Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this because you're a guest at Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

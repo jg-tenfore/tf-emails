@@ -2,13 +2,12 @@ import { ArrowRight, Star01, Trophy01, Users01 } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   ProductGrid,
   type ProductGridItem,
   SectionHeading,
@@ -59,7 +58,7 @@ export const InstructionGameImprovement = ({
 }: InstructionGameImprovementProps) => {
   return (
     <EmailShell preheader="Take strokes off your game — book a lesson and bring a friend free.">
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.lessonInstruction.src}
@@ -96,17 +95,7 @@ export const InstructionGameImprovement = ({
         <ProductGrid className="mt-4" items={gear} />
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Not sure where to start? Call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span> and
-          we'll match you with the right pro.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

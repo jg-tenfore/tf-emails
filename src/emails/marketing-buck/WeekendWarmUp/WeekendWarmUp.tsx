@@ -2,9 +2,8 @@ import { ArrowRight, Calendar, Flag01, Sun } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
-  Divider,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   EmailHero,
   EmailSection,
   EmailShell,
@@ -48,7 +47,7 @@ export const WeekendWarmUp = ({
 }: WeekendWarmUpProps) => {
   return (
     <EmailShell preheader="Prime weekend tee times are filling fast — grab yours and warm up on us.">
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.golferSwing.src}
@@ -86,16 +85,7 @@ export const WeekendWarmUp = ({
         />
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          See you on the first tee. Questions? Just reply or call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span>.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

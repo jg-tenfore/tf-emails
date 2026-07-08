@@ -4,16 +4,15 @@ import {
   CTAButton,
   DetailCard,
   DetailRow,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   SectionHeading,
 } from "@/components/email";
-import { course, golfer } from "@/lib/scenario";
+import { golfer } from "@/lib/scenario";
 import { marketingHeroes } from "@/lib/marketing-images";
 
 export interface ScrambleCharityRegistrationProps {
@@ -57,7 +56,7 @@ export const ScrambleCharityRegistration = ({
 }: ScrambleCharityRegistrationProps) => {
   return (
     <EmailShell preheader={`Register your foursome for the Charity Scramble benefiting ${cause}.`}>
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.charityScramble.src}
@@ -93,16 +92,7 @@ export const ScrambleCharityRegistration = ({
         </div>
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Interested in sponsoring a hole? Call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span>.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're part of the Sagamore Spring Golf Club community." />
+      <BuckFooter reason="You're receiving this because you're part of the Sagamore Spring Golf Club community." />
     </EmailShell>
   );
 };

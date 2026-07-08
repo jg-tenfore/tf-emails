@@ -5,13 +5,12 @@ import {
   CTAButton,
   DetailCard,
   DetailRow,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   SectionHeading,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -55,7 +54,7 @@ export const DemoDayClubFitting = ({
 }: DemoDayClubFittingProps) => {
   return (
     <EmailShell preheader={`Demo Day is ${date} — free fittings and the latest gear from every brand.`}>
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.demoDay.src}
@@ -116,17 +115,7 @@ export const DemoDayClubFitting = ({
         <BrandStrip label="Brands on hand at the event" />
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Walk-ins welcome, but slots go fast. Call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span> to
-          reserve a time.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

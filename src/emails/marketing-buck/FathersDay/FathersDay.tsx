@@ -3,13 +3,12 @@ import {
   Callout,
   CTAButton,
   CTAStack,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import { course, golfer } from "@/lib/scenario";
@@ -50,7 +49,7 @@ export const FathersDay = ({
 }: FathersDayProps) => {
   return (
     <EmailShell preheader="Give Dad the perfect Father's Day — a round, a gift card, and a bonus on us.">
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.fathersDay.src}
@@ -86,16 +85,7 @@ export const FathersDay = ({
         </div>
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Need help planning the day? Call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span>.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

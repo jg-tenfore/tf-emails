@@ -1,4 +1,4 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, Footer, Callout } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
@@ -36,27 +36,6 @@ export function FathersDayUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Need help planning the day? Call the pro shop at <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span>.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.fathersDay.src, imageAlt: heroes.fathersDay.alt, eyebrow: "Father's Day", headline: "Give Dad his perfect day" }),
@@ -65,8 +44,6 @@ export function FathersDayUnlayer({
     Callout({ tone: "success", eyebrow: "Father's Day bonus", emoji: "🎁", body: "Buy a $100 gift card this week and we'll add a $20 bonus — perfect for Dad, or a little something for yourself." }),
     Cta({ href: bookingUrl, label: "Book a Round with Dad", padding: "16px 32px 8px" }),
     Cta({ href: giftCardUrl, label: "Shop Gift Cards", variant: "secondary", padding: "0px 32px 16px" }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're a golfer at Sagamore Spring Golf Club." }),
   ];
 

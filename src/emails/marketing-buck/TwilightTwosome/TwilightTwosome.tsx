@@ -2,9 +2,8 @@ import { ArrowRight, Clock, SunSetting03, Tag01 } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
-  Divider,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   EmailHero,
   EmailSection,
   EmailShell,
@@ -55,7 +54,7 @@ export const TwilightTwosome = ({
 }: TwilightTwosomeProps) => {
   return (
     <EmailShell preheader="Discounted twilight golf plus a food & beverage voucher — unwind after work.">
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.twilightTwosome.src}
@@ -123,17 +122,7 @@ export const TwilightTwosome = ({
         </div>
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Twilight times are limited each evening. Call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span> with
-          any questions.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

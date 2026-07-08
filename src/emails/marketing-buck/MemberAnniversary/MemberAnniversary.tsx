@@ -2,13 +2,12 @@ import { ArrowRight, Award05, CoinsStacked01, Heart } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   TextAlertsOptIn,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -47,7 +46,7 @@ export const MemberAnniversary = ({
 
   return (
     <EmailShell preheader={`Happy ${years}-year anniversary — here's a little something to celebrate.`}>
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={courseImage}
@@ -85,16 +84,7 @@ export const MemberAnniversary = ({
         />
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Here's to many more. Questions? Call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span>.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're a valued member of Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this because you're a valued member of Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

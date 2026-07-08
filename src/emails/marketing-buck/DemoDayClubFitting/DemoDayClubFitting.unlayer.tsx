@@ -1,8 +1,8 @@
-import { Email, Row, Column, Image, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Image, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, Footer, Callout, SectionHeading, DetailCard, BrandStrip } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
-import { heroes, course, titleist, mergeTags } from "@/unlayer/content";
+import { heroes, titleist, mergeTags } from "@/unlayer/content";
 
 export interface DemoDayClubFittingUnlayerProps {
   firstName?: string;
@@ -58,27 +58,6 @@ export function DemoDayClubFittingUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Walk-ins welcome, but slots go fast. Call the pro shop at <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span> to reserve a time.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.demoDay.src, imageAlt: heroes.demoDay.alt, eyebrow: "Demo day & club fitting", headline: "Find clubs built for your swing" }),
@@ -96,8 +75,6 @@ export function DemoDayClubFittingUnlayer({
     titleistImage,
     titleistCaption,
     ...BrandStrip({ label: "Brands on hand at the event" }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're a golfer at Sagamore Spring Golf Club." }),
   ];
 

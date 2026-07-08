@@ -4,13 +4,12 @@ import {
   CTAButton,
   DetailCard,
   DetailRow,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   SectionHeading,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -56,7 +55,7 @@ export const SeniorLeagueRegistration = ({
 }: SeniorLeagueRegistrationProps) => {
   return (
     <EmailShell preheader={`The Senior League tees off ${startDate} — reserve your spot at member pricing.`}>
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.seniorLeague.src}
@@ -95,16 +94,7 @@ export const SeniorLeagueRegistration = ({
         </div>
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Want to bring a friend? Call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span>.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

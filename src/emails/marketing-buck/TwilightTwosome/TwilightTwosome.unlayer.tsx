@@ -1,4 +1,4 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, TextAlerts, Footer, Callout, SectionHeading, ImageGrid } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
@@ -38,27 +38,6 @@ export function TwilightTwosomeUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Twilight times are limited each evening. Call the pro shop at <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span> with any questions.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.twilightTwosome.src, imageAlt: heroes.twilightTwosome.alt, eyebrow: "Twilight golf", headline: "Nine and dine at twilight" }),
@@ -70,8 +49,6 @@ export function TwilightTwosomeUnlayer({
     SectionHeading({ title: "Tonight at the grill", description: "What our kitchen is cooking up for your nine-and-dine." }),
     ...ImageGrid({ items: twilightMenu, columns: 2 }),
     Cta({ href: reservationUrl, label: "Make a Reservation", variant: "secondary" }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're a golfer at Sagamore Spring Golf Club." }),
   ];
 

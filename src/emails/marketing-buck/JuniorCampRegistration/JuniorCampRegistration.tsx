@@ -4,13 +4,12 @@ import {
   CTAButton,
   DetailCard,
   DetailRow,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   SectionHeading,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -56,7 +55,7 @@ export const JuniorCampRegistration = ({
 }: JuniorCampRegistrationProps) => {
   return (
     <EmailShell preheader={`Junior Summer Camp is open — register by ${dates} and a sibling joins half price.`}>
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.juniorCamp.src}
@@ -95,17 +94,7 @@ export const JuniorCampRegistration = ({
         </div>
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Questions about camp? Call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span> —
-          we're happy to help.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're part of the Sagamore Spring Golf Club community." />
+      <BuckFooter reason="You're receiving this because you're part of the Sagamore Spring Golf Club community." />
     </EmailShell>
   );
 };

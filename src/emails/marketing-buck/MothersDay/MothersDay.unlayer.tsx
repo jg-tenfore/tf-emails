@@ -1,8 +1,8 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, Footer, Callout } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
-import { heroes, course, mergeTags } from "@/unlayer/content";
+import { heroes, mergeTags } from "@/unlayer/content";
 
 export interface MothersDayUnlayerProps {
   firstName?: string;
@@ -34,27 +34,6 @@ export function MothersDayUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Reserving for a big group? Call the clubhouse at <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span> and we'll take care of the details.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.clubhouseDining.src, imageAlt: heroes.clubhouseDining.alt, eyebrow: "Mother's Day", headline: "Treat Mom to her day" }),
@@ -62,8 +41,6 @@ export function MothersDayUnlayer({
     ...FeatureList({ items: highlights }),
     Callout({ tone: "success", eyebrow: "This weekend only", emoji: "❤️", body: "Reserve a Mother's Day brunch table and Mom's green fee is free with any family tee time. Our gift to her." }),
     Cta({ href: reservationUrl, label: "Make a Reservation" }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're a guest at Sagamore Spring Golf Club." }),
   ];
 

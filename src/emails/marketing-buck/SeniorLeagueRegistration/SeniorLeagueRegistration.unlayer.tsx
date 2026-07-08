@@ -1,8 +1,8 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, Footer, Callout, SectionHeading, DetailCard } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
-import { heroes, course, mergeTags } from "@/unlayer/content";
+import { heroes, mergeTags } from "@/unlayer/content";
 
 export interface SeniorLeagueRegistrationUnlayerProps {
   firstName?: string;
@@ -40,27 +40,6 @@ export function SeniorLeagueRegistrationUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Want to bring a friend? Call the pro shop at <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span>.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.seniorLeague.src, imageAlt: heroes.seniorLeague.alt, eyebrow: "Senior league", headline: "Make it a standing tee time" }),
@@ -74,8 +53,6 @@ export function SeniorLeagueRegistrationUnlayer({
     ] }),
     Callout({ tone: "success", eyebrow: "Early sign-up", emoji: "🏆", body: "Register before opening day and lock in member pricing for the full season. Spots are limited to keep pace comfortable." }),
     Cta({ href: registerUrl, label: "Join the League" }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're a golfer at Sagamore Spring Golf Club." }),
   ];
 

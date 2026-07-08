@@ -3,12 +3,11 @@ import {
   BrandStrip,
   Callout,
   CTAButton,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   ProductGrid,
   type ProductGridItem,
   SectionHeading,
@@ -49,7 +48,7 @@ export const GolfShopInsider = ({
 }: GolfShopInsiderProps) => {
   return (
     <EmailShell preheader={`New gear just landed — ${discount} off select items this week with code ${discountCode}.`}>
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.proShop.src}
@@ -102,17 +101,7 @@ export const GolfShopInsider = ({
         <BrandStrip />
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Stop by the pro shop or call{" "}
-          <span className="font-medium text-secondary">{course.phone}</span> to
-          check availability.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this because you're a golfer at Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };

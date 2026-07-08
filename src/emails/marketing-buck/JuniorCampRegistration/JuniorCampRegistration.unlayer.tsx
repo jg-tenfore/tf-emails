@@ -1,8 +1,8 @@
-import { Email, Row, Column, Paragraph, Divider, ColumnLayouts } from "@unlayer/react-elements";
+import { Email, Row, Column, Paragraph, ColumnLayouts } from "@unlayer/react-elements";
 import { Header, Hero, FeatureList, Cta, Footer, Callout, SectionHeading, DetailCard } from "@/unlayer/blocks";
 import type { FeatureItem } from "@/unlayer/blocks";
 import { palette, contentWidth } from "@/unlayer/theme";
-import { heroes, course, mergeTags } from "@/unlayer/content";
+import { heroes, mergeTags } from "@/unlayer/content";
 
 export interface JuniorCampRegistrationUnlayerProps {
   parentName?: string;
@@ -40,27 +40,6 @@ export function JuniorCampRegistrationUnlayer({
     </Row>
   );
 
-  const divider = (
-    <Row key="divider" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.white} padding="0px 32px">
-        <Divider borderTopWidth="1px" borderTopColor={palette.border} borderTopStyle="solid" width="100%" />
-      </Column>
-    </Row>
-  );
-
-  const support = (
-    <Row key="support" layout={ColumnLayouts.OneColumn} backgroundColor={palette.canvas} padding="0px">
-      <Column backgroundColor={palette.muted} padding="20px 32px">
-        <Paragraph
-          textAlign="center"
-          color={palette.textTertiary}
-          fontSize="14px"
-          html={`Questions about camp? Call the pro shop at <span style="color:${palette.textSecondary};font-weight:500;">${course.phone}</span> — we're happy to help.`}
-        />
-      </Column>
-    </Row>
-  );
-
   const rows = [
     ...Header(),
     ...Hero({ imageUrl: heroes.juniorCamp.src, imageAlt: heroes.juniorCamp.alt, eyebrow: "Junior camp", headline: "Summer golf for the kids" }),
@@ -74,8 +53,6 @@ export function JuniorCampRegistrationUnlayer({
     ] }),
     Callout({ tone: "success", eyebrow: "Family savings", emoji: "⭐", body: "Register one camper and a sibling joins at half price. Early registration is encouraged — sessions sell out every year." }),
     Cta({ href: registerUrl, label: "Register Your Junior" }),
-    divider,
-    support,
     ...Footer({ reason: "You're receiving this because you're part of the Sagamore Spring Golf Club community." }),
   ];
 

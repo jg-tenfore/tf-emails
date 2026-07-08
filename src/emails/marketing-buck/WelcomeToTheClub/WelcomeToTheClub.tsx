@@ -2,13 +2,12 @@ import { ArrowRight, Calendar, ShoppingBag03, Trophy01, Users01 } from "@untitle
 import {
   BrandStrip,
   CTAButton,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   TextAlertsOptIn,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
@@ -58,7 +57,7 @@ export const WelcomeToTheClub = ({
     audience === "men" ? marketingHeroes.golfersMen : marketingHeroes.golfersSunset;
   return (
     <EmailShell preheader={`Welcome to ${course.name} — here's everything waiting for you.`}>
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={hero.src}
@@ -95,16 +94,7 @@ export const WelcomeToTheClub = ({
         <BrandStrip label="Brands you'll find in our shop" />
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Questions? Just reply to this email or call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span>.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason={`You're receiving this because you joined ${course.name}.`} />
+      <BuckFooter reason={`You're receiving this because you joined ${course.name}.`} />
     </EmailShell>
   );
 };

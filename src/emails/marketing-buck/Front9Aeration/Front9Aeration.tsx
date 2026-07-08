@@ -2,13 +2,12 @@ import { ArrowRight, CheckCircle, Droplets01, Tag01, Zap } from "@untitledui/ico
 import {
   Callout,
   CTAButton,
-  Divider,
   EmailHero,
   EmailSection,
   EmailShell,
   FeatureList,
-  JarretteFooter,
-  JarretteHeader,
+  BuckFooter,
+  BuckHeader,
   RedemptionCode,
   SectionHeading,
   TextAlertsOptIn,
@@ -60,7 +59,7 @@ export const Front9Aeration = ({
 }: Front9AerationProps) => {
   return (
     <EmailShell preheader={`We're aerating the front 9 ${dates} — and rounds are ${discount} while we do.`}>
-      <JarretteHeader />
+      <BuckHeader />
 
       <EmailHero
         imageUrl={marketingHeroes.aeration.src}
@@ -114,17 +113,7 @@ export const Front9Aeration = ({
         />
       </EmailSection>
 
-      <Divider />
-
-      <EmailSection align="center" tone="muted">
-        <p className="text-sm text-tertiary">
-          Questions about the schedule? Call the pro shop at{" "}
-          <span className="font-medium text-secondary">{course.phone}</span> —
-          we're happy to help you plan your round.
-        </p>
-      </EmailSection>
-
-      <JarretteFooter reason="You're receiving this course update because you're a golfer at Sagamore Spring Golf Club." />
+      <BuckFooter reason="You're receiving this course update because you're a golfer at Sagamore Spring Golf Club." />
     </EmailShell>
   );
 };
