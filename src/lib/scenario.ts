@@ -153,6 +153,8 @@ export interface PurchaseOrder {
   location: string;
   items: PurchaseLineItem[];
   subtotal: string;
+  /** Gratuity added at checkout — charged to the card with the total. */
+  tip?: string;
   tax: string;
   total: string;
   cardLast4: string;
@@ -195,8 +197,9 @@ export const proShopOrder: PurchaseOrder = {
     },
   ],
   subtotal: "$238.97",
+  tip: "$10.00",
   tax: "$14.94",
-  total: "$253.91",
+  total: "$263.91",
   cardLast4: "4242",
 };
 
@@ -238,8 +241,9 @@ export const snackBarOrder: PurchaseOrder = {
     },
   ],
   subtotal: "$18.50",
+  tip: "$3.50",
   tax: "$1.16",
-  total: "$19.66",
+  total: "$23.16",
   cardLast4: "4242",
 };
 
