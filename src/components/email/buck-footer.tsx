@@ -1,5 +1,5 @@
-import { brand } from "@/lib/brand";
-import { socialIcons, type SocialIconName } from "./social-icons";
+import { brand, type SocialIconName } from "@/lib/brand";
+import { socialIcons } from "./social-icons";
 
 interface BuckFooterProps {
   /** Optional per-email context line, e.g. "You're receiving this because…". */
