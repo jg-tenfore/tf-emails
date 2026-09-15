@@ -55,6 +55,7 @@ export const PurchaseReceipt = ({
         <PaymentSummary
           rows={[
             { label: "Subtotal", value: order.subtotal },
+            ...(order.tip ? [{ label: "Tip", value: order.tip }] : []),
             { label: "Tax", value: order.tax },
           ]}
           total={{ value: order.total }}
