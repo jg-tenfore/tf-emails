@@ -1,14 +1,13 @@
-import { ArrowRight, Calendar, Clock, Users01 } from "@untitledui/icons";
+import { Calendar, Clock, Users01 } from "@untitledui/icons";
 import {
-  CTAButton,
-  CTAStack,
+  BookingActions,
   DetailCard,
   DetailRow,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
   type FieldChange,
+  JarretteFooter,
+  JarretteHeader,
   SectionHeading,
   StatusHero,
   WhatChanged,
@@ -75,20 +74,7 @@ export const ClinicModification = ({
       </EmailSection>
 
       <EmailSection padding="md">
-        <CTAStack>
-          <CTAButton href={manageUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
-            Manage registration
-          </CTAButton>
-          <CTAButton
-            href={`${manageUrl}/calendar`}
-            color="secondary"
-            size="lg"
-            fullWidth
-            iconLeading={Calendar}
-          >
-            Update calendar
-          </CTAButton>
-        </CTAStack>
+        <BookingActions manageUrl={manageUrl} manageLabel="Manage registration" calendarLabel="Update calendar" />
       </EmailSection>
 
       <JarretteFooter reason="You're receiving this because your Sagamore Spring Golf Club clinic registration was changed." />

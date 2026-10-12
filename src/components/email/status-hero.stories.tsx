@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Clock } from "@untitledui/icons";
+import { ArrowRight, Clock } from "@untitledui/icons";
+import { CTAButton } from "./cta-button";
 import { StatusHero } from "./status-hero";
 
 const meta = {
@@ -36,5 +37,26 @@ export const CenteredWithIcon: Story = {
     icon: Clock,
     title: "See you tomorrow, Justin",
     subtitle: "Your round is coming up. Here are the details one more time.",
+  },
+};
+
+/** Text-led intro inside an `EmailSection` (replaces the old EmailIntro), with a CTA. */
+export const IntroWithCTA: Story = {
+  decorators: [
+    (Story) => (
+      <div className="px-8 py-10">
+        <Story />
+      </div>
+    ),
+  ],
+  args: {
+    inset: false,
+    title: "You're booked, Justin.",
+    subtitle: "Your tee time is confirmed. Here are the details for your upcoming round.",
+    children: (
+      <CTAButton href="#" size="lg" iconTrailing={ArrowRight}>
+        View reservation
+      </CTAButton>
+    ),
   },
 };

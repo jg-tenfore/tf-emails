@@ -1,15 +1,14 @@
-import { ArrowRight, Calendar, Trophy01, Users01 } from "@untitledui/icons";
+import { Calendar, Trophy01, Users01 } from "@untitledui/icons";
 import {
-  CTAButton,
-  CTAStack,
+  BookingActions,
   DetailCard,
   DetailRow,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
   ItemizedList,
+  JarretteFooter,
+  JarretteHeader,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -102,20 +101,7 @@ export const EventConfirmation = ({
       </EmailSection>
 
       <EmailSection padding="md">
-        <CTAStack>
-          <CTAButton href={manageUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
-            Manage event
-          </CTAButton>
-          <CTAButton
-            href={`${manageUrl}/calendar`}
-            color="secondary"
-            size="lg"
-            fullWidth
-            iconLeading={Calendar}
-          >
-            Add to calendar
-          </CTAButton>
-        </CTAStack>
+        <BookingActions manageUrl={manageUrl} manageLabel="Manage event" />
       </EmailSection>
 
       <JarretteFooter reason="You're receiving this because you booked an event at Sagamore Spring Golf Club." />

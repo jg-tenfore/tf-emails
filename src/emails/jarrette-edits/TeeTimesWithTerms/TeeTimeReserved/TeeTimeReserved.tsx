@@ -1,0 +1,193 @@
+import { ArrowRight, CreditCard02 } from "@untitledui/icons";
+import { Badge } from "@/components/base/badges/badges";
+import {
+  Callout,
+  CTAButton,
+  CTAStack,
+  Divider,
+  EmailHero,
+  EmailSection,
+  EmailShell,
+  JarretteFooter,
+  JarretteHeader,
+  PaymentSummary,
+  PlayerRoster,
+  type RosterPlayer,
+  SectionHeading,
+  StatusHero,
+  TeeTimeDetails,
+  TermsAndConditions,
+} from "@/components/email";
+import { assets } from "@/lib/assets";
+import { course, courseImage, golfer } from "@/lib/scenario";
+import { standardTerms, type TeeTimeTerms } from "@/lib/tee-time-terms";
+
+export interface TeeTimeReservedProps {
+  firstName?: string;
+  date?: string;
+  time?: string;
+  holes?: number;
+  confirmation?: string;
+  roster?: RosterPlayer[];
+  total?: string;
+  paid?: string;
+  amountDue?: string;
+  payUrl?: string;
+  manageUrl?: string;
+  /** The course's booking terms, shown in full after payment. */
+  terms?: TeeTimeTerms;
+}
+
+const share = (
+  name: string,
+  status: string,
+  tone: RosterPlayer["statusTone"],
+  golferId: string,
+): RosterPlayer => ({
+  name,
+  golferId,
+  status,
+  statusTone: tone,
+  rateType: "Weekend 18 · with cart",
+  amount: "$62.00",
+});
+
+const defaultRoster: RosterPlayer[] = [
+  share(golfer.fullName, "Paid", "paid", "TF-100482"),
+  share("Marcus Webb", "Pending", "pending", "TF-238815"),
+  share("Cody Sanders", "Pending", "pending", "TF-194730"),
+  share("Weston Farnsworth", "Pending", "pending", "TF-205518"),
+];
+
+/**
+ * Tee time reserved with payment pending — the spot is held, but each golfer in
+ * the group still owes their share. Built in the standard Sagamore Tee Times
+ * style (StatusHero → details), matching the other emails here.
+ */
+export const TeeTimeReserved = ({
+  firstName = golfer.firstName,
+  date = "Saturday, May 9, 2026",
+  time = "8:40 AM",
+  holes = 18,
+  confirmation = "538117902",
+  roster = defaultRoster,
+  total = "$248.00",
+  paid = "$62.00",
+  amountDue = "$186.00",
+  payUrl = `https://www.sagamoregolf.com/reservations/${"538117902"}/pay`,
+  manageUrl = `https://www.sagamoregolf.com/reservations/${"538117902"}`,
+  terms = standardTerms,
+}: TeeTimeReservedProps) => {
+  const players = roster.length;
+  const pendingCount = roster.filter((p) => p.statusTone === "pending").length;
+
+  return (
+    <EmailShell
+      preheader={`Your tee time at ${course.name} is reserved for ${date} — payment pending.`}
+    >
+      <JarretteHeader />
+
+      <StatusHero
+        eyebrow="Tee time reserved"
+        title={`Your tee time is reserved, ${firstName}.`}
+        subtitle={`${date} · ${time}`}
+      />
+
+      <EmailHero
+        imageUrl={courseImage}
+        imageAlt={course.name}
+        logoUrl={assets.logo.src}
+        logoAlt={course.name}
+        eyebrow={`Confirmation #${confirmation}`}
+        headline={course.name}
+        details={[`Weekend · ${holes} holes`, course.address]}
+        mapUrl={course.mapUrl}
+      />
+
+      <EmailSection padding="md">
+        <Callout tone="warning" eyebrow="Payment pending">
+          Your spot is held. The tee time isn't fully paid until each golfer in
+          your group settles their share. As the booker, you're responsible for
+          the full reservation — including any player who doesn't pay or show.
+        </Callout>
+      </EmailSection>
+
+      <EmailSection padding="md">
+        <SectionHeading
+          title="Your group"
+          aside={
+            pendingCount > 0 ? (
+              <Badge type="pill-color" color="warning" size="md">
+                {pendingCount} pending
+              </Badge>
+            ) : (
+              <Badge type="pill-color" color="success" size="md">
+                All paid
+              </Badge>
+            )
+          }
+        />
+        <PlayerRoster className="mt-4" players={roster} />
+      </EmailSection>
+
+      <Divider />
+
+      <EmailSection padding="md">
+        <SectionHeading title="Tee time details" />
+        <TeeTimeDetails
+          className="mt-4"
+          date={date}
+          time={time}
+          players={players}
+          holes={holes}
+          confirmation={confirmation}
+        />
+      </EmailSection>
+
+      <Divider />
+
+      <EmailSection padding="md">
+        <SectionHeading title="Payment" />
+        <div className="mt-4">
+          <PaymentSummary
+            rows={[
+              { label: "Total", value: total },
+              { label: "Paid so far", value: `−${paid}`, muted: true },
+            ]}
+            total={{ label: "Amount due", value: amountDue }}
+            status="amount-due"
+            note={`${pendingCount} of ${players} players still need to pay their share.`}
+          />
+        </div>
+        <CTAStack className="mt-6">
+          <CTAButton href={payUrl} size="lg" fullWidth iconLeading={CreditCard02}>
+            Pay your share
+          </CTAButton>
+          <CTAButton
+            href={manageUrl}
+            color="secondary"
+            size="lg"
+            fullWidth
+            iconTrailing={ArrowRight}
+          >
+            Manage reservation
+          </CTAButton>
+        </CTAStack>
+      </EmailSection>
+
+      <Divider />
+
+      <EmailSection padding="md">
+        <TermsAndConditions
+          description="You agreed to these terms when you booked this tee time."
+          audience={terms.audience}
+          notices={terms.notices}
+          sections={terms.sections}
+          acknowledgment={terms.acknowledgment}
+        />
+      </EmailSection>
+
+      <JarretteFooter reason={`You're receiving this because you reserved a tee time at ${course.name}.`} />
+    </EmailShell>
+  );
+};

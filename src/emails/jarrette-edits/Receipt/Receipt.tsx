@@ -14,17 +14,19 @@ import {
   DetailCard,
   DetailRow,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailHero,
-  EmailIntro,
   EmailRating,
   EmailSection,
   EmailShell,
   IconBadge,
+  JarretteFooter,
+  JarretteHeader,
   PaymentMethod,
   PaymentSummary,
   SectionHeading,
+  StatusHero,
+  Subheading,
+  TextLink,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import { brand } from "@/lib/brand";
@@ -68,14 +70,15 @@ export const ReceiptEmail = ({
 
       {/* Intro + view receipt on the TenFore platform */}
       <EmailSection padding="lg" className="pb-2">
-        <EmailIntro
+        <StatusHero
+          inset={false}
           title={`Your tee time is confirmed, ${firstName}.`}
           subtitle="Thanks for booking with TenFore. Your receipt is below — and you can view it any time on the TenFore platform."
         >
           <CTAButton href={receiptUrl} size="lg" iconTrailing={ArrowRight}>
             View receipt
           </CTAButton>
-        </EmailIntro>
+        </StatusHero>
       </EmailSection>
 
       {/* Hero: course photo with dark-green caption (course, address, IDs) */}
@@ -155,21 +158,15 @@ export const ReceiptEmail = ({
         <div className="flex items-start gap-4 rounded-xl border border-secondary bg-secondary px-5 py-5">
           <IconBadge icon={ShieldTick} />
           <div>
-            <p className="text-sm font-semibold text-primary">
-              The TenFore Worry-Free Guarantee
-            </p>
+            <Subheading>The TenFore Worry-Free Guarantee</Subheading>
             <p className="mt-1 text-sm text-tertiary">
               Every booking is backed by free cancellation up to 24 hours before
               your tee time, plus automatic account credit if the course closes
               for weather. Book with total peace of mind.
             </p>
-            <a
-              href={`${brand.url}/guarantee`}
-              className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand-secondary"
-            >
+            <TextLink variant="arrow" href={`${brand.url}/guarantee`} className="mt-2">
               Learn more
-              <ArrowRight className="size-4" />
-            </a>
+            </TextLink>
           </div>
         </div>
       </EmailSection>
@@ -179,9 +176,7 @@ export const ReceiptEmail = ({
         <SectionHeading title="Important information" />
         <div className="mt-4 flex flex-col gap-4 text-sm text-tertiary">
           <div>
-            <p className="font-semibold text-primary">
-              Cancellations and changes
-            </p>
+            <Subheading>Cancellations and changes</Subheading>
             <p className="mt-1">
               Free cancellation up to 24 hours before your tee time. Inside 24
               hours the Twilight Deal rate is non-refundable. Eligible refunds
@@ -189,7 +184,7 @@ export const ReceiptEmail = ({
             </p>
           </div>
           <div>
-            <p className="font-semibold text-primary">Course policies</p>
+            <Subheading>Course policies</Subheading>
             <p className="mt-1">
               Collared shirt required; no denim or tank tops. Arrive 15 minutes
               early to check in at the pro shop. Groups of fewer than four
@@ -213,12 +208,9 @@ export const ReceiptEmail = ({
               </p>
               <p className="mt-0.5 text-sm text-tertiary">
                 Contact {course.name} at{" "}
-                <a
-                  href={`tel:${course.phone.replace(/[^\d]/g, "")}`}
-                  className="font-medium text-brand-secondary"
-                >
+                <TextLink href={`tel:${course.phone.replace(/[^\d]/g, "")}`}>
                   {course.phone}
-                </a>
+                </TextLink>
                 .
               </p>
             </div>
@@ -231,12 +223,7 @@ export const ReceiptEmail = ({
               </p>
               <p className="mt-0.5 text-sm text-tertiary">
                 Reach TenFore support 24/7 —{" "}
-                <a
-                  href={brand.supportUrl}
-                  className="font-medium text-brand-secondary"
-                >
-                  get support
-                </a>
+                <TextLink href={brand.supportUrl}>get support</TextLink>
                 .
               </p>
             </div>

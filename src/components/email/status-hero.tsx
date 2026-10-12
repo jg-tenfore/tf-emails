@@ -14,13 +14,18 @@ interface StatusHeroProps {
   /** Accent for the eyebrow + icon: "brand" (green) or "danger" (red, e.g. cancellations). */
   tone?: "brand" | "danger";
   align?: "left" | "center";
+  /** Apply the hero's own padding. Turn off when it sits inside an `EmailSection`. */
+  inset?: boolean;
+  /** Optional CTA(s) shown below the copy. */
+  children?: ReactNode;
   className?: string;
 }
 
 /**
- * Imageless hero: eyebrow + title + subtitle + optional icon and ID stamps.
+ * Imageless hero: eyebrow + title + subtitle + optional icon, ID stamps and CTAs.
  * Used by every email that doesn't lead with a photo (the contained
- * `EmailHero` is for image-led booking emails).
+ * `EmailHero` is for image-led booking emails). With `inset={false}` it's the
+ * text-led intro that sits inside an `EmailSection` (formerly `EmailIntro`).
  */
 export const StatusHero = ({
   eyebrow,
@@ -30,13 +35,15 @@ export const StatusHero = ({
   stamps,
   tone = "brand",
   align = "left",
+  inset = true,
+  children,
   className,
 }: StatusHeroProps) => {
   const center = align === "center";
   const danger = tone === "danger";
   return (
     <div
-      className={cx("px-8 pt-8 pb-2", center && "text-center", className)}
+      className={cx(inset && "px-8 pt-8 pb-2", center && "text-center", className)}
     >
       {Icon ? (
         <span
@@ -85,6 +92,7 @@ export const StatusHero = ({
           ))}
         </div>
       ) : null}
+      {children ? <div className="mt-5">{children}</div> : null}
     </div>
   );
 };

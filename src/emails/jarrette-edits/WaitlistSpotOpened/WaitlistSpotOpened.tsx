@@ -4,11 +4,12 @@ import {
   CTAButton,
   DetailCard,
   DetailRow,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
+  JarretteFooter,
+  JarretteHeader,
   StatusHero,
+  TextLink,
 } from "@/components/email";
 import {
   golfer,
@@ -73,12 +74,7 @@ export const WaitlistSpotOpened = ({
           Book now
         </CTAButton>
         <p className="mt-4 text-center text-sm text-tertiary">
-          <a
-            href={optOutHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Not interested? Leave the waitlist
-          </a>
+          <TextLink href={optOutHref}>Not interested? Leave the waitlist</TextLink>
         </p>
       </EmailSection>
 

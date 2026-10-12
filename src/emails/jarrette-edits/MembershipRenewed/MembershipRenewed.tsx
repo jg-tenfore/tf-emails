@@ -2,13 +2,12 @@ import { ArrowRight, CheckCircle } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
-  DetailCard,
-  DetailRow,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
+  JarretteFooter,
+  JarretteHeader,
+  MembershipSummary,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -63,22 +62,12 @@ export const MembershipRenewed = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Your membership" />
-        <DetailCard className="mt-4">
-          <DetailRow label="Member" value={firstName ?? golfer.fullName} />
-          <DetailRow label="Membership" value={membership.tier} />
-          <DetailRow label="Term" value={membership.term} />
-          <DetailRow label="Active through" value={membership.activeThrough} />
-          {isAuto ? <DetailRow label="Auto-renew" value="On" /> : null}
-        </DetailCard>
-
-        <h3 className="mt-6 text-sm font-semibold text-primary">
-          What's included
-        </h3>
-        <ul className="mt-2 list-disc pl-5 text-sm text-tertiary [&>li]:mt-1">
-          {membership.benefits.map((benefit) => (
-            <li key={benefit}>{benefit}</li>
-          ))}
-        </ul>
+        <MembershipSummary
+          className="mt-4"
+          member={firstName ?? golfer.fullName}
+          membership={membership}
+          showAutoRenew={isAuto}
+        />
       </EmailSection>
 
       <Divider />

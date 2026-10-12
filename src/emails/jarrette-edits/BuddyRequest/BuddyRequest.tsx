@@ -5,12 +5,13 @@ import {
   CTAStack,
   DetailCard,
   DetailRow,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
+  JarretteFooter,
+  JarretteHeader,
   SectionHeading,
   StatusHero,
+  TextLink,
 } from "@/components/email";
 import { buddy, golfer } from "@/lib/scenario";
 
@@ -90,12 +91,7 @@ export const BuddyRequest = ({
           </CTAButton>
         </CTAStack>
         <p className="mt-4 text-center text-sm text-tertiary">
-          <a
-            href={ignoreHref}
-            className="font-medium text-brand-secondary underline underline-offset-2"
-          >
-            Not interested? Ignore this email
-          </a>
+          <TextLink href={ignoreHref}>Not interested? Ignore this email</TextLink>
         </p>
       </EmailSection>
 

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { cx } from "@/utils/cx";
+import { DetailCard } from "./detail-card";
 
 interface PanelProps {
   children: ReactNode;
@@ -7,12 +7,11 @@ interface PanelProps {
 }
 
 /**
- * Plain bordered container with light padding — the standard wrapper around an
- * `ItemizedList` (and other simple content). For DetailRow lists with hairline
- * separators, use `DetailCard` instead.
+ * @deprecated Use `<DetailCard divided={false}>` — the two were merged. Kept so
+ * the older email sets keep rendering.
  */
 export const Panel = ({ children, className }: PanelProps) => (
-  <div className={cx("rounded-xl border border-secondary px-5 py-2", className)}>
+  <DetailCard divided={false} className={className}>
     {children}
-  </div>
+  </DetailCard>
 );

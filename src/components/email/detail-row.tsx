@@ -7,6 +7,8 @@ interface DetailRowProps {
   icon?: FC<{ className?: string }>;
   /** Emphasise the value (e.g. totals). */
   emphasis?: boolean;
+  /** Set the value in monospace — for confirmation numbers and other IDs. */
+  mono?: boolean;
   className?: string;
 }
 
@@ -16,6 +18,7 @@ export const DetailRow = ({
   value,
   icon: Icon,
   emphasis = false,
+  mono = false,
   className,
 }: DetailRowProps) => {
   return (
@@ -35,6 +38,7 @@ export const DetailRow = ({
           emphasis
             ? "text-md font-semibold text-primary"
             : "font-medium text-secondary",
+          mono && "font-mono",
         )}
       >
         {value}

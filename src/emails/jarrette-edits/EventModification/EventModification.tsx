@@ -1,20 +1,17 @@
 import {
-  ArrowRight,
   Calendar,
-  RefreshCw02,
   Trophy01,
   Users01,
 } from "@untitledui/icons";
 import {
-  CTAButton,
-  CTAStack,
+  BookingActions,
   DetailCard,
   DetailRow,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
   type FieldChange,
+  JarretteFooter,
+  JarretteHeader,
   SectionHeading,
   StatusHero,
   WhatChanged,
@@ -73,20 +70,7 @@ export const EventModification = ({
       </EmailSection>
 
       <EmailSection padding="md">
-        <CTAStack>
-          <CTAButton href={manageUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
-            Manage event
-          </CTAButton>
-          <CTAButton
-            href={`${manageUrl}/calendar`}
-            color="secondary"
-            size="lg"
-            fullWidth
-            iconLeading={RefreshCw02}
-          >
-            Update calendar
-          </CTAButton>
-        </CTAStack>
+        <BookingActions manageUrl={manageUrl} manageLabel="Manage event" calendarLabel="Update calendar" />
       </EmailSection>
 
       <JarretteFooter reason="You're receiving this because your Sagamore Spring Golf Club event was updated." />
