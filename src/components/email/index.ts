@@ -64,3 +64,4 @@ export { Panel } from "./panel";
 export { EmailIntro } from "./email-intro";
 export { SummaryStrip } from "./summary-strip";
 export type { SummaryStripItem } from "./summary-strip";
+export { TermsAndConditions } from "./terms-and-conditions";
