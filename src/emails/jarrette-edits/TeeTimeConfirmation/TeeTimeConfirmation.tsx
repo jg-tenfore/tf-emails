@@ -1,24 +1,23 @@
-import { ArrowRight, Calendar, Clock, Flag01, Users01 } from "@untitledui/icons";
+import { ArrowRight } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import {
+  BookingActions,
   Checklist,
   CTAButton,
-  CTAStack,
-  DetailCard,
-  DetailRow,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailHero,
-  EmailIntro,
   EmailSection,
   EmailShell,
+  JarretteFooter,
+  JarretteHeader,
   PaymentSummary,
   PolicyTag,
   RedemptionCode,
   type RedemptionVariant,
   SectionHeading,
+  StatusHero,
   SummaryStrip,
+  TeeTimeDetails,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import {
@@ -54,14 +53,15 @@ export const TeeTimeConfirmation = ({
 
       {/* Intro band */}
       <EmailSection padding="lg" className="pb-6">
-        <EmailIntro
+        <StatusHero
+          inset={false}
           title={`You're booked, ${firstName}.`}
           subtitle="Your tee time is confirmed. Here are the details for your upcoming round — we'll see you on the first tee."
         >
           <CTAButton href={manageUrl} size="lg" iconTrailing={ArrowRight}>
             View reservation
           </CTAButton>
-        </EmailIntro>
+        </StatusHero>
       </EmailSection>
 
       {/* Captioned hero */}
@@ -88,39 +88,17 @@ export const TeeTimeConfirmation = ({
           }
         />
 
-        <DetailCard className="mt-4">
-          <DetailRow icon={Calendar} label="Date" value={teeTime.date} />
-          <DetailRow icon={Clock} label="Tee time" value={teeTime.time} />
-          <DetailRow
-            icon={Users01}
-            label="Players"
-            value={`${teeTime.players} ${teeTime.players === 1 ? "golfer" : "golfers"}`}
-          />
-          <DetailRow
-            icon={Flag01}
-            label="Holes"
-            value={`${teeTime.holes} holes`}
-          />
-          <DetailRow
-            label="Rate type"
-            value={
-              <Badge type="pill-color" color="purple" size="sm">
-                {teeTime.rateType}
-              </Badge>
-            }
-          />
-          <DetailRow
-            label="Confirmation"
-            value={<span className="font-mono">#{teeTime.confirmation}</span>}
-          />
-          <DetailRow
-            label="Course confirmation"
-            value={
-              <span className="font-mono">#{teeTime.courseConfirmation}</span>
-            }
-          />
-          <DetailRow label="Group" value={teeTime.groupName} />
-        </DetailCard>
+        <TeeTimeDetails
+          className="mt-4"
+          date={teeTime.date}
+          time={teeTime.time}
+          players={teeTime.players}
+          holes={teeTime.holes}
+          rateType={teeTime.rateType}
+          confirmation={teeTime.confirmation}
+          courseConfirmation={teeTime.courseConfirmation}
+          groupName={teeTime.groupName}
+        />
 
         <PolicyTag block color="warning" className="mt-5">
           Free cancellation up to 24 hours before your tee time
@@ -221,26 +199,7 @@ export const TeeTimeConfirmation = ({
           credit valid for six months.
         </p>
 
-        <CTAStack className="mt-5">
-          <CTAButton
-            href={`${manageUrl}/calendar`}
-            color="secondary"
-            size="lg"
-            fullWidth
-            iconLeading={Calendar}
-          >
-            Add to calendar
-          </CTAButton>
-          <CTAButton
-            href={manageUrl}
-            color="secondary"
-            size="lg"
-            fullWidth
-            iconTrailing={ArrowRight}
-          >
-            Manage reservation
-          </CTAButton>
-        </CTAStack>
+        <BookingActions className="mt-5" manageUrl={manageUrl} />
       </EmailSection>
 
       <JarretteFooter reason="You're receiving this because you booked a tee time with Sagamore Spring Golf Club." />

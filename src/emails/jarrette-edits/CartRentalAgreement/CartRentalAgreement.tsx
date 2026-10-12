@@ -6,10 +6,10 @@ import {
   DetailCard,
   DetailRow,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
+  JarretteFooter,
+  JarretteHeader,
   NumberedSteps,
   SectionHeading,
   SignatureBlock,
@@ -71,13 +71,15 @@ export const CartRentalAgreement = ({
           <DetailRow label="Reserved for" value={fullName} />
           <DetailRow
             label="Player ID"
-            value={<span className="font-mono">#{playerId}</span>}
+            value={`#${playerId}`}
+            mono
           />
           <DetailRow icon={Calendar} label="Date" value={date} />
           <DetailRow icon={Clock} label="Return by" value={returnBy} />
           <DetailRow
             label="Confirmation"
-            value={<span className="font-mono">#{confirmationId}</span>}
+            value={`#${confirmationId}`}
+            mono
           />
         </DetailCard>
 

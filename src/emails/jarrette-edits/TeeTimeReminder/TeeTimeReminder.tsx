@@ -15,13 +15,13 @@ import {
   CTAButton,
   CTAStack,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
   ForecastCard,
-  IconBadge,
+  JarretteFooter,
+  JarretteHeader,
   PolicyTag,
+  StatusHero,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import { golfer, teeTime } from "@/lib/scenario";
@@ -68,15 +68,14 @@ export const TeeTimeReminder = ({
     <EmailShell preheader={`Reminder: your tee time is ${booking.time} ${booking.date}.`}>
       <JarretteHeader />
 
-      <EmailSection padding="lg" align="center">
-        <IconBadge icon={Clock} shape="circle" size="lg" className="mx-auto" />
-        <h1 className="mt-4 text-display-xs font-semibold text-primary">
-          See you tomorrow, {firstName}
-        </h1>
-        <p className="mt-2 text-md text-secondary">
-          Just a friendly reminder that your round is coming up. Here are the
-          details one more time.
-        </p>
+      <EmailSection padding="lg">
+        <StatusHero
+          inset={false}
+          align="center"
+          icon={Clock}
+          title={`See you tomorrow, ${firstName}`}
+          subtitle="Just a friendly reminder that your round is coming up. Here are the details one more time."
+        />
       </EmailSection>
 
       <EmailSection padding="sm">

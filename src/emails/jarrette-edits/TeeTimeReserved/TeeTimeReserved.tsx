@@ -1,22 +1,21 @@
-import { ArrowRight, Calendar, Clock, CreditCard02, Flag01, Users01 } from "@untitledui/icons";
+import { ArrowRight, CreditCard02 } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import {
   Callout,
   CTAButton,
   CTAStack,
-  DetailCard,
-  DetailRow,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailHero,
   EmailSection,
   EmailShell,
+  JarretteFooter,
+  JarretteHeader,
   PaymentSummary,
   PlayerRoster,
   type RosterPlayer,
   SectionHeading,
   StatusHero,
+  TeeTimeDetails,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import { course, courseImage, golfer } from "@/lib/scenario";
@@ -25,6 +24,7 @@ export interface TeeTimeReservedProps {
   firstName?: string;
   date?: string;
   time?: string;
+  holes?: number;
   confirmation?: string;
   roster?: RosterPlayer[];
   total?: string;
@@ -64,6 +64,7 @@ export const TeeTimeReserved = ({
   firstName = golfer.firstName,
   date = "Saturday, May 9, 2026",
   time = "8:40 AM",
+  holes = 18,
   confirmation = "538117902",
   roster = defaultRoster,
   total = "$248.00",
@@ -94,7 +95,7 @@ export const TeeTimeReserved = ({
         logoAlt={course.name}
         eyebrow={`Confirmation #${confirmation}`}
         headline={course.name}
-        details={["Weekend · 18 holes", course.address]}
+        details={[`Weekend · ${holes} holes`, course.address]}
         mapUrl={course.mapUrl}
       />
 
@@ -127,20 +128,14 @@ export const TeeTimeReserved = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Tee time details" />
-        <DetailCard className="mt-4">
-          <DetailRow icon={Calendar} label="Date" value={date} />
-          <DetailRow icon={Clock} label="Tee time" value={time} />
-          <DetailRow icon={Flag01} label="Holes" value="18 holes" />
-          <DetailRow
-            icon={Users01}
-            label="Players"
-            value={`${players} golfers`}
-          />
-          <DetailRow
-            label="Confirmation"
-            value={<span className="font-mono">#{confirmation}</span>}
-          />
-        </DetailCard>
+        <TeeTimeDetails
+          className="mt-4"
+          date={date}
+          time={time}
+          players={players}
+          holes={holes}
+          confirmation={confirmation}
+        />
       </EmailSection>
 
       <Divider />

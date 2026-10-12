@@ -1,12 +1,12 @@
 import { Download01, Receipt as ReceiptIcon } from "@untitledui/icons";
 import {
   CTAButton,
-  JarretteFooter,
-  JarretteHeader,
+  DetailCard,
   EmailSection,
   EmailShell,
   ItemizedList,
-  Panel,
+  JarretteFooter,
+  JarretteHeader,
   PaymentMethod,
   PaymentSummary,
   SectionHeading,
@@ -46,9 +46,9 @@ export const PurchaseReceipt = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Items" />
-        <Panel className="mt-4">
+        <DetailCard divided={false} className="mt-4">
           <ItemizedList items={order.items} />
-        </Panel>
+        </DetailCard>
       </EmailSection>
 
       <EmailSection padding="md">

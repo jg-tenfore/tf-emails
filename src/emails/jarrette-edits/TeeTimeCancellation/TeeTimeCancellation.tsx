@@ -1,25 +1,19 @@
 import {
-  Calendar,
-  Clock,
-  Flag01,
   RefreshCw02,
-  Users01,
   XCircle,
 } from "@untitledui/icons";
 import {
   Callout,
   CTAButton,
-  DetailCard,
-  DetailRow,
-  Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
-  PaymentSummary,
+  JarretteFooter,
+  JarretteHeader,
+  RefundSection,
   SectionHeading,
   StatusHero,
   SupportLine,
+  TeeTimeDetails,
 } from "@/components/email";
 import { golfer, teeTime as defaultTeeTime, type TeeTime } from "@/lib/scenario";
 
@@ -67,37 +61,16 @@ export const TeeTimeCancellation = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Cancelled reservation" />
-        <DetailCard className="mt-4">
-          <DetailRow icon={Calendar} label="Date" value={teeTime.date} />
-          <DetailRow icon={Clock} label="Tee time" value={teeTime.time} />
-          <DetailRow
-            icon={Users01}
-            label="Players"
-            value={`${teeTime.players} ${teeTime.players === 1 ? "golfer" : "golfers"}`}
-          />
-          <DetailRow
-            icon={Flag01}
-            label="Holes"
-            value={`${teeTime.holes} holes`}
-          />
-        </DetailCard>
+        <TeeTimeDetails
+          className="mt-4"
+          date={teeTime.date}
+          time={teeTime.time}
+          players={teeTime.players}
+          holes={teeTime.holes}
+        />
       </EmailSection>
 
-      {refund ? (
-        <>
-          <Divider />
-          <EmailSection padding="md">
-            <SectionHeading title="Refund" />
-            <div className="mt-4">
-              <PaymentSummary
-                total={{ label: "Refund", value: refund }}
-                status="refund"
-                note="Refunds take 2–3 business days to appear on your statement."
-              />
-            </div>
-          </EmailSection>
-        </>
-      ) : null}
+      {refund ? <RefundSection amount={refund} /> : null}
 
       <EmailSection padding="md">
         <CTAButton

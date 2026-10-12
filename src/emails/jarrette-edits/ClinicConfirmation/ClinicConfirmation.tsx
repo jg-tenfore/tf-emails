@@ -1,14 +1,13 @@
-import { ArrowRight, Calendar, Clock, Users01 } from "@untitledui/icons";
+import { Calendar, Clock, Users01 } from "@untitledui/icons";
 import {
-  CTAButton,
-  CTAStack,
+  BookingActions,
   DetailCard,
   DetailRow,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
+  JarretteFooter,
+  JarretteHeader,
   PaymentSummary,
   SectionHeading,
   StatusHero,
@@ -79,20 +78,7 @@ export const ClinicConfirmation = ({
       </EmailSection>
 
       <EmailSection padding="md">
-        <CTAStack>
-          <CTAButton href={manageUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
-            Manage registration
-          </CTAButton>
-          <CTAButton
-            href={`${manageUrl}/calendar`}
-            color="secondary"
-            size="lg"
-            fullWidth
-            iconLeading={Calendar}
-          >
-            Add to calendar
-          </CTAButton>
-        </CTAStack>
+        <BookingActions manageUrl={manageUrl} manageLabel="Manage registration" />
       </EmailSection>
 
       <JarretteFooter reason="You're receiving this because you registered for a clinic at Sagamore Spring Golf Club." />

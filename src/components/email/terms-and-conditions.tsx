@@ -1,12 +1,14 @@
 import type { ReactNode } from "react";
 import { ArrowRight, User01 } from "@untitledui/icons";
+import { Badge } from "@/components/base/badges/badges";
 import type { TermsNotice, TermsSection } from "@/lib/tee-time-terms";
 import { Callout } from "./callout";
 import { Checklist } from "./checklist";
 import { SectionHeading } from "./section-heading";
 
-interface TermsAndConditionsProps {
-  sections: TermsSection[];
+export interface TermsAndConditionsProps {
+  /** `draft` marks wording that still needs course review. */
+  sections: (TermsSection & { draft?: boolean })[];
   title?: ReactNode;
   description?: ReactNode;
   /** Header at the top of the card naming who the first-person terms are for. */
@@ -72,7 +74,14 @@ export const TermsAndConditions = ({
       <div className="px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
         {sections.map((s) => (
           <div key={s.title} className="py-4">
-            <h3 className="text-sm font-semibold text-primary">{s.title}</h3>
+            <h3 className="flex items-center gap-2 text-sm font-semibold text-primary">
+              {s.title}
+              {s.draft ? (
+                <Badge type="pill-color" color="warning" size="sm">
+                  Draft
+                </Badge>
+              ) : null}
+            </h3>
             <Checklist className="mt-2" items={s.items} />
           </div>
         ))}

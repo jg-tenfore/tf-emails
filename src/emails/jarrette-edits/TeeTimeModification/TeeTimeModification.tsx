@@ -1,24 +1,14 @@
 import {
-  ArrowRight,
-  Calendar,
-  Clock,
-  Flag01,
-  Users01,
-} from "@untitledui/icons";
-import {
-  CTAButton,
-  CTAStack,
-  DetailCard,
-  DetailRow,
-  Divider,
-  JarretteFooter,
-  JarretteHeader,
+  BookingActions,
   EmailSection,
   EmailShell,
   type FieldChange,
-  PaymentSummary,
+  JarretteFooter,
+  JarretteHeader,
+  RefundSection,
   SectionHeading,
   StatusHero,
+  TeeTimeDetails,
   WhatChanged,
 } from "@/components/email";
 import { golfer, teeTime as defaultTeeTime, type TeeTime } from "@/lib/scenario";
@@ -64,57 +54,23 @@ export const TeeTimeModification = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Updated reservation" />
-        <DetailCard className="mt-4">
-          <DetailRow icon={Calendar} label="Date" value={teeTime.date} />
-          <DetailRow icon={Clock} label="Tee time" value={teeTime.time} />
-          <DetailRow
-            icon={Users01}
-            label="Players"
-            value={`${teeTime.players} ${teeTime.players === 1 ? "golfer" : "golfers"}`}
-          />
-          <DetailRow
-            icon={Flag01}
-            label="Holes"
-            value={`${teeTime.holes} holes`}
-          />
-          <DetailRow
-            label="Confirmation"
-            value={<span className="font-mono">#{teeTime.confirmation}</span>}
-          />
-        </DetailCard>
+        <TeeTimeDetails
+          className="mt-4"
+          date={teeTime.date}
+          time={teeTime.time}
+          players={teeTime.players}
+          holes={teeTime.holes}
+          confirmation={teeTime.confirmation}
+        />
       </EmailSection>
 
-      {refund ? (
-        <>
-          <Divider />
-          <EmailSection padding="md">
-            <SectionHeading title="Refund" />
-            <div className="mt-4">
-              <PaymentSummary
-                total={{ label: "Refund", value: refund }}
-                status="refund"
-                note="Refunds take 2–3 business days to appear on your statement."
-              />
-            </div>
-          </EmailSection>
-        </>
-      ) : null}
+      {refund ? <RefundSection amount={refund} /> : null}
 
       <EmailSection padding="md">
-        <CTAStack>
-          <CTAButton href={manageUrl} size="lg" fullWidth iconTrailing={ArrowRight}>
-            Manage reservation
-          </CTAButton>
-          <CTAButton
-            href={`${manageUrl}/calendar`}
-            color="secondary"
-            size="lg"
-            fullWidth
-            iconLeading={Calendar}
-          >
-            Update calendar
-          </CTAButton>
-        </CTAStack>
+        <BookingActions
+          manageUrl={manageUrl}
+          calendarLabel="Update calendar"
+        />
       </EmailSection>
 
       <JarretteFooter reason="You're receiving this because your Sagamore Spring Golf Club tee time was changed." />

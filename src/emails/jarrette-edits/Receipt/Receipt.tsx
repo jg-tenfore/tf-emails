@@ -14,17 +14,17 @@ import {
   DetailCard,
   DetailRow,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailHero,
-  EmailIntro,
   EmailRating,
   EmailSection,
   EmailShell,
   IconBadge,
+  JarretteFooter,
+  JarretteHeader,
   PaymentMethod,
   PaymentSummary,
   SectionHeading,
+  StatusHero,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import { brand } from "@/lib/brand";
@@ -68,14 +68,15 @@ export const ReceiptEmail = ({
 
       {/* Intro + view receipt on the TenFore platform */}
       <EmailSection padding="lg" className="pb-2">
-        <EmailIntro
+        <StatusHero
+          inset={false}
           title={`Your tee time is confirmed, ${firstName}.`}
           subtitle="Thanks for booking with TenFore. Your receipt is below — and you can view it any time on the TenFore platform."
         >
           <CTAButton href={receiptUrl} size="lg" iconTrailing={ArrowRight}>
             View receipt
           </CTAButton>
-        </EmailIntro>
+        </StatusHero>
       </EmailSection>
 
       {/* Hero: course photo with dark-green caption (course, address, IDs) */}

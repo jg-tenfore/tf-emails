@@ -4,12 +4,11 @@ import {
   CTAButton,
   DetailCard,
   DetailRow,
-  Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
-  PaymentSummary,
+  JarretteFooter,
+  JarretteHeader,
+  RefundSection,
   SectionHeading,
   StatusHero,
   SupportLine,
@@ -70,21 +69,7 @@ export const ClinicCancellation = ({
         </DetailCard>
       </EmailSection>
 
-      {refund ? (
-        <>
-          <Divider />
-          <EmailSection padding="md">
-            <SectionHeading title="Refund" />
-            <div className="mt-4">
-              <PaymentSummary
-                total={{ label: "Refund", value: refund }}
-                status="refund"
-                note="Refunds take 2–3 business days to appear on your statement."
-              />
-            </div>
-          </EmailSection>
-        </>
-      ) : null}
+      {refund ? <RefundSection amount={refund} /> : null}
 
       <EmailSection padding="md">
         <CTAButton

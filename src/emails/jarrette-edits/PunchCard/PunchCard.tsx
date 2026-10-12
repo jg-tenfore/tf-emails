@@ -5,10 +5,10 @@ import {
   DetailCard,
   DetailRow,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
+  JarretteFooter,
+  JarretteHeader,
   NumberedSteps,
   PunchCard,
   RedemptionCode,
@@ -116,7 +116,8 @@ export const PunchCardEmail = ({
           <DetailRow label="Type" value={card.label} />
           <DetailRow
             label="Card number"
-            value={<span className="font-mono">#{card.cardNumber}</span>}
+            value={`#${card.cardNumber}`}
+            mono
           />
           <DetailRow label="Rate" value={`${card.pricePerRound} / round`} />
           <DetailRow icon={Calendar} label="Purchased" value={card.purchased} />

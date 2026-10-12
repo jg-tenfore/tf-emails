@@ -1,29 +1,24 @@
 import {
-  Calendar,
-  Clock,
-  Flag01,
   RefreshCw02,
-  Users01,
   XCircle,
 } from "@untitledui/icons";
 import {
   Callout,
+  CourseTerms,
   CTAButton,
-  DetailCard,
-  DetailRow,
   Divider,
-  JarretteFooter,
-  JarretteHeader,
   EmailSection,
   EmailShell,
-  PaymentSummary,
+  JarretteFooter,
+  JarretteHeader,
+  RefundSection,
   SectionHeading,
   StatusHero,
   SupportLine,
-  TermsAndConditions,
+  TeeTimeDetails,
 } from "@/components/email";
 import { golfer, teeTime as defaultTeeTime, type TeeTime } from "@/lib/scenario";
-import { pickSections, standardTerms, type TermsSection } from "@/lib/tee-time-terms";
+import { teeTimeEmailTerms, type TermId } from "@/lib/terms-catalog";
 
 export interface TeeTimeCancellationProps {
   firstName?: string;
@@ -34,7 +29,7 @@ export interface TeeTimeCancellationProps {
   /** mailto/support address for the "Need help?" link. */
   helpEmail?: string;
   /** The cancellation terms this cancel was processed under. */
-  terms?: TermsSection[];
+  terms?: TermId[];
 }
 
 export const TeeTimeCancellation = ({
@@ -43,7 +38,7 @@ export const TeeTimeCancellation = ({
   refund = "$221.52",
   rebookUrl = "https://www.sagamoregolf.com/teetimes",
   helpEmail = "proshop@sagamoregolf.com",
-  terms = pickSections(standardTerms, ["Cancellation policy"]),
+  terms = teeTimeEmailTerms.Cancellation,
 }: TeeTimeCancellationProps) => {
   const helpHref = `mailto:${helpEmail}?subject=${encodeURIComponent(
     `Cancellation question - Tee Time #${teeTime.confirmation}`,
@@ -72,46 +67,24 @@ export const TeeTimeCancellation = ({
 
       <EmailSection padding="md">
         <SectionHeading title="Cancelled reservation" />
-        <DetailCard className="mt-4">
-          <DetailRow icon={Calendar} label="Date" value={teeTime.date} />
-          <DetailRow icon={Clock} label="Tee time" value={teeTime.time} />
-          <DetailRow
-            icon={Users01}
-            label="Players"
-            value={`${teeTime.players} ${teeTime.players === 1 ? "golfer" : "golfers"}`}
-          />
-          <DetailRow
-            icon={Flag01}
-            label="Holes"
-            value={`${teeTime.holes} holes`}
-          />
-        </DetailCard>
+        <TeeTimeDetails
+          className="mt-4"
+          date={teeTime.date}
+          time={teeTime.time}
+          players={teeTime.players}
+          holes={teeTime.holes}
+        />
       </EmailSection>
 
-      {refund ? (
-        <>
-          <Divider />
-          <EmailSection padding="md">
-            <SectionHeading title="Refund" />
-            <div className="mt-4">
-              <PaymentSummary
-                total={{ label: "Refund", value: refund }}
-                status="refund"
-                note="Refunds take 2–3 business days to appear on your statement."
-              />
-            </div>
-          </EmailSection>
-        </>
-      ) : null}
+      {refund ? <RefundSection amount={refund} /> : null}
 
       <Divider />
 
       <EmailSection padding="md">
-        <TermsAndConditions
+        <CourseTerms
           title="Cancellation terms"
           description="This cancellation was processed under the terms you agreed to when you booked."
-          audience={standardTerms.audience}
-          sections={terms}
+          include={terms}
         />
       </EmailSection>
 

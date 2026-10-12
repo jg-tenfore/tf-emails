@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  courseNotesTerms,
-  pickSections,
-  shipSticksNotice,
-  standardTerms,
-} from "@/lib/tee-time-terms";
+import { courseNotesTerms, shipSticksNotice, standardTerms } from "@/lib/tee-time-terms";
+import { resolveTerms } from "@/lib/terms-catalog";
 import { TermsAndConditions } from "./terms-and-conditions";
 
 const meta = {
@@ -46,7 +42,7 @@ export const CourseNotes: Story = {
 export const Condensed: Story = {
   args: {
     audience: standardTerms.audience,
-    sections: pickSections(standardTerms, ["Cancellation policy", "Check-in requirement"]),
+    sections: resolveTerms(["cancellation", "check-in"]),
     moreLink: { href: "#", label: "View full terms & conditions" },
   },
 };
