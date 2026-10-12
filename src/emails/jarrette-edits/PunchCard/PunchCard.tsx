@@ -14,6 +14,7 @@ import {
   RedemptionCode,
   SectionHeading,
   StatusHero,
+  Subheading,
 } from "@/components/email";
 import { course, golfer, type PunchCardData, punchCard10 } from "@/lib/scenario";
 
@@ -91,9 +92,7 @@ export const PunchCardEmail = ({
 
             {fresh ? (
               <div className="mt-6">
-                <p className="text-sm font-semibold text-primary">
-                  How to use your punch card
-                </p>
+                <Subheading>How to use your punch card</Subheading>
                 <NumberedSteps
                   className="mt-3"
                   steps={[

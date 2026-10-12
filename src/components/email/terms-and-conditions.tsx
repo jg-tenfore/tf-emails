@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
-import { ArrowRight, User01 } from "@untitledui/icons";
+import { User01 } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import type { TermsNotice, TermsSection } from "@/lib/tee-time-terms";
 import { Callout } from "./callout";
 import { Checklist } from "./checklist";
 import { SectionHeading } from "./section-heading";
+import { Subheading } from "./subheading";
+import { TextLink } from "./text-link";
 
 export interface TermsAndConditionsProps {
   /** `draft` marks wording that still needs course review. */
@@ -48,12 +50,7 @@ export const TermsAndConditions = ({
             {n.link ? (
               <>
                 {" "}
-                <a
-                  href={n.link.href}
-                  className="font-medium text-brand-secondary underline underline-offset-2"
-                >
-                  {n.link.label}
-                </a>
+                <TextLink href={n.link.href}>{n.link.label}</TextLink>
               </>
             ) : null}
           </Callout>
@@ -74,14 +71,14 @@ export const TermsAndConditions = ({
       <div className="px-5 [&>*+*]:border-t [&>*+*]:border-secondary">
         {sections.map((s) => (
           <div key={s.title} className="py-4">
-            <h3 className="flex items-center gap-2 text-sm font-semibold text-primary">
+            <Subheading className="flex items-center gap-2">
               {s.title}
               {s.draft ? (
                 <Badge type="pill-color" color="warning" size="sm">
                   Draft
                 </Badge>
               ) : null}
-            </h3>
+            </Subheading>
             <Checklist className="mt-2" items={s.items} />
           </div>
         ))}
@@ -98,13 +95,9 @@ export const TermsAndConditions = ({
     ) : null}
 
     {moreLink ? (
-      <a
-        href={moreLink.href}
-        className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-secondary"
-      >
+      <TextLink variant="arrow" href={moreLink.href} className="mt-4">
         {moreLink.label}
-        <ArrowRight className="size-4" aria-hidden="true" />
-      </a>
+      </TextLink>
     ) : null}
   </div>
 );

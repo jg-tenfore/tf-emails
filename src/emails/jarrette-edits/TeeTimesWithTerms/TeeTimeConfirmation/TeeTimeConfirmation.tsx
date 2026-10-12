@@ -16,6 +16,7 @@ import {
   type RedemptionVariant,
   SectionHeading,
   StatusHero,
+  Subheading,
   SummaryStrip,
   TeeTimeDetails,
   TermsAndConditions,
@@ -210,9 +211,7 @@ export const TeeTimeConfirmation = ({
           ]}
         />
 
-        <h3 className="mt-5 text-sm font-semibold text-primary">
-          Tee time policy
-        </h3>
+        <Subheading className="mt-5">Tee time policy</Subheading>
         <p className="mt-2 text-sm text-tertiary">
           Please follow the course dress code: collared shirt required; no denim
           or tank tops. Reservations are refundable only if cancelled 24+ hours

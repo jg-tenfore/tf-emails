@@ -23,6 +23,7 @@ import {
   JarretteHeader,
   PolicyTag,
   StatusHero,
+  Subheading,
 } from "@/components/email";
 import { assets } from "@/lib/assets";
 import { golfer, teeTime } from "@/lib/scenario";
@@ -119,7 +120,7 @@ export const TeeTimeReminder = ({
       <Divider />
 
       <EmailSection tone="muted">
-        <p className="text-sm font-semibold text-primary">Pre-round checklist</p>
+        <Subheading>Pre-round checklist</Subheading>
         <Checklist
           className="mt-2"
           items={[

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cx } from "@/utils/cx";
+import { TextLink } from "./text-link";
 
 interface SupportLineProps {
   /** Destination for the link (usually a mailto: or support URL). */
@@ -23,12 +24,7 @@ export const SupportLine = ({
 }: SupportLineProps) => (
   <p className={cx("text-center text-sm text-tertiary", className)}>
     {children}{" "}
-    <a
-      href={href}
-      className="font-medium text-brand-secondary underline underline-offset-2"
-    >
-      {linkText}
-    </a>
+    <TextLink href={href}>{linkText}</TextLink>
     .
   </p>
 );
