@@ -355,6 +355,16 @@ export interface ClinicIntake {
   value: string;
 }
 
+/** One scheduled occurrence of a clinic, e.g. "Mon, Nov 2" at 2:00 PM. */
+export interface ClinicSession {
+  /** Date label for the occurrence, e.g. "Mon, Nov 2". */
+  date: string;
+  /** Start/end time for this occurrence. */
+  time: string;
+  /** Spots still open on this occurrence's roster. */
+  spotsLeft?: number;
+}
+
 export interface Clinic {
   name: string;
   registrationId: string;
@@ -368,6 +378,14 @@ export interface Clinic {
   fee: string;
   tax: string;
   total: string;
+  /** How often the clinic repeats, e.g. "Every Monday". Omit for one-offs. */
+  recurrence?: string;
+  /** The occurrences this registration covers. Omit for a single-block program. */
+  sessions?: ClinicSession[];
+  /** Spots still open after this registration. */
+  spotsLeft?: number;
+  /** Maximum roster size for the clinic — the "10" on the Pro Shop tile. */
+  rosterSize?: number;
 }
 
 export const clinic: Clinic = {
@@ -386,6 +404,52 @@ export const clinic: Clinic = {
   fee: "$325.00",
   tax: "$21.13",
   total: "$346.13",
+};
+
+/**
+ * Instance-based clinic registration (Pro Shop selling flow): the golfer picks
+ * one scheduled occurrence of a repeating clinic, and the receipt states how
+ * many spots are left so availability is clear before and after checkout.
+ */
+export const clinicSingleSession: Clinic = {
+  name: "Short Game Clinic",
+  registrationId: "88042",
+  instance: "5601",
+  dateRange: "Monday, November 2, 2026",
+  time: "2:00 PM - 3:00 PM",
+  ages: "Adults, all abilities",
+  equipment: "Wedges provided if needed",
+  details:
+    "One hour on the practice green covering pitching, chipping and bunker play.",
+  intake: [{ label: "Handicap range", value: "15-20" }],
+  fee: "$45.00",
+  tax: "$2.93",
+  total: "$47.93",
+  recurrence: "Every Monday",
+  sessions: [{ date: "Mon, Nov 2", time: "2:00 PM - 3:00 PM", spotsLeft: 4 }],
+  spotsLeft: 4,
+  rosterSize: 10,
+};
+
+/** The same clinic booked as a multi-week series, with per-date availability. */
+export const clinicWeeklySeries: Clinic = {
+  ...clinicSingleSession,
+  registrationId: "88043",
+  instance: "5601-5604",
+  dateRange: "November 2 - 23, 2026",
+  details:
+    "Four Monday afternoons on the practice green: pitching, chipping, bunker play and a shot-selection workshop.",
+  fee: "$160.00",
+  tax: "$10.40",
+  total: "$170.40",
+  sessions: [
+    { date: "Mon, Nov 2", time: "2:00 PM - 3:00 PM", spotsLeft: 4 },
+    { date: "Mon, Nov 9", time: "2:00 PM - 3:00 PM", spotsLeft: 6 },
+    { date: "Mon, Nov 16", time: "2:00 PM - 3:00 PM", spotsLeft: 2 },
+    { date: "Mon, Nov 23", time: "2:00 PM - 3:00 PM", spotsLeft: 7 },
+  ],
+  spotsLeft: 2,
+  rosterSize: 10,
 };
 
 /** A booked golf event / tournament / outing with itemized order. */
